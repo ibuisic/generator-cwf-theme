@@ -24,7 +24,7 @@
     "watch:images": "nodemon --watch src/images -x \"npm run imagemin\"",
     "watch:svg": "nodemon --watch src/images/svg --watch src/images/icons -x \"run-s svg:*\"",
     "watch": "run-p serve watch:*",
-    "postinstall": "run-s build watch"
+    "postinstall": "<%= copyBs %>"
   },
   "repository": {
     "type": "git",

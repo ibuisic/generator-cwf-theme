@@ -45,6 +45,15 @@ module.exports = class extends Generator {
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
       this.props = props;
+      switch(this.props.bs) {
+        case 'complete':
+          this.props.copyBs = 'sve';
+          break;
+        case 'grid_only':
+          this.props.copyBs = 'samo grid';
+          break;
+        default:
+      }
     });
   }
 
@@ -101,6 +110,7 @@ module.exports = class extends Generator {
         this.destinationPath('icons-scss.hbs'),
       );
     };
+
     console.log('GLHF!');
   }
 
