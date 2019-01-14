@@ -48,9 +48,11 @@ module.exports = class extends Generator {
       switch(this.props.bs) {
         case 'complete':
           this.props.copyBs = 'sve';
+          this.npmInstall(['bootstrap@^4'], { 'save-dev': true });
           break;
         case 'grid_only':
           this.props.copyBs = 'samo grid';
+          this.npmInstall(['bootstrap-4-grid'], { 'save-dev': true });
           break;
         default:
       }
@@ -115,15 +117,6 @@ module.exports = class extends Generator {
   }
 
   install() {
-    switch(this.props.bs) {
-      case 'complete':
-        this.npmInstall(['bootstrap@^4'], { 'save-dev': true });
-        break;
-      case 'grid_only':
-        this.npmInstall(['bootstrap-4-grid'], { 'save-dev': true });
-        break;
-      default:
-    }
     if (this.options.skipInstall) {
       this.log('Run npm install && composer install to start working');
     } else {
