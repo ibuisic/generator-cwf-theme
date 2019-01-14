@@ -1,0 +1,73 @@
+{
+  "name": "<%= appName %>",
+  "version": "1.0.0",
+  "description": "NPM scripts to be with your <%= humanName %> theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss-lint": "stylelint --syntax scss \"src/scss/**/*.scss\"",
+    "scss-lint:fix": "stylelint --syntax scss --fix \"src/scss/**/*.scss\"",
+    "lint:js": "eslint src/js",
+    "lint:fix": "eslint src/js --fix",
+    "imagemin": "imagemin src/images/* --out-dir=dist/images",
+    "css:scss": "node-sass --output-style compressed -o dist/css src/scss",
+    "css:prefix": "postcss -u autoprefixer -r dist/css/*",
+    "svg:spritemin": "svgo -f src/images/svg/",
+    "svg:sprite": "svg-sprite-generate -d src/images/svg -o dist/images/icons.svg",
+    "svg:iconsmin": "svgo -f src/images/icons/",
+    "svg:icons": "icon-font-generator src/images/icons/*.svg --html false -o fonts/ --fontspath ../fonts  --csstp ./icons-scss.hbs -t .glyph -p glyph --csspath src/scss/_icon-font.scss",
+    "serve": "browser-sync start --proxy 'mylocal.dev' --serveStatic 'public' -w --files 'dist/css/*.css, src/js/*.js, templates/**/*.twig, !node_modules/**/*.html'",
+    "build:css": "run-s css:scss css:prefix",
+    "build:images": "run-s imagemin svg:spritemin svg:sprite svg:iconsmin svg:icons",
+    "build": "run-s build:*",
+    "watch:css": "nodemon --watch src/scss -e scss -x \"run-s css:*\"",
+    "watch:images": "nodemon --watch src/images -x \"npm run imagemin\"",
+    "watch:svg": "nodemon --watch src/images/svg --watch src/images/icons -x \"run-s svg:*\"",
+    "watch": "run-p serve watch:*",
+    "postinstall": "run-s build watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibuisic/eaglehill.git"
+  },
+  "keywords": [
+    "npm",
+    "scripts",
+    "npm scripts",
+    "drupal8",
+    "watch",
+    "minify",
+    "compress"
+  ],
+  "author": "ibuisic@circlewf.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ibuisic/eaglehill/issues"
+  },
+  "homepage": "https://github.com/ibuisic/eaglehill#readme",
+  "devDependencies": {
+    "autoprefixer": "^9.4.4",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.6.1",
+    "eslint-plugin-compat": "^2.5.1",
+    "eslint-plugin-prettier": "^3.0.0",
+    "nodemon": "^1.18.9",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.1.1",
+    "stylelint": "^9.6.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-order": "^1.0.0",
+    "stylelint-scss": "^3.3.1"
+  },
+  "dependencies": {
+    "browser-sync": "^2.26.3",
+    "gnomon": "^1.5.0",
+    "icon-font-generator": "^2.1.8",
+    "imagemin": "^6.1.0",
+    "imagemin-cli": "^4.0.0",
+    "node-sass": "^4.9.3",
+    "svg-sprite-generator": "0.0.7",
+    "svgo": "^1.1.1"
+  }
+}

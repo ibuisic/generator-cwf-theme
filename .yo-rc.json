@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Ivan Buisic",
+      "authorEmail": "buisic.ivan@gmail.com",
+      "authorUrl": ""
+    }
+  }
+}
