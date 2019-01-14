@@ -1,0 +1,17 @@
+framework:
+  css:
+    theme:
+      dist/css/style.css: {}
+  js:
+    dist/js/bootstrap/affix.js: {}
+    dist/js/bootstrap/alert.js: {}
+    dist/js/bootstrap/button.js: {}
+    dist/js/bootstrap/carousel.js: {}
+    dist/js/bootstrap/collapse.js: {}
+    dist/js/bootstrap/dropdown.js: {}
+    dist/js/bootstrap/modal.js: {}
+    dist/js/bootstrap/tooltip.js: {}
+    dist/js/bootstrap/popover.js: {}
+    dist/js/bootstrap/scrollspy.js: {}
+    dist/js/bootstrap/tab.js: {}
+    dist/js/bootstrap/transition.js: {}

@@ -49,7 +49,7 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    var folders = ['dist/fonts', 'dist/images', 'dist/css', 'dist/js', 'src/js', 'src/scss', 'src/images/svg','src/images/icons'];
+    var folders = ['templates', 'dist/fonts', 'dist/images', 'dist/css', 'dist/js', 'src/js', 'src/scss', 'src/images/svg','src/images/icons'];
     folders.forEach(function(folder) {
       mkdirp(folder, function (err) {
         if (err){
@@ -59,16 +59,37 @@ module.exports = class extends Generator {
         }
       });
     });
-
+    // Theme files
     this.fs.copy(
       this.templatePath('_theme.theme'),
       this.destinationPath(this.props.appName + '.theme')
     );
+    this.fs.copy(
+      this.templatePath('_theme.libraries.yml'),
+      this.destinationPath(this.props.appName + '.libraries.yml')
+    );
     this.fs.copyTpl(
-      this.templatePath('_theme.info.yml'),
+      this.templatePath('_theme.starterkit.yml'),
       this.destinationPath(this.props.appName + '.info.yml'),
       this.props
     );
+    this.fs.copyTpl(
+      this.templatePath('config/install/_theme.settings.yml'),
+      this.destinationPath('config/install/' + this.props.appName + '.settings.yml'),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath('config/schema/_theme.schema.yml'),
+      this.destinationPath('config/schema/' + this.props.appName + '.schema.yml'),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath('logo.svg'),
+      this.destinationPath('logo.svg'),
+      this.props
+    );
+
+    // Assets
     this.fs.copyTpl(
       this.templatePath('_package.json'),
       this.destinationPath('package.json'),
