@@ -71,6 +71,6 @@
     "pretest": "eslint .",
     "test": "jest"
   },
-  "repository": "ibuisic/generator-cwf-theme",
+  "repository": "https://github.com/ibuisic/generator-cwf-theme",
   "license": "Apache-2.0"
 }
