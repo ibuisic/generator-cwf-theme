@@ -1,24 +1,36 @@
-core: 8.x
-type: theme
-base theme: bootstrap
-
 name: '<%= humanName %>'
-description: 'Uses the Bootstrap framework Sass source files and must be compiled (not for beginners).'
-package: 'Bootstrap'
+type: theme
+description: 'Bootstrap 4 driven base theme'
+core: 8.x
+base theme: stable
+
+libraries:
+  - <%= themeName %>/global-styling
 
 regions:
-  navigation: 'Navigation'
-  navigation_collapsible: 'Navigation (Collapsible)'
-  header: 'Top Bar'
-  highlighted: 'Highlighted'
+  header: 'Header'
   help: 'Help'
+  highlighted: 'Highlighted'
   content: 'Content'
-  sidebar_first: 'Primary'
-  sidebar_second: 'Secondary'
   footer: 'Footer'
-  page_top: 'Page top'
-  page_bottom: 'Page bottom'
+  hidden: 'Hidden'
 
-libraries-extend:
-  bootstrap/framework:
-    - bootstrap/framework
+
+# libraries-override:
+# # Replace an entire library.
+#   core/drupal.collapse: mytheme/collapse
+
+# # Replace an asset with another.
+# subtheme/library:
+#   css:
+#     theme:
+#       css/layout.css: css/my-layout.css
+
+# # Remove an asset.
+# drupal/dialog:
+#   css:
+#     theme:
+#       dialog.theme.css: false
+
+# # Remove an entire library.
+# core/modernizr: false

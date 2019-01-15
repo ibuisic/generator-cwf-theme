@@ -1,5 +1,5 @@
 # Schema for the theme setting configuration file of the THEMETITLE theme.
 
-<%= appName %>.settings:
+<%= themeName %>.settings:
   type: theme_settings
-  label: '<%= appName %> settings'
+  label: '<%= themeName %> settings'

@@ -1,17 +1,18 @@
-framework:
+global-styling:
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - <%= themeName %>/bootstrap_js
+
   css:
     theme:
-      dist/css/style.css: {}
+      dist/css/<%= themeName %>.css: {}
+      '//fonts.googleapis.com/css?family=Raleway:400,700': { type: external, minified: true }
   js:
-    dist/js/bootstrap/affix.js: {}
-    dist/js/bootstrap/alert.js: {}
-    dist/js/bootstrap/button.js: {}
-    dist/js/bootstrap/carousel.js: {}
-    dist/js/bootstrap/collapse.js: {}
-    dist/js/bootstrap/dropdown.js: {}
-    dist/js/bootstrap/modal.js: {}
-    dist/js/bootstrap/tooltip.js: {}
-    dist/js/bootstrap/popover.js: {}
-    dist/js/bootstrap/scrollspy.js: {}
-    dist/js/bootstrap/tab.js: {}
-    dist/js/bootstrap/transition.js: {}
+    dist/js/<%= themeName %>.js: {}
+
+# Vendor libraires
+####
+bootstrap_js:
+  js:
+    src/js/bootstrap.min.js: {}

@@ -22,7 +22,7 @@ module.exports = class extends Generator {
       },
       {
         type: 'String',
-        name: 'appName',
+        name: 'themeName',
         message: "What's your cwf machine name?",
         default: function(props) {
           return _.snakeCase(props.humanName);
@@ -73,25 +73,25 @@ module.exports = class extends Generator {
     // Theme files
     this.fs.copy(
       this.templatePath('_theme.theme'),
-      this.destinationPath(this.props.appName + '.theme')
+      this.destinationPath(this.props.themeName + '.theme')
     );
     this.fs.copy(
       this.templatePath('_theme.libraries.yml'),
-      this.destinationPath(this.props.appName + '.libraries.yml')
+      this.destinationPath(this.props.themeName + '.libraries.yml')
     );
     this.fs.copyTpl(
       this.templatePath('_theme.starterkit.yml'),
-      this.destinationPath(this.props.appName + '.info.yml'),
+      this.destinationPath(this.props.themeName + '.info.yml'),
       this.props
     );
     this.fs.copyTpl(
       this.templatePath('config/install/_theme.settings.yml'),
-      this.destinationPath('config/install/' + this.props.appName + '.settings.yml'),
+      this.destinationPath('config/install/' + this.props.themeName + '.settings.yml'),
       this.props
     );
     this.fs.copyTpl(
       this.templatePath('config/schema/_theme.schema.yml'),
-      this.destinationPath('config/schema/' + this.props.appName + '.schema.yml'),
+      this.destinationPath('config/schema/' + this.props.themeName + '.schema.yml'),
       this.props
     );
     this.fs.copyTpl(

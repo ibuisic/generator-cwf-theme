@@ -1,5 +1,5 @@
 {
-  "name": "<%= appName %>",
+  "name": "<%= themeName %>",
   "version": "1.0.0",
   "description": "NPM scripts to be with your <%= humanName %> theme",
   "main": "index.js",
