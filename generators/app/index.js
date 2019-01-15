@@ -55,23 +55,6 @@ module.exports = class extends Generator {
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
       this.props = props;
-
-      // Adjust Bootstrap files
-      switch (this.props.bsCSS) {
-        case 'Complete':
-          // Install complete Bootstrap and copy files
-          this.npmInstall(['bootstrap@^4'], { 'save-dev': true });
-          this.props.copyBsCSS = 'sve';
-          this.props.copyBsJS = 'js all';
-          break;
-        case 'Grid only':
-          // Install Grid Only Bootstrap and copy
-          this.npmInstall(['bootstrap-4-grid'], { 'save-dev': true });
-          this.props.copyBsCSS = 'samo grid';
-          this.props.copyBsJS = '';
-          break;
-        default:
-      }
     });
   }
 
@@ -132,10 +115,44 @@ module.exports = class extends Generator {
   }
 
   install() {
+
+    // Adjust Bootstrap files
+    switch (this.props.bsCSS) {
+      case 'Complete':
+        // Install complete Bootstrap and copy files
+        this.npmInstall(['bootstrap@^4'], { 'save-dev': true });
+        break;
+      case 'Grid only':
+        // Install Grid Only Bootstrap and copy
+        this.npmInstall(['bootstrap-4-grid'], { 'save-dev': true });
+        break;
+      default:
+    }
+
     if (this.options.skipInstall) {
       this.log('Run npm install && composer install to start working');
     } else {
       this.npmInstall();
+    }
+  }
+
+  end() {
+    console.log(this.props.bsCSS);
+    if (this.props.bsCSS === 'Complete') {
+      this.fs.copy(
+        this.destinationPath('node_modules/bootstrap/scss/bootstrap.scss'),
+        this.destinationPath('src/scss/' + this.props.themeName + '.scss'),
+      );
+      this.fs.copy(
+        this.destinationPath('node_modules/bootstrap/scss/**/_*.scss'),
+        this.destinationPath('src/scss'),
+      );
+    }
+    if (this.props.bsCSS === 'Complete' && this.props.bsJS === true){
+      this.fs.copy(
+        this.destinationPath('node_modules/bootstrap/dist/js/bootstrap.js'),
+        this.destinationPath('src/js/bootstrap.js'),
+      );
     }
   }
 };
