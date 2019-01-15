@@ -30,6 +30,14 @@ module.exports = class extends Generator {
         },
       },
       {
+        type: 'String',
+        name: 'proxyName',
+        message: "What proxy should broweserync use?",
+        default: function(props) {
+          return _.snakeCase(props.humanName) + '.dev';
+        },
+      },
+      {
         type: 'list',
         name: 'bsCSS',
         message: "Copy Bootstrap SCSS to theme?",
@@ -50,6 +58,12 @@ module.exports = class extends Generator {
         message: "Would you like to create your own Icon Font",
         default: true
       },
+      {
+        type: 'confirm',
+        name: 'svgSprite',
+        message: "Would you like to use Svg sprites?",
+        default: true
+      },
     ];
 
     return this.prompt(prompts).then(props => {
@@ -59,7 +73,7 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    var folders = ['templates', 'dist/fonts', 'dist/images', 'dist/css', 'dist/js', 'src/scss'];
+    var folders = ['dist/fonts', 'dist/images', 'dist/css', 'dist/js', 'src/scss'];
     folders.forEach(function(folder) {
       mkdirp(folder, function(err) {
         if (err) {
@@ -69,44 +83,53 @@ module.exports = class extends Generator {
         }
       });
     });
+
     // Theme files
-    this.fs.copy(
-      this.templatePath('_theme.theme'),
-      this.destinationPath(this.props.themeName + '.theme')
-    );
-    this.fs.copy(
-      this.templatePath('_theme.settings.yml'),
-      this.destinationPath(this.props.themeName + '.settings.yml')
-    );
-    this.fs.copy(
-      this.templatePath('src/images'),
-      this.destinationPath('src/images')
-    );
-    this.fs.copyTpl(
-      this.templatePath('_theme.libraries.yml'),
-      this.destinationPath(this.props.themeName + '.libraries.yml'),
-      this.props
-    );
     this.fs.copyTpl(
       this.templatePath('_theme.starterkit.yml'),
       this.destinationPath(this.props.themeName + '.info.yml'),
       this.props
     );
+
+    this.fs.copy(
+      this.templatePath('_theme.theme'),
+      this.destinationPath(this.props.themeName + '.theme')
+    );
+
+    this.fs.copy(
+      this.templatePath('_theme.settings.yml'),
+      this.destinationPath(this.props.themeName + '.settings.yml')
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('_theme.libraries.yml'),
+      this.destinationPath(this.props.themeName + '.libraries.yml'),
+      this.props
+    );
+
+    this.fs.copy(
+      this.templatePath('templates'),
+      this.destinationPath('templates')
+    );
+
+    if (this.props.svgSprite) {
+      this.fs.append(this.destinationPath('templates/page.html.twig'), '<div class="d-none">{{ source("../dist/images/sprite.svg") }}</div>' );
+    }
+
+    // Install and schema
     this.fs.copyTpl(
       this.templatePath('config/install/_theme.settings.yml'),
       this.destinationPath('config/install/' + this.props.themeName + '.settings.yml'),
       this.props
     );
+
     this.fs.copyTpl(
       this.templatePath('config/schema/_theme.schema.yml'),
       this.destinationPath('config/schema/' + this.props.themeName + '.schema.yml'),
       this.props
     );
-    this.fs.copyTpl(
-      this.templatePath('logo.svg'),
-      this.destinationPath('logo.svg'),
-      this.props
-    );
+
+    // CSS and JS
     this.fs.copyTpl(
       this.templatePath('src/js/_script.js'),
       this.destinationPath('src/js/' + this.props.themeName + '.js'),
@@ -114,17 +137,41 @@ module.exports = class extends Generator {
     );
 
     // Assets
+    this.fs.copy(
+      this.templatePath('static/**/*'),
+       this.destinationRoot(),
+       { globOptions: { dot: true } }
+      );
+
+    this.fs.copyTpl(
+      this.templatePath('logo.svg'),
+      this.destinationPath('logo.svg'),
+      this.props
+    );
+
+    if (this.props.iconFont) {
+      this.fs.copy(
+        this.templatePath('src/images/icons'),
+        this.destinationPath('src/images/icons')
+      );
+      this.fs.copy(
+        this.templatePath('icon-font.hbs'),
+        this.destinationPath('icon-font.hbs'),
+      );
+    }
+
+    if (this.props.svgSprite) {
+      this.fs.copy(
+        this.templatePath('src/images/svg'),
+        this.destinationPath('src/images/svg')
+      );
+    }
+
     this.fs.copyTpl(
       this.templatePath('_package.json'),
       this.destinationPath('package.json'),
       this.props
     );
-    if (this.props.iconFont) {
-      this.fs.copy(
-        this.templatePath('icons-scss.hbs'),
-        this.destinationPath('icons-scss.hbs'),
-      );
-    };
   }
 
   install() {
@@ -151,6 +198,7 @@ module.exports = class extends Generator {
 
   end() {
     console.log(this.props.bsCSS);
+    // Copy all Bootstrap SCSS files
     if (this.props.bsCSS === 'Complete') {
       this.fs.copy(
         this.destinationPath('node_modules/bootstrap/scss/bootstrap.scss'),
@@ -161,12 +209,31 @@ module.exports = class extends Generator {
         this.destinationPath('src/scss'),
       );
     }
-    if (this.props.bsCSS === 'Complete' && this.props.bsJS === true){
+    // Copy only Bootstrap grid
+    if (this.props.bsCSS === 'Grid only') {
+      this.fs.copy(
+        this.destinationPath('node_modules/bootstrap-4-grid/scss/grid.scss'),
+        this.destinationPath('src/scss/' + this.props.themeName + '.scss'),
+      );
+      this.fs.copy(
+        this.destinationPath('node_modules/bootstrap-4-grid/scss/**/_*.scss'),
+        this.destinationPath('src/scss'),
+      );
+    }
+    // Copy Bootstrap.js
+    if (this.props.bsJS === true) {
       this.fs.copy(
         this.destinationPath('node_modules/bootstrap/dist/js/bootstrap.js'),
         this.destinationPath('src/js/bootstrap.js'),
       );
     }
+
+    if (this.props.iconFont) {
+      // Add the icon SCSS to styles
+      var scss = this.fs.read('src/scss/' + this.props.themeName + '.scss');
+      this.fs.write('src/scss/' + this.props.themeName + '.scss', '@import "icon-font.scss";\n' + scss );
+    }
+
     this.log('Run npm build to start working');
   }
 };
