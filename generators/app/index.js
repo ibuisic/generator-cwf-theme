@@ -1,4 +1,5 @@
 'use strict';
+
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
@@ -17,25 +18,34 @@ module.exports = class extends Generator {
       {
         type: 'String',
         name: 'humanName',
-        message: 'How will you call your theme?',
+        message: 'Name your theme?',
         default: 'cwf'
       },
       {
         type: 'String',
         name: 'themeName',
-        message: "What's your cwf machine name?",
+        message: "What's your theme machine name?",
         default: function(props) {
           return _.snakeCase(props.humanName);
         },
       },
       {
         type: 'list',
-        name: 'bs',
-        message: "How would you like to use Bootstrap CSS?",
-        choices: ['complete','grid_only','no_css']
+        name: 'bsCSS',
+        message: "Copy Bootstrap SCSS to theme?",
+        choices: ['Complete','Grid only','Do not copy']
       },
       {
-        type: 'Boolean',
+        when: function (response) {
+          return response.bsCSS === 'Complete';
+        },
+        type: 'confirm',
+        name: 'bsJS',
+        message: "Copy Bootstrap JS to theme?",
+        default: true
+      },
+      {
+        type: 'confirm',
         name: 'iconFont',
         message: "Would you like to create your own Icon Font",
         default: true
@@ -45,14 +55,20 @@ module.exports = class extends Generator {
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
       this.props = props;
-      switch(this.props.bs) {
-        case 'complete':
-          this.props.copyBs = 'sve';
+
+      // Adjust Bootstrap files
+      switch (this.props.bsCSS) {
+        case 'Complete':
+          // Install complete Bootstrap and copy files
           this.npmInstall(['bootstrap@^4'], { 'save-dev': true });
+          this.props.copyBsCSS = 'sve';
+          this.props.copyBsJS = 'js all';
           break;
-        case 'grid_only':
-          this.props.copyBs = 'samo grid';
+        case 'Grid only':
+          // Install Grid Only Bootstrap and copy
           this.npmInstall(['bootstrap-4-grid'], { 'save-dev': true });
+          this.props.copyBsCSS = 'samo grid';
+          this.props.copyBsJS = '';
           break;
         default:
       }
@@ -62,9 +78,9 @@ module.exports = class extends Generator {
   writing() {
     var folders = ['templates', 'dist/fonts', 'dist/images', 'dist/css', 'dist/js', 'src/js', 'src/scss', 'src/images/svg','src/images/icons'];
     folders.forEach(function(folder) {
-      mkdirp(folder, function (err) {
-        if (err){
-          console.log(e);
+      mkdirp(folder, function(err) {
+        if (err) {
+          console.log(err);
         } else {
           console.log('Created directory ' + folder)
         }
@@ -75,9 +91,10 @@ module.exports = class extends Generator {
       this.templatePath('_theme.theme'),
       this.destinationPath(this.props.themeName + '.theme')
     );
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath('_theme.libraries.yml'),
-      this.destinationPath(this.props.themeName + '.libraries.yml')
+      this.destinationPath(this.props.themeName + '.libraries.yml'),
+      this.props
     );
     this.fs.copyTpl(
       this.templatePath('_theme.starterkit.yml'),
@@ -112,8 +129,6 @@ module.exports = class extends Generator {
         this.destinationPath('icons-scss.hbs'),
       );
     };
-
-    console.log('GLHF!');
   }
 
   install() {
@@ -124,4 +139,3 @@ module.exports = class extends Generator {
     }
   }
 };
-

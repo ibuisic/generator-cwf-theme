@@ -20,11 +20,12 @@
     "build:css": "run-s css:scss css:prefix",
     "build:images": "run-s imagemin svg:spritemin svg:sprite svg:iconsmin svg:icons",
     "build": "run-s build:*",
+    "bs:js": "<%= copyBsJS %>",
+    "bs:css": "<%= copyBsCSS %>",
     "watch:css": "nodemon --watch src/scss -e scss -x \"run-s css:*\"",
     "watch:images": "nodemon --watch src/images -x \"npm run imagemin\"",
     "watch:svg": "nodemon --watch src/images/svg --watch src/images/icons -x \"run-s svg:*\"",
-    "watch": "run-p serve watch:*",
-    "postinstall": "<%= copyBs %>"
+    "watch": "run-p serve watch:*"
   },
   "repository": {
     "type": "git",
