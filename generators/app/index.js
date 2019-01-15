@@ -59,7 +59,7 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    var folders = ['templates', 'dist/fonts', 'dist/images', 'dist/css', 'dist/js', 'src/js', 'src/scss', 'src/images/svg','src/images/icons'];
+    var folders = ['templates', 'dist/fonts', 'dist/images', 'dist/css', 'dist/js', 'src/scss'];
     folders.forEach(function(folder) {
       mkdirp(folder, function(err) {
         if (err) {
@@ -73,6 +73,14 @@ module.exports = class extends Generator {
     this.fs.copy(
       this.templatePath('_theme.theme'),
       this.destinationPath(this.props.themeName + '.theme')
+    );
+    this.fs.copy(
+      this.templatePath('_theme.settings.yml'),
+      this.destinationPath(this.props.themeName + '.settings.yml')
+    );
+    this.fs.copy(
+      this.templatePath('src/images'),
+      this.destinationPath('src/images')
     );
     this.fs.copyTpl(
       this.templatePath('_theme.libraries.yml'),
@@ -97,6 +105,11 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('logo.svg'),
       this.destinationPath('logo.svg'),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath('src/js/_script.js'),
+      this.destinationPath('src/js/' + this.props.themeName + '.js'),
       this.props
     );
 
@@ -130,7 +143,7 @@ module.exports = class extends Generator {
     }
 
     if (this.options.skipInstall) {
-      this.log('Run npm install && composer install to start working');
+      this.log('Run npm install to start working');
     } else {
       this.npmInstall();
     }
@@ -154,5 +167,6 @@ module.exports = class extends Generator {
         this.destinationPath('src/js/bootstrap.js'),
       );
     }
+    this.log('Run npm build to start working');
   }
 };
