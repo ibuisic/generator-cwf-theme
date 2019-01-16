@@ -137,11 +137,11 @@ module.exports = class extends Generator {
     );
 
     // Assets
-    this.fs.copy(
-      this.templatePath('static/**/*'),
-       this.destinationRoot(),
-       { globOptions: { dot: true } }
-      );
+    this.fs.copy(this.templatePath('static/**/*'), this.destinationRoot(), {
+      globOptions: {
+        dot: true
+      }
+    });
 
     this.fs.copyTpl(
       this.templatePath('logo.svg'),
