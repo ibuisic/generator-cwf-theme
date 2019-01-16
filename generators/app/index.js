@@ -233,6 +233,7 @@ module.exports = class extends Generator {
       this.fs.write('src/scss/' + this.props.themeName + '.scss', '@import "icon-font.scss";\n' + scss );
     }
 
-    this.log('Run npm build to start working');
+    // Build all after copied all files
+    this.spawnCommand('npm', ['run', 'build']);
   }
 };
