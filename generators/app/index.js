@@ -63,7 +63,7 @@ module.exports = class extends Generator {
         name: 'svgSprite',
         message: "Would you like to use Svg sprites?",
         default: true
-      },
+      }
     ];
 
     return this.prompt(prompts).then(props => {
@@ -113,7 +113,7 @@ module.exports = class extends Generator {
     );
 
     if (this.props.svgSprite) {
-      this.fs.append(this.destinationPath('templates/page.html.twig'), '<div class="d-none">{{ source("../dist/images/sprite.svg") }}</div>' );
+      this.fs.append(this.destinationPath('templates/page.html.twig'), '<div class="d-none">{{ source("/" ~ directory ~ "/dist/images/sprite.svg") }}</div>' );
     }
 
     // Install and schema
@@ -175,7 +175,6 @@ module.exports = class extends Generator {
   }
 
   install() {
-
     // Adjust Bootstrap files
     switch (this.props.bsCSS) {
       case 'Complete':
@@ -212,11 +211,11 @@ module.exports = class extends Generator {
     // Copy only Bootstrap grid
     if (this.props.bsCSS === 'Grid only') {
       this.fs.copy(
-        this.destinationPath('node_modules/bootstrap-4-grid/scss/grid.scss'),
+        this.destinationPath('node_modules/bootstrap-4-grid/scss/grid/bootstrap-grid.scss'),
         this.destinationPath('src/scss/' + this.props.themeName + '.scss'),
       );
       this.fs.copy(
-        this.destinationPath('node_modules/bootstrap-4-grid/scss/**/_*.scss'),
+        this.destinationPath('node_modules/bootstrap-4-grid/scss/grid/**/_*.scss'),
         this.destinationPath('src/scss'),
       );
     }

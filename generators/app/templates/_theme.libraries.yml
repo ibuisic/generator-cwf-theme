@@ -15,4 +15,4 @@ global-styling:
 ####
 bootstrap_js:
   js:
-    src/js/bootstrap.min.js: {}
+    src/js/bootstrap.js: {}
