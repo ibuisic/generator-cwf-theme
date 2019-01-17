@@ -13,7 +13,6 @@ module.exports = class extends Generator {
       yosay(`Welcome to the badass ${chalk.red('generator-cwf-theme')} generator!`)
     );
 
-
     const prompts = [
       {
         type: 'String',
@@ -83,6 +82,26 @@ module.exports = class extends Generator {
         }
       });
     });
+
+    // Package json
+    this.fs.copyTpl(
+      this.templatePath('_package.json'),
+      this.destinationPath('package.json'),
+      this.props
+    );
+
+    const pkgJson = {
+      scripts: {
+        "scss-lint": "stylelint --syntax scss \"src/scss/**/*.scss\"",
+        "scss-lint:fix": "stylelint --syntax scss --fix \"src/scss/**/*.scss\"",
+        "lint:js": "eslint src/js",
+        "lint:fix": "eslint src/js --fix",
+        "image:min": "imagemin src/images/* --out-dir=dist/images",
+        "css:scss": "node-sass --output-style compressed -o dist/css src/scss",
+        "css:prefix": "postcss -u autoprefixer -r dist/css/*",
+        "serve": "browser-sync start --proxy \""+ this.props.proxyName +"\" --files \"dist/css/*.css, src/js/*.js, templates/**/*.twig, !node_modules/**/*.html\"",
+      }
+    };
 
     // Theme files
     this.fs.copyTpl(
@@ -158,6 +177,11 @@ module.exports = class extends Generator {
         this.templatePath('icon-font.hbs'),
         this.destinationPath('icon-font.hbs'),
       );
+
+      pkgJson.scripts["image:icons"] =
+        "icon-font-generator src/images/icons/*.svg --html false -o dist/fonts/ -f ../fonts --csstp ./icon-font.hbs -p glyph -t glyph --csspath src/scss/_icon-font.scss";
+      pkgJson.scripts["watch:icons"] =
+        "nodemon --watch src/images/icons -e svg -x \"npm run svg:icons\"";
     }
 
     if (this.props.svgSprite) {
@@ -165,13 +189,24 @@ module.exports = class extends Generator {
         this.templatePath('src/images/svg'),
         this.destinationPath('src/images/svg')
       );
+
+      pkgJson.scripts["image:sprite"] =
+        "svg-sprite-generate -d src/images/svg -o dist/images/sprite.svg";
+      pkgJson.scripts["watch:svg"] =
+        "nodemon --watch src/images/svg -e svg -x \"npm run svg:sprite\"";
     }
 
-    this.fs.copyTpl(
-      this.templatePath('_package.json'),
-      this.destinationPath('package.json'),
-      this.props
-    );
+    // Add build package JSON
+
+    pkgJson.scripts["build:images"] = "run-s image:*";
+    pkgJson.scripts["build:css"] = "run-s css:scss css:prefix";
+    pkgJson.scripts.build = "run-s build:*";
+    pkgJson.scripts["watch:css"] = "nodemon --watch src/scss -e scss -x \"run-s -s css:*\"";
+    pkgJson.scripts["watch:images"] = "nodemon --watch src/images -x \"npm run imagemin\"";
+    pkgJson.scripts.watch = "run-p serve watch:*";
+
+    // Updated package Json with scripts used
+    this.fs.extendJSON(this.destinationPath('package.json'), pkgJson);
   }
 
   install() {
@@ -209,7 +244,7 @@ module.exports = class extends Generator {
       );
     }
     // Copy only Bootstrap grid
-    if (this.props.bsCSS === 'Grid only') {
+    else if (this.props.bsCSS === 'Grid only') {
       this.fs.copy(
         this.destinationPath('node_modules/bootstrap-4-grid/scss/grid/bootstrap-grid.scss'),
         this.destinationPath('src/scss/' + this.props.themeName + '.scss'),
@@ -218,6 +253,12 @@ module.exports = class extends Generator {
         this.destinationPath('node_modules/bootstrap-4-grid/scss/grid/**/_*.scss'),
         this.destinationPath('src/scss'),
       );
+      // Nothing
+    } else {
+      this.fs.write('src/scss/' + this.props.themeName + '.scss', '', function (err) {
+        if (err) throw err;
+        console.log('Created main scss file!');
+      });
     }
     // Copy Bootstrap.js
     if (this.props.bsJS === true) {

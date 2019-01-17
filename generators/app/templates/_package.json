@@ -4,25 +4,7 @@
   "description": "NPM scripts to be with your <%= humanName %> theme",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "scss-lint": "stylelint --syntax scss \"src/scss/**/*.scss\"",
-    "scss-lint:fix": "stylelint --syntax scss --fix \"src/scss/**/*.scss\"",
-    "lint:js": "eslint src/js",
-    "lint:fix": "eslint src/js --fix",
-    "imagemin": "imagemin src/images/* --out-dir=dist/images",
-    "css:scss": "node-sass --output-style compressed -o dist/css src/scss",
-    "css:prefix": "postcss -u autoprefixer -r dist/css/*",
-    "svg:sprite": "svg-sprite-generate -d src/images/svg -o dist/images/sprite.svg",
-    "svg:icons": "icon-font-generator src/images/icons/*.svg --html false -o dist/fonts/ -f ../fonts --csstp ./icon-font.hbs -p glyph -t glyph --csspath src/scss/_icon-font.scss",
-    "serve": "browser-sync start --proxy \"<%= proxyName %>\" --files \"dist/css/*.css, src/js/*.js, templates/**/*.twig, !node_modules/**/*.html\"",
-    "build:images": "run-s imagemin svg:sprite svg:icons",
-    "build:css": "run-s css:scss css:prefix",
-    "build": "run-s build:*",
-    "watch:css": "nodemon --watch src/scss -e scss -x \"run-s -s css:*\"",
-    "watch:images": "nodemon --watch src/images -x \"npm run imagemin\"",
-    "watch:svg": "nodemon --watch src/images/svg -e svg -x \"npm run svg:sprite\"",
-    "watch:icons": "nodemon --watch src/images/icons -e svg -x \"npm run svg:icons\"",
-    "watch": "run-p serve watch:*"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
