@@ -1,5 +1,5 @@
 # generator-cwf-theme [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> Generates CWF Bootstrap subtheme
+> Generates CWF Bootstrap starter theme
 
 ## Installation
 
