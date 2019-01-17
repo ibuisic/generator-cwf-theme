@@ -177,7 +177,9 @@ module.exports = class extends Generator {
         this.templatePath('icon-font.hbs'),
         this.destinationPath('icon-font.hbs'),
       );
-
+      // Add packages
+      this.npmInstall(['icon-font-generator'], { 'save-dev': true });
+      // Create scripts
       pkgJson.scripts["image:icons"] =
         "icon-font-generator src/images/icons/*.svg --html false -o dist/fonts/ -f ../fonts --csstp ./icon-font.hbs -p glyph -t glyph --csspath src/scss/_icon-font.scss";
       pkgJson.scripts["watch:icons"] =
@@ -189,7 +191,9 @@ module.exports = class extends Generator {
         this.templatePath('src/images/svg'),
         this.destinationPath('src/images/svg')
       );
-
+      // Add packages
+      this.npmInstall(['svg-sprite-generator'], { 'save-dev': true });
+      // Create scripts
       pkgJson.scripts["image:sprite"] =
         "svg-sprite-generate -d src/images/svg -o dist/images/sprite.svg";
       pkgJson.scripts["watch:svg"] =

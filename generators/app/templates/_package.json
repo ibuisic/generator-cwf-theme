@@ -42,12 +42,9 @@
   },
   "dependencies": {
     "browser-sync": "^2.26.3",
-    "gnomon": "^1.5.0",
-    "icon-font-generator": "^2.1.8",
     "imagemin": "^6.1.0",
     "imagemin-cli": "^4.0.0",
     "node-sass": "^4.9.3",
-    "svg-sprite-generator": "0.0.7",
     "svgo": "^1.1.1"
   }
 }
