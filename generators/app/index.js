@@ -5,6 +5,7 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const _ = require('lodash');
 const mkdirp = require('mkdirp');
+const textToPicture = require('text-to-picture');
 
 module.exports = class extends Generator {
   prompting() {
@@ -110,9 +111,10 @@ module.exports = class extends Generator {
       this.props
     );
 
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath('_theme.theme'),
-      this.destinationPath(this.props.themeName + '.theme')
+      this.destinationPath(this.props.themeName + '.theme'),
+      this.props
     );
 
     this.fs.copy(
@@ -200,6 +202,22 @@ module.exports = class extends Generator {
         "nodemon --watch src/images/svg -e svg -x \"npm run svg:sprite\"";
     }
 
+    // Create screenshot
+    textToPicture
+      .convert({
+        text: this.props.humanName,
+        source: {
+          width: 300,
+          height: 300,
+          background: 0x367588
+        },
+        color: 'white'
+      })
+      .then(result => {
+        return result.write(this.destinationPath('screenshot.png'))
+      })
+      .catch(err => err);
+
     // Add build package JSON
 
     pkgJson.scripts["build:images"] = "run-s image:*";
@@ -259,10 +277,12 @@ module.exports = class extends Generator {
       );
       // Nothing
     } else {
-      this.fs.write('src/scss/' + this.props.themeName + '.scss', '', function (err) {
-        if (err) throw err;
-        console.log('Created main scss file!');
-      });
+      this.fs.write(
+        this.destinationPath('src/scss/' + this.props.themeName + '.scss'), '', function (err) {
+          if (err) throw err;
+          console.log('Created main scss file!');
+        }
+      );
     }
     // Copy Bootstrap.js
     if (this.props.bsJS === true) {

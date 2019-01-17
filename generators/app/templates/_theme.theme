@@ -6,3 +6,18 @@
  *
  * Place your custom PHP code in this file.
  */
+
+// Add theme suggestions to blocks based on region.
+function <%= themeName %>_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  if (!empty($variables['elements']['#id'])) {
+    $block = Drupal\block\Entity\Block::load($variables['elements']['#id']);
+    $suggestions[] = 'block__' . $block->getRegion();
+    $suggestions[] = 'block__' . $block->getRegion() . '__' . $variables['elements']['#id'];
+  }
+  return $suggestions;
+}
+
+// List all libraries
+//   function transcom_library_info_alter(&$libraries, $extension) {
+//     dump($libraries);
+//   }
