@@ -1,6 +1,6 @@
 {
   "name": "generator-cwf-theme",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Generates a Drupal CWF Bootstrap base theme",
   "homepage": "",
   "author": {
@@ -14,7 +14,12 @@
   "main": "generators/index.js",
   "keywords": [
     "drupal",
+    "drupal 8",
     "boostrap",
+    "bootstrap 4",
+    "drupal starter kit",
+    "task runner",
+    "builder",
     "npm",
     "yeoman-generator"
   ],

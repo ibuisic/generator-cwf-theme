@@ -1,29 +1,36 @@
+// stylelint-disable value-list-comma-newline-after, value-list-comma-space-after, declaration-no-important, indentation
+
 @font-face {
-    font-family: "{{ fontName }}";
-    src: {{{ src }}};
+  font-family: {{ fontName }};
+  src:
+    {{{ src }}};
+
 }
 
-{{# if baseSelector }}
-{{ baseSelector }}:before {
-{{ else }}
-{{ baseTag }}[class^="{{classPrefix}}"]:before, {{ baseTag }}[class*=" {{classPrefix}}"]:before {
-{{/ if }}
-    font-family: {{ fontName }} !important;
-    font-style: normal;
-    font-weight: normal !important;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+@mixin {{ baseTag }}{
+  font-family: {{ fontName }}, sans-serif !important;
+  font-style: normal;
+  font-weight: 400 !important;
+  font-variant: normal;
+  line-height: 1;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.{{ baseTag }}{
+  @include {{ baseTag }};
 }
 
 {{# each codepoints }}
-{{# if ../baseSelector }}
-{{ ../baseSelector }}.{{ ../classPrefix }}{{ @key }}:before {
-{{ else }}
-{{ baseTag }}.{{ ../classPrefix }}{{ @key }}:before {
-{{/ if }}
-    content: "\\{{ this }}";
+@mixin {{ ../classPrefix }}{{ @key }} {
+  content: "\\{{ this }}";
+}
+{{/ each }}
+
+
+{{# each codepoints }}
+.{{ ../classPrefix }}{{ @key }}::before {
+  @include {{ ../classPrefix }}{{ @key }};
 }
 {{/ each }}

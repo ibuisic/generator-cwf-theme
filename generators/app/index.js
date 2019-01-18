@@ -93,11 +93,11 @@ module.exports = class extends Generator {
 
     const pkgJson = {
       scripts: {
-        "scss-lint": "stylelint --syntax scss \"src/scss/**/*.scss\"",
         "scss-lint:fix": "stylelint --syntax scss --fix \"src/scss/**/*.scss\"",
         "lint:js": "eslint src/js",
         "lint:fix": "eslint src/js --fix",
         "image:min": "imagemin src/images/* --out-dir=dist/images",
+        "css:scss-lint": "stylelint --syntax scss \"src/scss/**/*.scss\"",
         "css:scss": "node-sass --output-style compressed -o dist/css src/scss",
         "css:prefix": "postcss -u autoprefixer -r dist/css/*",
         "serve": "browser-sync start --proxy \""+ this.props.proxyName +"\" --files \"dist/css/*.css, src/js/*.js, templates/**/*.twig, !node_modules/**/*.html\"",
@@ -295,7 +295,7 @@ module.exports = class extends Generator {
     if (this.props.iconFont) {
       // Add the icon SCSS to styles
       var scss = this.fs.read('src/scss/' + this.props.themeName + '.scss');
-      this.fs.write('src/scss/' + this.props.themeName + '.scss', '@import "icon-font.scss";\n' + scss );
+      this.fs.write('src/scss/' + this.props.themeName + '.scss', '// Main ' + this.props.humanName + ' SCSS file\n\n@import "icon-font.scss";\n\n' + scss );
     }
 
     // Build all after copied all files
