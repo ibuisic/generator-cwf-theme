@@ -53,6 +53,15 @@ module.exports = class extends Generator {
         default: true
       },
       {
+        when: function (response) {
+          return response.bsCSS === 'Complete';
+        },
+        type: 'confirm',
+        name: 'awsmMixins',
+        message: "Add our awesome mixins to Bootstrap?",
+        default: true
+      },
+      {
         type: 'confirm',
         name: 'iconFont',
         message: "Would you like to create your own Icon Font",
@@ -275,9 +284,7 @@ module.exports = class extends Generator {
         this.destinationPath('node_modules/bootstrap/scss/**/_*.scss'),
         this.destinationPath('src/scss'),
       );
-    }
-    // Copy only Bootstrap grid
-    else if (this.props.bsCSS === 'Grid only') {
+    } else if (this.props.bsCSS === 'Grid only') {
       this.fs.copy(
         this.destinationPath('node_modules/bootstrap-4-grid/scss/grid/bootstrap-grid.scss'),
         this.destinationPath('src/scss/' + this.props.themeName + '.scss'),
@@ -303,11 +310,24 @@ module.exports = class extends Generator {
       );
     }
 
-    if (this.props.iconFont) {
-      // Add the icon SCSS to styles
-      var scss = this.fs.read('src/scss/' + this.props.themeName + '.scss');
-      this.fs.write('src/scss/' + this.props.themeName + '.scss', '// Main ' + this.props.humanName + ' SCSS file\n\n@import "icon-font.scss";\n\n' + scss );
+    // Add Awesome mixins
+    if (this.props.awsmMixins) {
+      this.fs.copy(
+        this.templatePath('_theme-mixins.scss'),
+        this.destinationPath('./src/scss/_' + this.props.themeName + '-mixins.scss')
+      );
     }
+
+    var scssFile = this.fs.read('src/scss/' + this.props.themeName + '.scss');
+
+    const cssImports = `// Main ${this.props.humanName} SCSS file\n\n${this.props.iconFont ? `@import "icon-font.scss";\n\n` : '""'}${this.props.awsmMixins ? `@import "${this.props.humanName}-mixins.scss";\n\n`: '""'}`;
+
+    this.fs.write(
+      this.destinationPath('src/scss/' + this.props.themeName + '.scss'),
+      cssImports + scssFile
+    );
+
+    console.log(cssImports + scssFile);
 
     // Build all after copied all files
     this.spawnCommand('npm', ['run', 'build']);
