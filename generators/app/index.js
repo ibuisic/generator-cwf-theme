@@ -179,13 +179,24 @@ module.exports = class extends Generator {
         this.templatePath('icon-font.hbs'),
         this.destinationPath('icon-font.hbs'),
       );
+      this.fs.copyTpl(
+        this.templatePath('icon-html.hbs'),
+        this.destinationPath('icon-html.hbs'),
+        this.props
+      );
       // Add packages
       this.npmInstall(['icon-font-generator'], { 'save-dev': true });
       // Create scripts
       pkgJson.scripts["image:icons"] =
-        "icon-font-generator src/images/icons/*.svg --html false -o dist/fonts/ -f ../fonts --csstp ./icon-font.hbs -p glyph -t glyph --csspath src/scss/_icon-font.scss";
+        "icon-font-generator src/images/icons/*.svg --html true --htmlpath " + this.props.themeName + "-test-page.html --htmltp ./icon-html.hbs  -o dist/fonts/ -f ../fonts --csstp ./icon-font.hbs -p glyph -t glyph --csspath src/scss/_icon-font.scss";
       pkgJson.scripts["watch:icons"] =
         "nodemon --watch src/images/icons -e svg -x \"npm run svg:icons\"";
+    } else {
+      this.fs.copyTpl(
+        this.templatePath('_theme-test-page.html'),
+        this.destinationPath(this.props.themeName + '-test-page.html'),
+        this.props
+      );
     }
 
     if (this.props.svgSprite) {
