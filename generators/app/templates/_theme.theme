@@ -17,7 +17,14 @@ function <%= themeName %>_theme_suggestions_block_alter(array &$suggestions, arr
   return $suggestions;
 }
 
-// List all libraries
-//   function transcom_library_info_alter(&$libraries, $extension) {
+function <%= themeName %>_preprocess_page(&$variables) {
+  $icons = theme_get_setting('<%= themeName %>_icons');
+  if ($icons) {
+    $variables['#attached']['library'][] = '<%= themeName %>/' . $icons;
+  }
+}
+
+// // List all libraries
+//   function <%= themeName %>_library_info_alter(&$libraries, $extension) {
 //     dump($libraries);
 //   }

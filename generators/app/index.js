@@ -137,6 +137,12 @@ module.exports = class extends Generator {
       this.props
     );
 
+    this.fs.copyTpl(
+      this.templatePath('theme-settings.php'),
+      this.destinationPath('theme-settings.php'),
+      this.props
+    );
+
     this.fs.copy(
       this.templatePath('templates'),
       this.destinationPath('templates')

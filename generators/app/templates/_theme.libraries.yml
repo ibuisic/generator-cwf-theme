@@ -16,3 +16,30 @@ global-styling:
 bootstrap_js:
   js:
     src/js/bootstrap.js: {}
+
+
+# Icon Font libraries
+####
+material_design_icons:
+  version: VERSION
+  css:
+    component:
+      '//fonts.googleapis.com/icon?family=Material+Icons': { type: external, minified: true }
+
+socicon:
+  version: VERSION
+  css:
+    component:
+      '//d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?9ukd8d': { type: external, minified: true }
+
+fontawesome:
+  version: VERSION
+  css:
+    component:
+      '//use.fontawesome.com/releases/v5.6.3/css/all.css': { type: external, minified: true }
+
+stroke_7:
+  version: VERSION
+  css:
+    component:
+      '//cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css': { type: external, minified: true }
