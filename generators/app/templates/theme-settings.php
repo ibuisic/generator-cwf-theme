@@ -23,7 +23,20 @@ use Drupal\Core\Url;
     '#weight' => -10,
   );
 
-  // Layout.
+  // General settings
+  $form['settings'] = array(
+    '#type' => 'details',
+    '#title' => t('Settings'),
+    '#group' => '<%= themeName %>',
+  );
+
+  $form['settings']['<%= themeName %>_inline_logo'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Inline SVG logo'),
+    '#default_value' => theme_get_setting('<%= themeName %>_inline_logo')
+  );
+
+  // Layout
   $form['layout'] = array(
     '#type' => 'details',
     '#title' => t('Layout'),
@@ -39,8 +52,8 @@ use Drupal\Core\Url;
 
 
   foreach ($region_list as $name => $description) {
-    if ( theme_get_setting('region_classes_' . $name) !== NULL) {
-      $region_class = theme_get_setting('region_classes_' . $name);
+    if ( theme_get_setting('<%= themeName %>_region_classes_' . $name) !== NULL) {
+      $region_class = theme_get_setting('<%= themeName %>_region_classes_' . $name);
     }
     $form['layout']['regions'][$name] = array(
       '#type' => 'details',

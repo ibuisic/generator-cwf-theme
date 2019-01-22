@@ -17,6 +17,12 @@ function <%= themeName %>_theme_suggestions_block_alter(array &$suggestions, arr
   return $suggestions;
 }
 
+function <%= themeName %>_preprocess_block(&$variables) {
+  if ($variables['plugin_id'] == 'system_branding_block') {
+    $variables['inline_svg_logo'] = theme_get_setting('<%= themeName %>_inline_logo');
+  }
+}
+
 function <%= themeName %>_preprocess_page(&$variables) {
   $icons = theme_get_setting('<%= themeName %>_icons');
   if ($icons) {
