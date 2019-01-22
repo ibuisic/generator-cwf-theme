@@ -205,7 +205,7 @@ module.exports = class extends Generator {
       pkgJson.scripts["image:icons"] =
         "icon-font-generator src/images/icons/*.svg --html true --htmlpath " + this.props.themeName + "-test-page.html --htmltp ./icon-html.hbs  -o dist/fonts/ -f ../fonts --csstp ./icon-font.hbs -p glyph -t glyph --csspath src/scss/_icon-font.scss";
       pkgJson.scripts["watch:icons"] =
-        "nodemon --watch src/images/icons -e svg -x \"npm run svg:icons\"";
+        "nodemon --watch src/images/icons -e svg -x \"npm run image:icons\"";
     } else {
       this.fs.copyTpl(
         this.templatePath('_theme-test-page.html'),
@@ -225,7 +225,7 @@ module.exports = class extends Generator {
       pkgJson.scripts["image:sprite"] =
         "svg-sprite-generate -d src/images/svg -o dist/images/sprite.svg";
       pkgJson.scripts["watch:svg"] =
-        "nodemon --watch src/images/svg -e svg -x \"npm run svg:sprite\"";
+        "nodemon --watch src/images/svg -e svg -x \"npm run image:sprite\"";
     }
 
     // Create screenshot
@@ -250,7 +250,7 @@ module.exports = class extends Generator {
     pkgJson.scripts["build:css"] = "run-s css:scss css:prefix";
     pkgJson.scripts.build = "run-s build:*";
     pkgJson.scripts["watch:css"] = "nodemon --watch src/scss -e scss -x \"run-s -s css:*\"";
-    pkgJson.scripts["watch:images"] = "nodemon --watch src/images -x \"npm run imagemin\"";
+    pkgJson.scripts["watch:images"] = "nodemon --watch src/images -x \"npm run image:min\"";
     pkgJson.scripts.watch = "run-p serve watch:*";
 
     // Updated package Json with scripts used
