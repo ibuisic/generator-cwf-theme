@@ -12,7 +12,12 @@ regions:
   help: 'Help'
   highlighted: 'Highlighted'
   content: 'Content'
+  sidebar_first: 'Sidebar First'
+  sidebar_second: 'Sidebar Second'
   footer: 'Footer'
+
+  # Utility regions
+  offcanvas: 'Offcanvas'
   hidden: 'Hidden'
 
 
