@@ -9,7 +9,7 @@ global-styling:
       dist/css/<%= themeName %>.css: {}
       '//fonts.googleapis.com/css?family=Raleway:400,700': { type: external, minified: true }
   js:
-    dist/js/<%= themeName %>.js: {}
+    src/js/<%= themeName %>.js: {}
 
 # Vendor libraires
 ####
