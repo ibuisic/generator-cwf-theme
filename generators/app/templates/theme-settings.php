@@ -30,10 +30,10 @@ use Drupal\Core\Url;
     '#group' => '<%= themeName %>',
   );
 
-  $form['settings']['<%= themeName %>_inline_logo'] = array(
+  $form['settings']['inline_logo'] = array(
     '#type' => 'checkbox',
     '#title' => t('Inline SVG logo'),
-    '#default_value' => theme_get_setting('<%= themeName %>_inline_logo')
+    '#default_value' => theme_get_setting('inline_logo')
   );
 
   // Layout
@@ -52,8 +52,8 @@ use Drupal\Core\Url;
 
 
   foreach ($region_list as $name => $description) {
-    if ( theme_get_setting('<%= themeName %>_region_classes_' . $name) !== NULL) {
-      $region_class = theme_get_setting('<%= themeName %>_region_classes_' . $name);
+    if ( theme_get_setting('region_classes_' . $name) !== NULL) {
+      $region_class = theme_get_setting('region_classes_' . $name);
     }
     $form['layout']['regions'][$name] = array(
       '#type' => 'details',
@@ -61,7 +61,7 @@ use Drupal\Core\Url;
       '#collapsible' => TRUE,
       '#open' => FALSE,
     );
-    $form['layout']['regions'][$name]['<%= themeName %>_region_classes_' . $name] = array(
+    $form['layout']['regions'][$name]['region_classes_' . $name] = array(
       '#type' => 'textfield',
       '#title' => t('@description classes', array('@description' => $description)),
       '#default_value' => $region_class
@@ -82,10 +82,10 @@ use Drupal\Core\Url;
     '#open' => TRUE,
   );
 
-  $form['fonts']['icons']['<%= themeName %>_icons'] = array(
+  $form['fonts']['icons']['icon_set'] = array(
     '#type' => 'select',
     '#title' => t('Icon set'),
-    '#default_value' => theme_get_setting('<%= themeName %>_icons'),
+    '#default_value' => theme_get_setting('icon_set'),
     '#empty_option' => t('None'),
     '#description' => t('On how to use each Icon Set visit their website : @fa_link, @socicon, @material_icon, @stroke7', array(
       '@fa_link' => Drupal::l('Font Awesome' , Url::fromUri('http://fontawesome.com/' , ['absolute' => TRUE])),

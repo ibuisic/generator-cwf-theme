@@ -17,14 +17,8 @@ function <%= themeName %>_theme_suggestions_block_alter(array &$suggestions, arr
   return $suggestions;
 }
 
-function <%= themeName %>_preprocess_block(&$variables) {
-  if ($variables['plugin_id'] == 'system_branding_block') {
-    $variables['inline_svg_logo'] = theme_get_setting('<%= themeName %>_inline_logo');
-  }
-}
-
 function <%= themeName %>_preprocess_page(&$variables) {
-  $icons = theme_get_setting('<%= themeName %>_icons');
+  $icons = theme_get_setting('icon_set');
   if ($icons) {
     $variables['#attached']['library'][] = '<%= themeName %>/' . $icons;
   }
@@ -34,8 +28,8 @@ function <%= themeName %>_preprocess_page(&$variables) {
  * Implements hook_preprocess_HOOK() for region.html.twig.
  */
 function <%= themeName %>_preprocess_region(&$variables) {
-  if (theme_get_setting('<%= themeName %>_region_classes_' . $variables['elements']['#region']) !== NULL) {
-    $variables['attributes']['class'][] = theme_get_setting('<%= themeName %>_region_classes_' . $variables['elements']['#region']);
+  if (theme_get_setting('region_classes_' . $variables['elements']['#region']) !== NULL) {
+    $variables['attributes']['class'][] = theme_get_setting('region_classes_' . $variables['elements']['#region']);
   }
 }
 
@@ -43,3 +37,32 @@ function <%= themeName %>_preprocess_region(&$variables) {
 //   function <%= themeName %>_library_info_alter(&$libraries, $extension) {
 //     dump($libraries);
 //   }
+
+
+/**
+ * {@inheritdoc}
+ */
+
+// /**
+//  * {@inheritdoc}
+//  */
+function <%= themeName %>_preprocess(&$variables, $hook, $info) {
+  // Get the theme object.
+  static $theme;
+  if (!isset($theme)) {
+    $theme = \Drupal::theme()->getActiveTheme();
+  }
+
+  // Get the theme settings.
+  static $theme_settings;
+  if (!isset($theme_settings)) {
+    $theme_settings = \Drupal::config($theme->getName() . '.settings')->get();
+  }
+
+  // Add active theme settings.
+  if (!isset($variables['theme'])) {
+    $variables['theme'] = [
+      'settings' => $theme_settings,
+    ];
+  }
+}

@@ -21,7 +21,7 @@
       {% if site_logo %}
         <div class="site-branding--logo navbar-brand">
           <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
-            {% if inline_svg_logo %}
+            {% if theme_settings.inline_logo %}
               {{ source(site_logo) }}
             {% else %}
               <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
