@@ -61,7 +61,7 @@ use Drupal\Core\Url;
       '#collapsible' => TRUE,
       '#open' => FALSE,
     );
-    $form['layout']['regions'][$name]['region_class_' . $name] = array(
+    $form['layout']['regions'][$name]['region_classes_' . $name] = array(
       '#type' => 'textfield',
       '#title' => t('@description classes', array('@description' => $description)),
       '#default_value' => $region_class

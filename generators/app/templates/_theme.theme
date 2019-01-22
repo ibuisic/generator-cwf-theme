@@ -30,6 +30,15 @@ function <%= themeName %>_preprocess_page(&$variables) {
   }
 }
 
+/**
+ * Implements hook_preprocess_HOOK() for region.html.twig.
+ */
+function <%= themeName %>_preprocess_region(&$variables) {
+  if (theme_get_setting('<%= themeName %>_region_classes_' . $variables['elements']['#region']) !== NULL) {
+    $variables['attributes']['class'][] = theme_get_setting('<%= themeName %>_region_classes_' . $variables['elements']['#region']);
+  }
+}
+
 // // List all libraries
 //   function <%= themeName %>_library_info_alter(&$libraries, $extension) {
 //     dump($libraries);
