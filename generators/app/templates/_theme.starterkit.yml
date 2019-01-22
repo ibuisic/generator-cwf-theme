@@ -37,5 +37,7 @@ regions:
 #     theme:
 #       dialog.theme.css: false
 
-# # Remove an entire library.
-# core/modernizr: false
+# Remove unnecessary library.
+libraries-override:
+  core/normalize: false
+  core/modernizr: false
