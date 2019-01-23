@@ -36,6 +36,12 @@ use Drupal\Core\Url;
     '#default_value' => theme_get_setting('inline_logo')
   );
 
+  $form['settings']['responsive_images'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Responsive images'),
+    '#default_value' => theme_get_setting('responsive_images')
+  );
+
   // Layout
   $form['layout'] = array(
     '#type' => 'details',
