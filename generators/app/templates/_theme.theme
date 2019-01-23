@@ -17,6 +17,15 @@ function <%= themeName %>_theme_suggestions_block_alter(array &$suggestions, arr
   return $suggestions;
 }
 
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ */
+function <%= themeName %>_theme_suggestions_input_alter(array &$suggestions, array $variables) {
+  if ($variables['element']['#type'] == 'submit' && theme_get_setting('submit_button')) {
+    $suggestions[] = 'input__submit_button';
+  }
+}
+
 function <%= themeName %>_preprocess_page(&$variables) {
   $icons = theme_get_setting('icon_set');
   if ($icons) {

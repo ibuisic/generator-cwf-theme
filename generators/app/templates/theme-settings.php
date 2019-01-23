@@ -55,6 +55,13 @@ use Drupal\Core\Url;
     '#default_value' => theme_get_setting('submit_classes')
   );
 
+  $form['settings']['general']['submit_button'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Change submit to button element'),
+    '#default_value' => theme_get_setting('submit_button'),
+    '#description' => t('Change all form <input> submit elements to <button>. Note: use at your own risk!'),
+  );
+
   // Layout
   $form['layout'] = array(
     '#type' => 'details',
