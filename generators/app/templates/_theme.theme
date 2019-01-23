@@ -63,6 +63,7 @@ function <%= themeName %>_preprocess(&$variables, $hook, $info) {
     $variables['theme_settings'] = [
       'inline_logo' => $theme_settings['inline_logo'],
       'responsive_images' => $theme_settings['responsive_images'],
+      'submit_classes' => $theme_settings['submit_classes'],
     ];
   }
 }
