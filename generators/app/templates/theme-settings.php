@@ -42,6 +42,18 @@ use Drupal\Core\Url;
     '#default_value' => theme_get_setting('responsive_images')
   );
 
+  $form['settings']['button_classes'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Button Classes'),
+    '#default_value' => theme_get_setting('button_classes')
+  );
+
+  $form['settings']['submit_classes'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Submit Button classes'),
+    '#default_value' => theme_get_setting('submit_classes')
+  );
+
   // Layout
   $form['layout'] = array(
     '#type' => 'details',
