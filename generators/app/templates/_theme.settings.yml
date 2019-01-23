@@ -1,6 +1,0 @@
-# Provide custom settings for the theme settings form.
-# Note: You need to uninstall and reinstall to see it take effect.
-# my_custom_setting1: 'stringvalue'
-
-region_container_header: 'container'
-submit_classes: 'btn btn-primary'

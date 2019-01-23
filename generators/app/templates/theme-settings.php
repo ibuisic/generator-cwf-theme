@@ -30,19 +30,26 @@ use Drupal\Core\Url;
     '#group' => '<%= themeName %>',
   );
 
-  $form['settings']['inline_logo'] = array(
+  $form['settings']['general']  = array(
+    '#type' => 'details',
+    '#title' => 'General theme Settings',
+    '#collapsible' => TRUE,
+    '#open' => TRUE,
+  );
+
+  $form['settings']['general']['inline_logo'] = array(
     '#type' => 'checkbox',
     '#title' => t('Inline SVG logo'),
     '#default_value' => theme_get_setting('inline_logo')
   );
 
-  $form['settings']['responsive_images'] = array(
+  $form['settings']['general']['responsive_images'] = array(
     '#type' => 'checkbox',
     '#title' => t('Responsive images'),
     '#default_value' => theme_get_setting('responsive_images')
   );
 
-  $form['settings']['submit_classes'] = array(
+  $form['settings']['general']['submit_classes'] = array(
     '#type' => 'textfield',
     '#title' => t('Submit Button classes'),
     '#default_value' => theme_get_setting('submit_classes')
