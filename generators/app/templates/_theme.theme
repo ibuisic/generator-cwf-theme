@@ -151,3 +151,11 @@ function <%= themeName %>_preprocess_input(&$variables) {
       break;
   }
 }
+
+function <%= themeName %>_preprocess_select(&$variables) {
+  $variables['attributes']['class'][] = 'form-control';
+}
+
+function <%= themeName %>_preprocess_textarea(&$variables) {
+  $variables['attributes']['class'][] = 'form-control';
+}
