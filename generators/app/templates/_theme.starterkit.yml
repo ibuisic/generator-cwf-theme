@@ -40,4 +40,3 @@ regions:
 # Remove unnecessary library.
 libraries-override:
   core/normalize: false
-  core/modernizr: false

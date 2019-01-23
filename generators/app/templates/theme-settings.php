@@ -66,6 +66,17 @@ use Drupal\Core\Url;
       '#title' => t('@description classes', array('@description' => $description)),
       '#default_value' => $region_class
     );
+    $form['layout']['regions'][$name]['region_container_' . $name] = [
+      '#type' => 'select',
+      '#title' => t('Container type'),
+      '#options' => [
+        'no' => t('No container'),
+        'container' => t('Fixed'),
+        'container-fluid' => t('Fluid'),
+      ],
+      '#default_value' => theme_get_setting('region_container_' . $name),
+      '#group' => 'container',
+    ];
   }
 
   // Fonts.
