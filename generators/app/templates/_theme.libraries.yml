@@ -15,8 +15,8 @@ global-styling:
 ####
 bootstrap_js:
   js:
-    '//unpkg.com/tooltip.js/dist/umd/tooltip.min.js': { type: external, minified: true }
-    src/js/bootstrap.js: {}
+    '//unpkg.com/popper.js/dist/umd/popper.min.js': { type: external, minified: true }
+    dist/js/bootstrap.js: {}
 
 
 # Icon Font libraries
