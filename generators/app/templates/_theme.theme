@@ -45,10 +45,6 @@ function <%= themeName %>_preprocess_region(&$variables) {
 /**
  * {@inheritdoc}
  */
-
-// /**
-//  * {@inheritdoc}
-//  */
 function <%= themeName %>_preprocess(&$variables, $hook, $info) {
   // Get the theme object.
   static $theme;
@@ -63,9 +59,10 @@ function <%= themeName %>_preprocess(&$variables, $hook, $info) {
   }
 
   // Add active theme settings.
-  if (!isset($variables['theme'])) {
-    $variables['theme'] = [
-      'settings' => $theme_settings,
+  if (!isset($variables['theme_settings'])) {
+    $variables['theme_settings'] = [
+      'inline_logo' => $theme_settings['inline_logo'],
+      'responsive_images' => $theme_settings['responsive_images'],
     ];
   }
 }
