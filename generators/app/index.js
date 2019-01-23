@@ -147,7 +147,7 @@ module.exports = class extends Generator {
       this.fs.append(this.destinationPath('templates/page.html.twig'), '<div class="d-none">{{ source("/" ~ directory ~ "/dist/images/sprite.svg") }}</div>' );
     }
 
-    // Install and schema
+    // Install, schema and optional configs
     this.fs.copyTpl(
       this.templatePath('config/install/_theme.settings.yml'),
       this.destinationPath('config/install/' + this.props.themeName + '.settings.yml'),
@@ -157,6 +157,22 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('config/schema/_theme.schema.yml'),
       this.destinationPath('config/schema/' + this.props.themeName + '.schema.yml'),
+      this.props
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('config/optional/_block.block.theme_branding.yml'),
+      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_branding.yml'),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath('config/optional/_block.block.theme_main_menu.yml'),
+      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_main_menu.yml'),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath('config/optional/_block.block.theme_search.yml'),
+      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_search.yml'),
       this.props
     );
 

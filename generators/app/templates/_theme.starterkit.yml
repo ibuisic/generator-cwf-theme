@@ -8,7 +8,7 @@ libraries:
   - <%= themeName %>/global-styling
 
 regions:
-  header: 'Header'
+  navbar: 'Navbar'
   help: 'Help'
   highlighted: 'Highlighted'
   content: 'Content'
