@@ -67,3 +67,87 @@ function <%= themeName %>_preprocess(&$variables, $hook, $info) {
     ];
   }
 }
+
+
+// FORMS
+
+
+function <%= themeName %>_preprocess_form_element(&$variables) {
+  // Add special class to form element.
+  $variables['attributes']['class'][] = 'form-group';
+
+  $element_type = $variables['type'];
+  switch ($element_type) {
+
+    // Tune up checkbox and radio form elements.
+    case 'checkbox':
+    case 'radio':
+      $variables['attributes']['class'][] = 'form-check';
+      $variables['label']['#attributes']['class'][] = 'form-check-label';
+      break;
+
+  }
+
+  // Add classes to description item of the form element.
+  if (isset($variables['description']['attributes'])) {
+    $variables['description']['attributes']->addClass('form-text text-muted');
+  }
+
+}
+
+function <%= themeName %>_preprocess_input(&$variables) {
+  // Get element type.
+  $element_type = $variables['attributes']['type'];
+  // Set classes for elements if they are present on the page.
+  switch ($element_type) {
+    case 'submit':
+      // Submit button.
+      $variables['attributes']['class'][] = $variables['theme_settings']['submit_classes'];
+      break;
+
+    case 'search':
+      // Search input.
+      $variables['attributes']['class'][] = 'form-control';
+      break;
+
+    case 'email':
+      // Email input.
+      $variables['attributes']['class'][] = 'form-control';
+      break;
+
+    case 'password':
+      // Password input.
+      $variables['attributes']['class'][] = 'form-control';
+      break;
+
+    case 'text':
+      // Text input.
+      $variables['attributes']['class'][] = 'form-control';
+      break;
+
+    case 'date':
+      // Date input.
+      $variables['attributes']['class'][] = 'form-control';
+      break;
+
+    case 'number':
+      // Date input.
+      $variables['attributes']['class'][] = 'form-control';
+      break;
+
+    case 'file':
+      // File input.
+      $variables['attributes']['class'][] = 'form-control-file';
+      break;
+
+    case 'checkbox':
+      // Checkbox inputs.
+      $variables['attributes']['class'][] = 'form-check-input';
+      break;
+
+    case 'radio':
+      // Radio inputs.
+      $variables['attributes']['class'][] = 'form-check-input';
+      break;
+  }
+}
