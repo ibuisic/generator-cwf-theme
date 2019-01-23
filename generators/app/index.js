@@ -247,6 +247,7 @@ module.exports = class extends Generator {
     // Add build package JSON
 
     pkgJson.scripts["build:images"] = "run-s image:*";
+    pkgJson.scripts["build:js"] = "uglifyjs src/js/*.js -o dist/js/global.min.js";
     pkgJson.scripts["build:css"] = "run-s css:scss css:prefix";
     pkgJson.scripts.build = "run-s build:*";
     pkgJson.scripts["watch:css"] = "nodemon --watch src/scss -e scss -x \"run-s -s css:*\"";
