@@ -83,7 +83,6 @@ use Drupal\Core\Url;
     '#open' => TRUE,
   );
 
-
   $form['forms']['custom_forms']['custom_form_select'] = array(
     '#type' => 'checkbox',
     '#title' => t('Select'),
@@ -108,6 +107,86 @@ use Drupal\Core\Url;
     '#default_value' => theme_get_setting('custom_form_file')
   );
 
+  // Tables
+
+  $form['tables'] = array(
+    '#type' => 'details',
+    '#title' => t('Tables'),
+    '#group' => '<%= themeName %>',
+  );
+
+  $form['tables']['general']  = array(
+    '#type' => 'details',
+    '#title' => 'General Tables Settings',
+    '#collapsible' => TRUE,
+    '#open' => TRUE,
+  );
+
+  $form['tables']['general']['tables_background'] = array(
+    '#type' => 'select',
+    '#title' => t('Tables background'),
+    '#default_value' => theme_get_setting('tables_background'),
+    '#empty_option' => t('None'),
+    '#options' => [
+      'table-light' => 'Light',
+      'table-dark' => 'Dark'
+    ],
+  );
+
+  $form['tables']['general']['thead_background'] = array(
+    '#type' => 'select',
+    '#title' => t('Table thead background'),
+    '#default_value' => theme_get_setting('thead_background'),
+    '#options' => [
+      'none' => 'None',
+      'thead-light' => 'Light',
+      'thead-dark' => 'Dark'
+    ],
+  );
+
+  $form['tables']['general']['tables_borders'] = array(
+    '#type' => 'select',
+    '#title' => t('Choose between bordered or borderless tables'),
+    '#default_value' => theme_get_setting('tables_borders'),
+    '#empty_option' => t('None'),
+    '#options' => [
+      'table-bordered' => 'Bordered',
+      'table-borderless' => 'Borderless'
+    ],
+  );
+
+  $form['tables']['general']['tables_striped_rows'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use .table-striped to add zebra-striping to any table row within the tbody'),
+    '#default_value' => theme_get_setting('tables_striped_rows')
+  );
+
+  $form['tables']['general']['tables_hover'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Add .table-hover to enable a hover state on table rows within a tbody'),
+    '#default_value' => theme_get_setting('tables_hover')
+  );
+
+  $form['tables']['general']['tables_sm'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Add .table-sm to make tables more compact by cutting cell padding in half'),
+    '#default_value' => theme_get_setting('tables_sm')
+  );
+
+  $form['tables']['general']['tables_responsive'] = array(
+    '#type' => 'select',
+    '#title' => t('Use .table-responsive{-sm|-md|-lg|-xl} as needed to create responsive tables up to a particular breakpoint'),
+    '#default_value' => theme_get_setting('tables_responsive'),
+    '#options' => [
+      'none' => 'None',
+      'table-responsive' => 'All',
+      'table-responsive-sm' => 'Sm',
+      'table-responsive-md' => 'Md',
+      'table-responsive-lg' => 'Lg',
+      'table-responsive-xl' => 'Xl'
+    ],
+  );
+
   // Layout
   $form['layout'] = array(
     '#type' => 'details',
@@ -121,7 +200,6 @@ use Drupal\Core\Url;
     '#open' => TRUE,
     '#description' => t('All additional classes and settings for each region')
   );
-
 
   foreach ($region_list as $name => $description) {
     if ( theme_get_setting('region_classes_' . $name) !== NULL) {
