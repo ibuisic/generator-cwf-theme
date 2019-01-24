@@ -69,11 +69,7 @@ function <%= themeName %>_preprocess(&$variables, $hook, $info) {
 
   // Add active theme settings.
   if (!isset($variables['theme_settings'])) {
-    $variables['theme_settings'] = [
-      'inline_logo' => $theme_settings['inline_logo'],
-      'responsive_images' => $theme_settings['responsive_images'],
-      'submit_classes' => $theme_settings['submit_classes'],
-    ];
+    $variables['theme_settings'] = $theme_settings;
   }
 }
 
