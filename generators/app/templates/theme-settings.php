@@ -26,7 +26,7 @@ use Drupal\Core\Url;
   // General settings
   $form['settings'] = array(
     '#type' => 'details',
-    '#title' => t('Settings'),
+    '#title' => t('General'),
     '#group' => '<%= themeName %>',
   );
 
