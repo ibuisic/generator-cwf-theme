@@ -76,6 +76,32 @@ use Drupal\Core\Url;
     '#default_value' => theme_get_setting('submit_button')
   );
 
+  $form['forms']['custom_forms'] = array(
+    '#type' => 'details',
+    '#title' => 'Custom forms',
+    '#collapsible' => TRUE,
+    '#open' => TRUE,
+  );
+
+
+  $form['forms']['custom_forms']['custom_form_select'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Select'),
+    '#default_value' => theme_get_setting('custom_form_select')
+  );
+
+  $form['forms']['custom_forms']['custom_form_checkbox'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Checkbox'),
+    '#default_value' => theme_get_setting('custom_form_checkbox')
+  );
+
+  $form['forms']['custom_forms']['custom_form_radio'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Radio'),
+    '#default_value' => theme_get_setting('custom_form_radio')
+  );
+
   // Layout
   $form['layout'] = array(
     '#type' => 'details',

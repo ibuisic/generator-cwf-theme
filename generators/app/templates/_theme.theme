@@ -105,10 +105,6 @@ function <%= themeName %>_preprocess_input(&$variables) {
   $element_type = $variables['attributes']['type'];
   // Set classes for elements if they are present on the page.
   switch ($element_type) {
-    case 'submit':
-      // Submit button.
-      $variables['attributes']['class'][] = $variables['theme_settings']['submit_classes'];
-      break;
 
     case 'search':
       // Search input.
