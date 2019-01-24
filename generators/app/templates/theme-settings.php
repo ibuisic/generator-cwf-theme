@@ -105,7 +105,7 @@ use Drupal\Core\Url;
   $form['forms']['custom_forms']['custom_form_file'] = array(
     '#type' => 'checkbox',
     '#title' => t('File'),
-    '#default_value' => theme_get_setting('custom_form_radio')
+    '#default_value' => theme_get_setting('custom_form_file')
   );
 
   // Layout
