@@ -1,3 +1,4 @@
+{% extends "input.html.twig" %}
 {#
 /**
  * @file
@@ -10,7 +11,6 @@
  * @see template_preprocess_input()
  */
 #}
-{% do element['#errors'] ? attributes.addClass('is-invalid') %}
 {% block input %}
-  <input{{ attributes.addClass('form-control') }} />{{ children }}
+  <input{{ attributes.addClass(theme_settings.custom_form_radio ? 'custom-control-input' : 'form-check-input') }} />{{ children }}
 {% endblock %}

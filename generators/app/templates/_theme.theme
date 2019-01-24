@@ -81,17 +81,13 @@ function <%= themeName %>_preprocess_form_element(&$variables) {
   // Add special class to form element.
   $variables['attributes']['class'][] = 'form-group';
 
-  $element_type = $variables['type'];
-  switch ($element_type) {
-
-    // Tune up checkbox and radio form elements.
-    case 'checkbox':
-    case 'radio':
-      $variables['attributes']['class'][] = 'form-check';
-      $variables['label']['#attributes']['class'][] = 'form-check-label';
-      break;
-
+  if (!empty($variables['element']['#errors'])) {
+    $variables['has_errors'] = TRUE;
   }
+
+  $element_type = $variables['type'];
+  $variables['label']['#element_type'] = $variables['type'];
+
 
   // Add classes to description item of the form element.
   if (isset($variables['description']['attributes'])) {
@@ -99,6 +95,7 @@ function <%= themeName %>_preprocess_form_element(&$variables) {
   }
 
 }
+
 
 function <%= themeName %>_preprocess_input(&$variables) {
   // Get element type.
@@ -151,12 +148,4 @@ function <%= themeName %>_preprocess_input(&$variables) {
       $variables['attributes']['class'][] = 'form-check-input';
       break;
   }
-}
-
-function <%= themeName %>_preprocess_select(&$variables) {
-  $variables['attributes']['class'][] = 'form-control';
-}
-
-function <%= themeName %>_preprocess_textarea(&$variables) {
-  $variables['attributes']['class'][] = 'form-control';
 }

@@ -53,7 +53,7 @@ use Drupal\Core\Url;
 
   $form['forms'] = array(
     '#type' => 'details',
-    '#title' => t('Forms and Buttons'),
+    '#title' => t('Forms'),
     '#group' => '<%= themeName %>',
   );
 

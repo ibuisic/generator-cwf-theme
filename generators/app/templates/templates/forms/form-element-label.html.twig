@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Theme override implementation for a form element label.
+ *
+ * Available variables:
+ * - title: The label's text.
+ * - title_display: Elements title_display setting.
+ * - required: An indicator for whether the associated form element is required.
+ * - attributes: A list of HTML attributes for the label.
+ *
+ * @see template_preprocess_form_element_label()
+ *
+ * @ingroup themeable
+ */
+
+#}
+{% if element['#element_type'] == 'checkbox' %}
+  {%  set label_class = theme_settings.custom_form_checkbox ? 'custom-control-label' : 'form-check-label' %}
+{% endif %}
+
+{% if element['#element_type'] == 'radio' %}
+  {% set label_class = theme_settings.custom_form_radio ? 'custom-control-label' : 'form-check-label' %}
+{% endif %}
+
+{%
+  set classes = [
+    title_display == 'after' ? 'option',
+    title_display == 'invisible' ? 'visually-hidden',
+    required ? 'js-form-required',
+    required ? 'form-required',
+    label_class,
+  ]
+%}
+
+{% block label %}
+  {% if title is not empty or required -%}
+    <label{{ attributes.addClass(classes) }}>{{ title }}{% if required %}<span class="form-required-mark"></span>{% endif %}</label>
+  {%- endif %}
+{% endblock label %}
