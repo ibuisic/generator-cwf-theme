@@ -102,6 +102,12 @@ use Drupal\Core\Url;
     '#default_value' => theme_get_setting('custom_form_radio')
   );
 
+  $form['forms']['custom_forms']['custom_form_file'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('File'),
+    '#default_value' => theme_get_setting('custom_form_radio')
+  );
+
   // Layout
   $form['layout'] = array(
     '#type' => 'details',

@@ -1,0 +1,17 @@
+{% extends "input.html.twig" %}
+{#
+/**
+ * @file
+ * Theme override for file #type form element.
+ */
+#}
+{% block input %}
+  {% if theme_settings.custom_form_file %}
+    <div class="custom-file">
+      <input{{ attributes.addClass('custom-file-input') }} />{{ children }}
+      <label data-content="{{ 'Choose file...'|t }}" data-browse="{{ 'Browse'|t }}" class="custom-file-label"></label>
+    </div>
+  {% else %}
+    {{ parent() }}
+  {% endif %}
+{% endblock %}
