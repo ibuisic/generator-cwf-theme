@@ -5,5 +5,5 @@
 # settings are inherited from base themes themes properly and to determine when
 # a setting should be saved to config as "overridden".
 #
-region_container_header: 'container'
+region_container_navbar: 'container'
 submit_classes: 'btn btn-primary'
