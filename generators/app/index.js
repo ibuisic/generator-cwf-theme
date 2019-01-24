@@ -324,7 +324,7 @@ module.exports = class extends Generator {
     if (this.props.bsJS === true) {
       this.fs.copy(
         this.destinationPath('node_modules/bootstrap/dist/js/bootstrap.js'),
-        this.destinationPath('src/js/bootstrap.js'),
+        this.destinationPath('dist/js/bootstrap.js'),
       );
     }
 
