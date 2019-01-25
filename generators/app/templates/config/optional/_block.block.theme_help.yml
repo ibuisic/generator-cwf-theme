@@ -2,18 +2,18 @@ langcode: en
 status: true
 dependencies:
   module:
-    - search
+    - help
   theme:
     - <%= themeName %>
-id: <%= themeName %>_search
+id: <%= themeName %>_help
 theme: <%= themeName %>
-region: navbar_collapsed
-weight: 0
+region: help
+weight: -30
 provider: null
-plugin: search_form_block
+plugin: help_block
 settings:
-  id: search_form_block
-  label: Search
-  provider: search
+  id: help_block
+  label: Help
+  provider: help
   label_display: '0'
 visibility: {  }

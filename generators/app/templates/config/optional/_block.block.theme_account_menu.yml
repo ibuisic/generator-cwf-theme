@@ -2,22 +2,22 @@ langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.main
+    - system.menu.account
   module:
     - system
   theme:
     - <%= themeName %>
-id: <%= themeName %>_main_menu
+id: <%= themeName %>_account_menu
 theme: <%= themeName %>
-region: navbar_collapsed
-weight: -1
+region: navbar
+weight: 11
 provider: null
-plugin: 'system_menu_block:main'
+plugin: 'system_menu_block:account'
 settings:
-  id: 'system_menu_block:main'
-  label: 'Main navigation'
+  id: 'system_menu_block:account'
+  label: 'User account menu'
   provider: system
   label_display: '0'
   level: 1
-  depth: 1
+  depth: 2
 visibility: {  }

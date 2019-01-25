@@ -183,6 +183,66 @@ module.exports = class extends Generator {
       this.props
     );
 
+    this.fs.copyTpl(
+      this.templatePath('config/optional/_block.block.theme_account_menu.yml'),
+      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_account_menu.yml'),
+      this.props
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('config/optional/_block.block.theme_breadcrumbs.yml'),
+      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_breadcrumbs.yml'),
+      this.props
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('config/optional/_block.block.theme_content.yml'),
+      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_content.yml'),
+      this.props
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('config/optional/_block.block.theme_footer.yml'),
+      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_footer.yml'),
+      this.props
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('config/optional/_block.block.theme_help.yml'),
+      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_help.yml'),
+      this.props
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('config/optional/_block.block.theme_local_actions.yml'),
+      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_local_actions.yml'),
+      this.props
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('config/optional/_block.block.theme_local_tasks.yml'),
+      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_local_tasks.yml'),
+      this.props
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('config/optional/_block.block.theme_messages.yml'),
+      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_messages.yml'),
+      this.props
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('config/optional/_block.block.theme_page_title.yml'),
+      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_page_title.yml'),
+      this.props
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('config/optional/_block.block.theme_tools.yml'),
+      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_tools.yml'),
+      this.props
+    );
+
     // CSS and JS
     this.fs.copyTpl(
       this.templatePath('src/js/_script.js'),

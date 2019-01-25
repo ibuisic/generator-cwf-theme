@@ -1,19 +1,19 @@
 langcode: en
 status: true
 dependencies:
-  module:
-    - search
   theme:
     - <%= themeName %>
-id: <%= themeName %>_search
+id: <%= themeName %>_local_tasks
 theme: <%= themeName %>
-region: navbar_collapsed
+region: highlighted
 weight: 0
 provider: null
-plugin: search_form_block
+plugin: local_tasks_block
 settings:
-  id: search_form_block
-  label: Search
-  provider: search
+  id: local_tasks_block
+  label: Tabs
+  provider: core
   label_display: '0'
+  primary: true
+  secondary: true
 visibility: {  }

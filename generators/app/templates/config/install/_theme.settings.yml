@@ -7,3 +7,7 @@
 #
 region_container_navbar: 'container'
 submit_classes: 'btn btn-primary'
+menu_icons: 1
+inline_logo: 1
+responsive_images: 1
+

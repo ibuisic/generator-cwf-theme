@@ -2,22 +2,22 @@ langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.main
+    - system.menu.footer
   module:
     - system
   theme:
     - <%= themeName %>
-id: <%= themeName %>_main_menu
+id: <%= themeName %>_footer
 theme: <%= themeName %>
-region: navbar_collapsed
-weight: -1
+region: footer
+weight: 0
 provider: null
-plugin: 'system_menu_block:main'
+plugin: 'system_menu_block:footer'
 settings:
-  id: 'system_menu_block:main'
-  label: 'Main navigation'
+  id: 'system_menu_block:footer'
+  label: 'Footer menu'
   provider: system
   label_display: '0'
   level: 1
-  depth: 1
+  depth: 0
 visibility: {  }

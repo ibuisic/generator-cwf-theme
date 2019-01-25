@@ -9,6 +9,7 @@ libraries:
 
 regions:
   navbar: 'Navbar'
+  navbar_collapsed: 'Navbar Collapsed'
   help: 'Help'
   highlighted: 'Highlighted'
   content: 'Content'

@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Drupal\cwf\Hook;
+namespace Drupal\<%= themeName %>\Hook;
 
 /**
  * @file
- * Contains \Drupal\cwf\Hook.
+ * Contains \Drupal\<%= themeName %>\Hook.
  */
 
 /**
