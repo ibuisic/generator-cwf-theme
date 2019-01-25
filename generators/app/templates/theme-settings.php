@@ -115,7 +115,71 @@ $form['forms']['custom_forms']['custom_form_file'] = array(
   '#default_value' => theme_get_setting('custom_form_file')
 );
 
-  // Tables
+// Images
+
+  // images
+
+$form['images'] = array(
+  '#type' => 'details',
+  '#title' => t('Images'),
+  '#group' => '<%= themeName %>',
+);
+
+$form['images']['general'] = array(
+  '#type' => 'details',
+  '#title' => 'General Images Settings',
+  '#collapsible' => true,
+  '#open' => true,
+);
+
+$form['images']['general']['img_thumbnail'] = array(
+  '#type' => 'checkbox',
+  '#title' => t('Image thumbnail (Adding padding, border and border-radius to all images)'),
+  '#default_value' => theme_get_setting('img_thumbnail')
+);
+
+$form['images']['general']['img_border'] = array(
+  '#type' => 'checkbox',
+  '#title' => t('Image border (Adding 1px solid border on all images). Note: No need to check this if you already checked "Image thumbnail"'),
+  '#default_value' => theme_get_setting('img_border')
+);
+
+$form['images']['general']['img_border_color'] = array(
+  '#type' => 'select',
+  '#title' => t('Image border color (Choose what color your border would be)'),
+  '#default_value' => theme_get_setting('img_border_color'),
+  '#empty_option' => t('None'),
+  '#options' => [
+    'border-primary' => 'Primary',
+    'border-secondary' => 'Secondary',
+    'border-success' => 'Success',
+    'border-danger' => 'Danger',
+    'border-warning' => 'Warning',
+    'border-info' => 'Info',
+    'border-light' => 'Light',
+    'border-dark' => 'Dark',
+    'border-white' => 'White'
+  ]
+);
+
+$form['images']['general']['img_border_radius'] = array(
+  '#type' => 'select',
+  '#title' => t('Image border radius (Add class to an image to round its corners)'),
+  '#default_value' => theme_get_setting('img_border_radius'),
+  '#empty_option' => t('None'),
+  '#options' => [
+    'rounded' => 'Rounded',
+    'rounded-top' => 'Rounded-top',
+    'rounded-right' => 'Rounded-right',
+    'rounded-bottom' => 'Rounded-bottom',
+    'rounded-left' => 'Rounded-left',
+    'rounded-circle' => 'Rounded-circle',
+    'rounded-pill' => 'Rounded-pill',
+    'rounded-0' => 'Rounded-0'
+  ]
+);
+
+// Tables
 
 $form['tables'] = array(
   '#type' => 'details',
