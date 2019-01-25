@@ -49,6 +49,14 @@ use Drupal\Core\Url;
     '#default_value' => theme_get_setting('responsive_images')
   );
 
+  $form['settings']['general']['menu_icons'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Menu icons'),
+    '#description' => t('When this is checked you can use a seperator <b> | </b> and write down classes and it will generate an &#60;i&#62; tag with those classes.'),
+    '#default_value' => theme_get_setting('menu_icons')
+  );
+
+
   // forms
 
   $form['forms'] = array(
