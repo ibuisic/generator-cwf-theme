@@ -15,6 +15,10 @@
 {%
   set classes = [
     theme_settings.responsive_images ? 'img-fluid',
+    theme_settings.img_thumbnail ? 'img-thumbnail',
+    theme_settings.img_border ? 'border',
+    theme_settings.img_border_color ? theme_settings.img_border_color,
+    theme_settings.img_border_radius ? theme_settings.img_border_radius
   ]
 %}
 <img{{ attributes.addClass(classes) }} />
