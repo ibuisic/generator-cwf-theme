@@ -213,6 +213,10 @@ use Drupal\Core\Url;
     if ( theme_get_setting('region_classes_' . $name) !== NULL) {
       $region_class = theme_get_setting('region_classes_' . $name);
     }
+    else {
+      $region_class = '';
+    }
+
     $form['layout']['regions'][$name] = array(
       '#type' => 'details',
       '#title' => $description,
