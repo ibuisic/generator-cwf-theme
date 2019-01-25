@@ -143,6 +143,13 @@ module.exports = class extends Generator {
       this.destinationPath('templates')
     );
 
+    this.fs.copyTpl(
+      this.templatePath('src/Hook/*.php'),
+      this.destinationPath('src/Hook/'),
+      this.props,
+      { globOptions: { dot: true } }
+    );
+
     if (this.props.svgSprite) {
       this.fs.append(this.destinationPath('templates/page.html.twig'), '<div class="d-none">{{ source("/" ~ directory ~ "/dist/images/sprite.svg") }}</div>' );
     }

@@ -2,96 +2,66 @@
 
 /**
  * @file
- * Bootstrap sub-theme.
+ * <%= themeName %> theme.
  *
  * Place your custom PHP code in this file.
  */
 
-// Add theme suggestions to blocks based on region.
-function <%= themeName %>_theme_suggestions_block_alter(array &$suggestions, array $variables) {
-  if (!empty($variables['elements']['#id'])) {
-    $block = Drupal\block\Entity\Block::load($variables['elements']['#id']);
-    $suggestions[] = 'block__' . $block->getRegion();
-    $suggestions[] = 'block__' . $block->getRegion() . '__' . $variables['elements']['#id'];
-  }
-  return $suggestions;
+use Drupal\<%= themeName %>\Hook\BlockRegion;
+use Drupal\<%= themeName %>\Hook\ThemeSettings;
+use Drupal\<%= themeName %>\Hook\SubmitTemplate;
+use Drupal\<%= themeName %>\Hook\PagePreprocess;
+use Drupal\<%= themeName %>\Hook\RegionPreprocess;
+use Drupal\<%= themeName %>\Hook\FormElement;
+
+/**
+ * {@inheritdoc}
+ */
+function <%= themeName %>_preprocess(&$variables) {
+  // Get all theme settings
+  ThemeSettings::hook($variables);
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ * Implements hook_preprocess_HOOK() for page templates.
  */
-function <%= themeName %>_theme_suggestions_input_alter(array &$suggestions, array $variables) {
-  if ($variables['element']['#type'] == 'submit' && theme_get_setting('submit_button')) {
-    $suggestions[] = 'input__submit_button';
-  }
-}
-
 function <%= themeName %>_preprocess_page(&$variables) {
-  $icons = theme_get_setting('icon_set');
-  if ($icons) {
-    $variables['#attached']['library'][] = '<%= themeName %>/' . $icons;
-  }
+  PagePreprocess::hook($variables);
 }
 
 /**
  * Implements hook_preprocess_HOOK() for region.html.twig.
  */
 function <%= themeName %>_preprocess_region(&$variables) {
-  if (theme_get_setting('region_classes_' . $variables['elements']['#region']) !== NULL) {
-    $variables['attributes']['class'][] = theme_get_setting('region_classes_' . $variables['elements']['#region']);
-  }
-  if (theme_get_setting('region_container_' . $variables['elements']['#region']) !== NULL) {
-    $variables['region_container'] = theme_get_setting('region_container_' . $variables['elements']['#region']);
-  }
+  RegionPreprocess::hook($variables);
+}
+
+// FORMS
+
+/**
+ * Implements hook_preprocess_HOOK() for form_element.html.twig.
+ */
+function <%= themeName %>_preprocess_form_element(&$variables) {
+  FormElement::hook($variables);
+}
+
+// THEME SUGGESTIONS
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for block templates.
+ */
+function <%= themeName %>_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  BlockRegion::hook($suggestions, $variables);
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ */
+function <%= themeName %>_theme_suggestions_input_alter(array &$suggestions, array $variables) {
+  SubmitTemplate::hook($suggestions, $variables);
 }
 
 // // List all libraries
 //   function <%= themeName %>_library_info_alter(&$libraries, $extension) {
 //     dump($libraries);
 //   }
-
-
-/**
- * {@inheritdoc}
- */
-function <%= themeName %>_preprocess(&$variables, $hook, $info) {
-  // Get the theme object.
-  static $theme;
-  if (!isset($theme)) {
-    $theme = \Drupal::theme()->getActiveTheme();
-  }
-
-  // Get the theme settings.
-  static $theme_settings;
-  if (!isset($theme_settings)) {
-    $theme_settings = \Drupal::config($theme->getName() . '.settings')->get();
-  }
-
-  // Add active theme settings.
-  if (!isset($variables['theme_settings'])) {
-    $variables['theme_settings'] = $theme_settings;
-  }
-}
-
-
-// FORMS
-
-
-function <%= themeName %>_preprocess_form_element(&$variables) {
-  // Add special class to form element.
-  $variables['attributes']['class'][] = 'form-group';
-
-  if (!empty($variables['element']['#errors'])) {
-    $variables['has_errors'] = TRUE;
-  }
-
-  $element_type = $variables['type'];
-  $variables['label']['#element_type'] = $variables['type'];
-
-
-  // Add classes to description item of the form element.
-  if (isset($variables['description']['attributes'])) {
-    $variables['description']['attributes']->addClass('form-text text-muted');
-  }
-
-}
