@@ -45,6 +45,17 @@ function <%= themeName %>_preprocess_form_element(&$variables) {
   FormElement::hook($variables);
 }
 
+/**
+ * Implements hook_form_alter(). for the search block form
+ */
+function <%= themeName %>_form_search_block_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['keys']['#prefix'] = '<div class="form-inline">';
+  $form['actions']['#suffix'] = '</div>';
+  $form['keys']['#attributes']['class'][] = 'mr-sm-2';
+  $form['actions']['#attributes']['class'][] = 'my-2 my-sm-0';
+}
+
+
 // THEME SUGGESTIONS
 
 /**
