@@ -17,11 +17,13 @@
     'region',
     'collapse',
     'navbar-collapse',
+    theme_settings.navbar_collapsed_classes ? theme_settings.navbar_collapsed_classes,
     'region-' ~ region|clean_class,
   ]
 %}
 
 {% set container_classes = region_container|clean_class %}
+
 
 {% if content %}
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapsedRegion" aria-controls="navbarCollapsedRegion" aria-expanded="false" aria-label="Toggle navbar collapsed region">
