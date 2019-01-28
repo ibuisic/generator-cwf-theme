@@ -13,6 +13,7 @@ use Drupal\<%= themeName %>\Hook\SubmitTemplate;
 use Drupal\<%= themeName %>\Hook\PagePreprocess;
 use Drupal\<%= themeName %>\Hook\RegionPreprocess;
 use Drupal\<%= themeName %>\Hook\FormElement;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * {@inheritdoc}
