@@ -12,10 +12,6 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 
-  // All regions
-$theme = \Drupal::theme()->getActiveTheme()->getName();
-$region_list = system_region_list($theme, $show = REGIONS_ALL);
-
   // Vertical tabs
 $form['<%= themeName %>'] = array(
   '#type' => 'vertical_tabs',
@@ -273,35 +269,43 @@ $form['layout']['regions'] = array(
   '#description' => t('All additional classes and settings for each region')
 );
 
-foreach ($region_list as $name => $description) {
-  if (theme_get_setting('region_classes_' . $name) !== null) {
-    $region_class = theme_get_setting('region_classes_' . $name);
-  } else {
-    $region_class = '';
-  }
 
-  $form['layout']['regions'][$name] = array(
-    '#type' => 'details',
-    '#title' => $description,
-    '#collapsible' => true,
-    '#open' => false,
-  );
-  $form['layout']['regions'][$name]['region_classes_' . $name] = array(
-    '#type' => 'textfield',
-    '#title' => t('@description classes', array('@description' => $description)),
-    '#default_value' => $region_class
-  );
-  $form['layout']['regions'][$name]['region_container_' . $name] = [
-    '#type' => 'select',
-    '#title' => t('Container type'),
-    '#options' => [
-      'no' => t('No container'),
-      'container' => t('Fixed'),
-      'container-fluid' => t('Fluid'),
-    ],
-    '#default_value' => theme_get_setting('region_container_' . $name),
-    '#group' => 'container',
-  ];
+// All regions
+$theme = \Drupal::theme()->getActiveTheme()->getName();
+$exclude_regions = array('navbar', 'navbar_collapsed', 'hidden');
+$region_list = system_region_list($theme, $show = REGIONS_ALL);
+
+foreach ($region_list as $name => $description) {
+  if (!in_array($name, $exclude_regions)){
+    if (theme_get_setting('region_classes_' . $name) !== null) {
+      $region_class = theme_get_setting('region_classes_' . $name);
+    } else {
+      $region_class = '';
+    }
+
+    $form['layout']['regions'][$name] = array(
+      '#type' => 'details',
+      '#title' => $description,
+      '#collapsible' => true,
+      '#open' => false,
+    );
+    $form['layout']['regions'][$name]['region_classes_' . $name] = array(
+      '#type' => 'textfield',
+      '#title' => t('@description classes', array('@description' => $description)),
+      '#default_value' => $region_class
+    );
+    $form['layout']['regions'][$name]['region_container_' . $name] = [
+      '#type' => 'select',
+      '#title' => t('Container type'),
+      '#options' => [
+        'no' => t('No container'),
+        'container' => t('Fixed'),
+        'container-fluid' => t('Fluid'),
+      ],
+      '#default_value' => theme_get_setting('region_container_' . $name),
+      '#group' => 'container',
+    ];
+  }
 }
 
   // Fonts.
