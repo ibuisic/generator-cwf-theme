@@ -52,8 +52,95 @@ $form['settings']['general']['menu_icons'] = array(
   '#default_value' => theme_get_setting('menu_icons')
 );
 
+// navbar
 
-  // forms
+$form['navbar'] = array(
+  '#type' => 'details',
+  '#title' => t('Navbar'),
+  '#group' => '<%= themeName %>',
+);
+
+$form['navbar']['general'] = array(
+  '#type' => 'details',
+  '#title' => "General Navbar Settings",
+  '#collapsible' => true,
+  '#description' => t('All additional classes and settings for navbar region'),
+  '#open' => true
+);
+
+$form['navbar']['general']['navbar_classes'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Navbar classes'),
+  '#default_value' => theme_get_setting('navbar_classes')
+);
+
+$form['navbar']['general']['navbar_collapsed_classes'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Navbar collapsed classes'),
+  '#default_value' => theme_get_setting('navbar_collapsed_classes')
+);
+
+$form['navbar']['general']['navbar_container'] = [
+  '#type' => 'select',
+  '#title' => t('Choose Navbar Container type'),
+  '#options' => [
+    'no' => t('No container'),
+    'container' => t('Fixed'),
+    'container-fluid' => t('Fluid'),
+  ],
+  '#default_value' => theme_get_setting('navbar_container'),
+  '#group' => 'container',
+];
+
+$form['navbar']['general']['navbar_collapsed_container'] = [
+  '#type' => 'select',
+  '#title' => t('Choose NavbarCollapsed Container type'),
+  '#options' => [
+    'no' => t('No container'),
+    'container' => t('Fixed'),
+    'container-fluid' => t('Fluid'),
+  ],
+  '#default_value' => theme_get_setting('navbar_collapsed_container'),
+  '#group' => 'container',
+];
+
+$form['navbar']['general']['navbar_position'] = array(
+  '#type' => 'select',
+  '#title' => t('Choose navbar position class'),
+  '#default_value' => theme_get_setting('navbar_position'),
+  '#empty_option' => t('None'),
+  '#options' => [
+    'fixed-top' => 'Fixed top',
+    'fixed-bottom' => 'Fixed bottom',
+    'sticky-top' => 'Sticky top'
+  ]
+);
+
+$form['navbar']['general']['navbar_color'] = array(
+  '#type' => 'select',
+  '#title' => t('Choose navbar color class'),
+  '#default_value' => theme_get_setting('navbar_color'),
+  '#empty_option' => t('None'),
+  '#options' => [
+    'navbar-dark' => 'Navbar dark',
+    'navbar-light' => 'Navbar light'
+  ]
+);
+
+$form['navbar']['general']['navbar_expand'] = array(
+  '#type' => 'select',
+  '#title' => t('Choose when to expand navbar'),
+  '#default_value' => theme_get_setting('navbar_expand'),
+  '#empty_option' => t('None'),
+  '#options' => [
+    'navbar-expand-sm' => 'Navbar expand on sm',
+    'navbar-expand-md' => 'Navbar expand on md',
+    'navbar-expand-lg' => 'Navbar expand on lg',
+    'navbar-expand-xl' => 'Navbar expand on xl'
+  ]
+);
+
+// forms
 
 $form['forms'] = array(
   '#type' => 'details',

@@ -44,9 +44,36 @@
  */
 #}
 
-<header role="banner" class="navbar {{ navbar_position }}">
-  {{ page.navbar }}
+{%
+  set classes = [
+    'navbar',
+    theme_settings.navbar_classes ? theme_settings.navbar_classes,
+    theme_settings.navbar_position ? theme_settings.navbar_position,
+    theme_settings.navbar_color ? theme_settings.navbar_color,
+    theme_settings.navbar_expand ? theme_settings.navbar_expand
+  ]
+%}
+
+{% set navbar_classes = theme_settings.navbar_container|clean_class %}
+
+{% set navbar_collapsed_classes = theme_settings.navbar_collapsed_container|clean_class %}
+
+<header role="banner" {{ attributes.addClass(classes) }}>
+  {% if (theme_settings.navbar_container != 'no') %}
+    <div class="{{ navbar_classes }}">
+  {% endif %}
+    {{ page.navbar }}
+  {% if (theme_settings.navbar_container != 'no') %}
+    </div>
+  {% endif %}
+
+  {% if (theme_settings.navbar_collapsed_container != 'no') %}
+    <div class="{{ navbar_collapsed_classes }}">
+  {% endif %}
   {{ page.navbar_collapsed }}
+  {% if (theme_settings.navbar_collapsed_container != 'no') %}
+    </div>
+  {% endif %}
 </header>
 
 {{ page.highlighted }}
@@ -73,3 +100,4 @@
 {% endif %}
 
 {# icons #}
+<div class="d-none">{{ source("/" ~ directory ~ "/dist/images/sprite.svg") }}</div>
