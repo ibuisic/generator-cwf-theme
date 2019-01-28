@@ -1,45 +1,58 @@
-{% extends "block.html.twig" %}
 {#
 /**
  * @file
- * Bootstrapper theme implementation for a branding block.
- *
- * Each branding element variable (logo, name, slogan) is only available if
- * enabled in the block configuration.
+ * Theme override to display a block.
  *
  * Available variables:
- * - site_logo: Logo for site as defined in Appearance or theme settings.
- * - site_name: Name for site as defined in Site information settings.
- * - site_slogan: Slogan for site as defined in Site information settings.
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
  */
 #}
+{%
+  set branding_classes = [
+    'navbar-brand',
+    'site-branding'
+  ]
+%}
 
-{% block content %}
-
-  {% if site_logo or site_name or site_slogan %}
-    <div{{ content_attributes.addClass('site-branding') }}>
-      {% if site_logo %}
-        <div class="site-branding--logo navbar-brand">
-          <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
-            {% if theme_settings.inline_logo %}
-              {{ source(site_logo) }}
-            {% else %}
-              <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
-            {% endif %}
-          </a>
-        </div>
-      {% endif %}
-      {% if site_name or site_slogan %}
-        <div class="site-branding--sitename navbar-brand">
-          {% if site_name %}
-            <div class="site-branding--name"><a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a></div>
-          {% endif %}
-          {% if site_slogan %}
-            <div class="site-branding--slogan"><small class="text-muted">{{ site_slogan }}</small></div>
-          {% endif %}
-        </div>
-      {% endif %}
-    </div>
+<div{{ attributes.addClass(branding_classes)  }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
   {% endif %}
-
-{% endblock %}
+  {{ title_suffix }}
+  {% block content %}
+    {% if site_logo %}
+      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
+        {% if theme_settings.inline_logo %}
+          {{ source(site_logo) }}
+        {% else %}
+          <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
+        {% endif %}
+      </a>
+    {% endif %}
+    {% if site_name %}
+      <a class="site-branding--name"href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
+    {% endif %}
+    {% if site_slogan %}
+      <small class="site-branding--slogan" class="text-muted">{{ site_slogan }}</small>
+    {% endif %}
+  {% endblock %}
+</div>

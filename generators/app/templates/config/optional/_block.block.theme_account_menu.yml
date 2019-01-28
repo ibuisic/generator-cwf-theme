@@ -9,7 +9,7 @@ dependencies:
     - <%= themeName %>
 id: <%= themeName %>_account_menu
 theme: <%= themeName %>
-region: navbar
+region: navbar_collapsed
 weight: 11
 provider: null
 plugin: 'system_menu_block:account'

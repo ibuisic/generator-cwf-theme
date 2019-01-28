@@ -13,4 +13,6 @@
  */
 #}
 
-{% include "region--clean.html.twig" %}
+{% if content %}
+    {{ content }}
+{% endif %}
