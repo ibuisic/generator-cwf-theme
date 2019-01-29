@@ -22,19 +22,18 @@
   ]
 %}
 
-{% set container_classes = region_container|clean_class %}
-
+{% set navbar_collapsed_container = theme_settings.navbar_collapsed_container|clean_class %}
 
 {% if content %}
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapsedRegion" aria-controls="navbarCollapsedRegion" aria-expanded="false" aria-label="Toggle navbar collapsed region">
     <span class="navbar-toggler-icon"></span>
   </button>
   <section{{ attributes.addClass(classes).setAttribute('id', 'navbarCollapsedRegion') }}>
-    {% if (region_container != 'no') %}
-      <div class="{{ container_classes }}">
+    {% if (theme_settings.navbar_collapsed_container != 'no') %}
+      <div class="{{ navbar_collapsed_container }}">
     {% endif %}
-    {{ content }}
-    {% if (region_container != 'no') %}
+      {{ content }}
+    {% if (theme_settings.navbar_collapsed_container != 'no') %}
       </div>
     {% endif %}
   </section>
