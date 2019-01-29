@@ -45,18 +45,23 @@
 #}
 
 {%
-  set classes = [
+  set navbar_classes = [
     'navbar',
-    theme_settings.navbar_classes ? theme_settings.navbar_classes,
-    theme_settings.navbar_position ? theme_settings.navbar_position,
-    theme_settings.navbar_color ? theme_settings.navbar_color,
-    theme_settings.navbar_expand ? theme_settings.navbar_expand
+    theme_settings.navbar_classes ? theme_settings.navbar_classes|clean_class,
+  ]
+%}
+
+{%
+  set navbar_options = [
+    theme_settings.navbar_position ? theme_settings.navbar_position|clean_class,
+    theme_settings.navbar_color ? theme_settings.navbar_color|clean_class,
+    theme_settings.navbar_expand ? theme_settings.navbar_expand|clean_class
   ]
 %}
 
 {% set navbar_container = theme_settings.navbar_container|clean_class %}
 
-<header role="banner" {{ attributes.addClass(classes) }}>
+<header role="banner" {{ attributes.addClass(navbar_classes, navbar_options) }}>
   {% if (theme_settings.navbar_container != 'no') %}
     <div class="{{ navbar_container }}">
   {% endif %}
@@ -89,6 +94,3 @@
     {{ page.footer }}
   </footer>
 {% endif %}
-
-{# icons #}
-<div class="d-none">{{ source("/" ~ directory ~ "/dist/images/sprite.svg") }}</div>
