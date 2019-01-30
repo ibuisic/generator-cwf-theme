@@ -45,52 +45,97 @@
 #}
 
 {%
-  set navbar_classes = [
-    'navbar',
-    theme_settings.navbar_classes ? theme_settings.navbar_classes|clean_class,
-  ]
+  set main_container_classes = 'layout-content'
 %}
 
-{%
-  set navbar_options = [
-    theme_settings.navbar_position ? theme_settings.navbar_position|clean_class,
-    theme_settings.navbar_color ? theme_settings.navbar_color|clean_class,
-    theme_settings.navbar_expand ? theme_settings.navbar_expand|clean_class
-  ]
-%}
+{# Navbar #}
+{% if page.navbar or page.navbar_collapsed %}
+  {% block navbar %}
+    {% set navbar_attributes = create_attribute() %}
+    {% set navbar_container = theme_settings.navbar_container|clean_class %}
+    {%
+      set navbar_classes = [
+        'navbar',
+        theme_settings.navbar_classes ? theme_settings.navbar_classes,
+        theme_settings.navbar_position ? theme_settings.navbar_position,
+        theme_settings.navbar_color ? theme_settings.navbar_color,
+        theme_settings.navbar_expand ? theme_settings.navbar_expand
+      ]
+    %}
 
-{% set navbar_container = theme_settings.navbar_container|clean_class %}
+    <header role="banner" {{ navbar_attributes.addClass(navbar_classes) }}>
+      {% if (theme_settings.navbar_container != 'no') %}
+        <div class="{{ navbar_container }}">
+      {% endif %}
+        {{ page.navbar }}
+        {{ page.navbar_collapsed }}
+      {% if (theme_settings.navbar_container != 'no') %}
+        </div>
+      {% endif %}
+    </header>
+  {% endblock %}
+{% endif %}
 
-<header role="banner" {{ attributes.addClass(navbar_classes, navbar_options) }}>
-  {% if (theme_settings.navbar_container != 'no') %}
-    <div class="{{ navbar_container }}">
-  {% endif %}
-    {{ page.navbar }}
-    {{ page.navbar_collapsed }}
-  {% if (theme_settings.navbar_container != 'no') %}
+
+{# Main #}
+{% block main %}
+  <div role="main">
+
+      {# Highlighted #}
+      {% if page.highlighted %}
+        {% block highlighted %}
+          {{ page.highlighted }}
+        {% endblock %}
+      {% endif %}
+
+      {# Help #}
+      {% if page.help %}
+        {% block help %}
+          {{ page.help }}
+        {% endblock %}
+      {% endif %}
+
+      <div {{ attributes.addClass(theme_settings.main_container_classes) }}>
+        {% if (theme_settings.main_container != 'no') %}
+          <div class="{{ theme_settings.main_container }}">
+            <div class="row">
+        {% endif %}
+
+          {# Sidebar First #}
+          {% if page.sidebar_first %}
+            {% block sidebar_first %}
+                {{ page.sidebar_first }}
+            {% endblock %}
+          {% endif %}
+
+          {# Content #}
+          {% block content %}
+            <a id="main-content"></a>
+            {{ page.content }}
+          {% endblock %}
+
+          {# Sidebar Second #}
+          {% if page.sidebar_second %}
+            {% block sidebar_second %}
+              {{ page.sidebar_second }}
+            {% endblock %}
+          {% endif %}
+
+        {% if (main_container != 'no') %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
     </div>
-  {% endif %}
-</header>
+  </div>
+{% endblock %}
 
-{{ page.highlighted }}
-
-<div class="{{ container }}">
-
-  {{ page.help }}
-
-  <main role="main">
-    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-
-    <div class="layout-content">
-      {{ page.content }}
-    </div>{# /.layout-content #}
-
-  </main>
-
-</div>{# /.layout-container #}
 
 {% if page.footer %}
-  <footer role="contentinfo" class="main-footer {{ footer_type }}">
-    {{ page.footer }}
-  </footer>
+  {% block footer %}
+    <footer role="contentinfo" class="main-footer {{ footer_type }}">
+      {{ page.footer }}
+    </footer>
+  {% endblock %}
 {% endif %}
+<div class="d-none">{{ source("/" ~ directory ~ "/dist/images/sprite.svg") }}</div>
