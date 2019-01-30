@@ -129,7 +129,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('_theme.libraries.yml'),
       this.destinationPath(this.props.themeName + '.libraries.yml'),
-      this.props,
+      this.props
     );
 
     this.fs.copyTpl(
