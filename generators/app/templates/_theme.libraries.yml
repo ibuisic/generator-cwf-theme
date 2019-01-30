@@ -9,7 +9,7 @@ global-styling:
       dist/css/<%= themeName %>.css: {}
       '//fonts.googleapis.com/css?family=Raleway:400,700': { type: external, minified: true }
   js:
-    src/js/<%= themeName %>.js: {}
+    dist/js/<%= themeName %>.min.js: {}
 
 # Vendor libraires
 ####
@@ -17,7 +17,6 @@ bootstrap_js:
   js:
     '//unpkg.com/popper.js/dist/umd/popper.min.js': { type: external, minified: true }
     dist/js/bootstrap.js: {}
-
 
 # Icon Font libraries
 ####
