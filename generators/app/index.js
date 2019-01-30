@@ -50,7 +50,6 @@ module.exports = class extends Generator {
         type: 'confirm',
         name: 'bsJS',
         message: "Copy Bootstrap JS to theme?",
-        default: true
       },
       {
         when: function (response) {
@@ -79,6 +78,7 @@ module.exports = class extends Generator {
       // To access props later use this.props.someAnswer;
       this.props = props;
     });
+
   }
 
   writing() {
@@ -129,7 +129,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('_theme.libraries.yml'),
       this.destinationPath(this.props.themeName + '.libraries.yml'),
-      this.props
+      this.props,
     );
 
     this.fs.copyTpl(
@@ -325,7 +325,7 @@ module.exports = class extends Generator {
     // Add build package JSON
 
     pkgJson.scripts["build:images"] = "run-s image:*";
-    pkgJson.scripts["build:js"] = "uglifyjs src/js/*.js -o dist/js/global.min.js";
+    pkgJson.scripts["build:js"] = "uglifyjs src/js/" + this.props.themeName + ".js" + " -o dist/js/" + this.props.themeName + ".min.js";
     pkgJson.scripts["build:css"] = "run-s css:scss css:prefix";
     pkgJson.scripts.build = "run-s build:*";
     pkgJson.scripts["watch:css"] = "nodemon --watch src/scss -e scss -x \"run-s -s css:*\"";

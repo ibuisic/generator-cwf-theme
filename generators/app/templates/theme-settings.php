@@ -76,7 +76,7 @@ $form['header']['navbar']['navbar_classes'] = array(
 
 $form['header']['navbar']['navbar_container'] = [
   '#type' => 'select',
-  '#title' => t('Choose navbar container type'),
+  '#title' => t('Navbar container type'),
   '#options' => [
     'no' => t('No container'),
     'container' => t('Fixed'),
@@ -88,7 +88,7 @@ $form['header']['navbar']['navbar_container'] = [
 
 $form['header']['navbar']['navbar_position'] = array(
   '#type' => 'select',
-  '#title' => t('Choose navbar position class'),
+  '#title' => t('Navbar position class'),
   '#default_value' => theme_get_setting('navbar_position'),
   '#empty_option' => t('None'),
   '#options' => [
@@ -100,7 +100,7 @@ $form['header']['navbar']['navbar_position'] = array(
 
 $form['header']['navbar']['navbar_color'] = array(
   '#type' => 'select',
-  '#title' => t('Choose navbar color class'),
+  '#title' => t('Navbar color class'),
   '#default_value' => theme_get_setting('navbar_color'),
   '#empty_option' => t('None'),
   '#options' => [
@@ -138,7 +138,7 @@ $form['header']['navbar_collapsed']['navbar_collapsed_classes'] = array(
 
 $form['header']['navbar_collapsed']['navbar_collapsed_container'] = [
   '#type' => 'select',
-  '#title' => t('Choose navbar collapsed container type'),
+  '#title' => t('Navbar collapsed container type'),
   '#options' => [
     'no' => t('No container'),
     'container' => t('Fixed'),
