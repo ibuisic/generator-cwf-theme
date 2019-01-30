@@ -148,6 +148,34 @@ $form['header']['navbar_collapsed']['navbar_collapsed_container'] = [
   '#group' => 'container',
 ];
 
+
+// Content
+
+$form['content'] = array(
+  '#type' => 'details',
+  '#title' => t('Content'),
+  '#group' => '<%= themeName %>',
+);
+
+$form['content']['main_container'] = [
+  '#type' => 'select',
+  '#title' => t('Main container type'),
+  '#options' => [
+    'no' => t('No container'),
+    'container' => t('Fixed'),
+    'container-fluid' => t('Fluid'),
+  ],
+  '#default_value' => theme_get_setting('main_container'),
+  '#group' => 'container',
+];
+
+$form['content']['main_container_classes'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Main content classes'),
+  '#default_value' => theme_get_setting('main_container_classes')
+);
+
+
 // forms
 
 $form['forms'] = array(
