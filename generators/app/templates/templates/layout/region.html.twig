@@ -25,9 +25,11 @@
   <section{{ attributes.addClass(classes) }}>
     {% if (region_container != 'no') %}
       <div class="{{ container_classes }}">
+        <div class="row">
     {% endif %}
-    {{ content }}
+          {{ content }}
     {% if (region_container != 'no') %}
+        <div>
       </div>
     {% endif %}
   </section>
