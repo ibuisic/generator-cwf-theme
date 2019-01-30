@@ -16,7 +16,7 @@ global-styling:
 bootstrap_js:
   js:
     '//unpkg.com/popper.js/dist/umd/popper.min.js': { type: external, minified: true }
-    dist/js/bootstrap.js: {}
+    <%= BootstrapJS %>
 
 # Icon Font libraries
 ####

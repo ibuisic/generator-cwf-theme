@@ -78,7 +78,6 @@ module.exports = class extends Generator {
       // To access props later use this.props.someAnswer;
       this.props = props;
     });
-
   }
 
   writing() {
@@ -129,7 +128,10 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('_theme.libraries.yml'),
       this.destinationPath(this.props.themeName + '.libraries.yml'),
-      this.props
+      {
+        BootstrapJS: this.props.bsJS ? 'dist/js/bootstrap.js: {}' : '//unpkg.com/bootstrap/dist/js/bootstrap.min.js',
+        themeName: this.props.themeName
+      }
     );
 
     this.fs.copyTpl(
