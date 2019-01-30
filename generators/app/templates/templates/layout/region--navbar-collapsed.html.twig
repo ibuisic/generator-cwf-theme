@@ -17,7 +17,7 @@
     'region',
     'collapse',
     'navbar-collapse',
-    theme_settings.navbar_collapsed_classes ? theme_settings.navbar_collapsed_classes,
+    theme_settings.navbar_collapsed_classes ? theme_settings.navbar_collapsed_classes|clean_class,
     'region-' ~ region|clean_class,
   ]
 %}

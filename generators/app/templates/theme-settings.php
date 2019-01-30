@@ -54,35 +54,29 @@ $form['settings']['general']['menu_icons'] = array(
 
 // navbar
 
-$form['navbar'] = array(
+$form['header'] = array(
   '#type' => 'details',
-  '#title' => t('Navbar'),
+  '#title' => t('Header'),
   '#group' => '<%= themeName %>',
 );
 
-$form['navbar']['general'] = array(
+$form['header']['navbar'] = array(
   '#type' => 'details',
-  '#title' => "General Navbar Settings",
+  '#title' => "Navbar Settings",
   '#collapsible' => true,
   '#description' => t('All additional classes and settings for navbar region'),
   '#open' => true
 );
 
-$form['navbar']['general']['navbar_classes'] = array(
+$form['header']['navbar']['navbar_classes'] = array(
   '#type' => 'textfield',
   '#title' => t('Navbar classes'),
   '#default_value' => theme_get_setting('navbar_classes')
 );
 
-$form['navbar']['general']['navbar_collapsed_classes'] = array(
-  '#type' => 'textfield',
-  '#title' => t('Navbar collapsed classes'),
-  '#default_value' => theme_get_setting('navbar_collapsed_classes')
-);
-
-$form['navbar']['general']['navbar_container'] = [
+$form['header']['navbar']['navbar_container'] = [
   '#type' => 'select',
-  '#title' => t('Choose Navbar Container type'),
+  '#title' => t('Choose navbar container type'),
   '#options' => [
     'no' => t('No container'),
     'container' => t('Fixed'),
@@ -92,19 +86,7 @@ $form['navbar']['general']['navbar_container'] = [
   '#group' => 'container',
 ];
 
-$form['navbar']['general']['navbar_collapsed_container'] = [
-  '#type' => 'select',
-  '#title' => t('Choose NavbarCollapsed Container type'),
-  '#options' => [
-    'no' => t('No container'),
-    'container' => t('Fixed'),
-    'container-fluid' => t('Fluid'),
-  ],
-  '#default_value' => theme_get_setting('navbar_collapsed_container'),
-  '#group' => 'container',
-];
-
-$form['navbar']['general']['navbar_position'] = array(
+$form['header']['navbar']['navbar_position'] = array(
   '#type' => 'select',
   '#title' => t('Choose navbar position class'),
   '#default_value' => theme_get_setting('navbar_position'),
@@ -116,7 +98,7 @@ $form['navbar']['general']['navbar_position'] = array(
   ]
 );
 
-$form['navbar']['general']['navbar_color'] = array(
+$form['header']['navbar']['navbar_color'] = array(
   '#type' => 'select',
   '#title' => t('Choose navbar color class'),
   '#default_value' => theme_get_setting('navbar_color'),
@@ -127,7 +109,7 @@ $form['navbar']['general']['navbar_color'] = array(
   ]
 );
 
-$form['navbar']['general']['navbar_expand'] = array(
+$form['header']['navbar']['navbar_expand'] = array(
   '#type' => 'select',
   '#title' => t('Choose when to expand navbar'),
   '#default_value' => theme_get_setting('navbar_expand'),
@@ -139,6 +121,32 @@ $form['navbar']['general']['navbar_expand'] = array(
     'navbar-expand-xl' => 'Navbar expand on xl'
   ]
 );
+
+$form['header']['navbar_collapsed'] = array(
+  '#type' => 'details',
+  '#title' => "Navbar Collapsed Settings",
+  '#collapsible' => true,
+  '#description' => t('All additional classes and settings for navbar collapsed region'),
+  '#open' => false
+);
+
+$form['header']['navbar_collapsed']['navbar_collapsed_classes'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Navbar collapsed classes'),
+  '#default_value' => theme_get_setting('navbar_collapsed_classes')
+);
+
+$form['header']['navbar_collapsed']['navbar_collapsed_container'] = [
+  '#type' => 'select',
+  '#title' => t('Choose navbar collapsed container type'),
+  '#options' => [
+    'no' => t('No container'),
+    'container' => t('Fixed'),
+    'container-fluid' => t('Fluid'),
+  ],
+  '#default_value' => theme_get_setting('navbar_collapsed_container'),
+  '#group' => 'container',
+];
 
 // forms
 
@@ -200,8 +208,6 @@ $form['forms']['custom_forms']['custom_form_file'] = array(
 
 // Images
 
-  // images
-
 $form['images'] = array(
   '#type' => 'details',
   '#title' => t('Images'),
@@ -217,13 +223,15 @@ $form['images']['general'] = array(
 
 $form['images']['general']['img_thumbnail'] = array(
   '#type' => 'checkbox',
-  '#title' => t('Image thumbnail (Adding padding, border and border-radius to all images)'),
+  '#title' => t('Image thumbnail'),
+  '#description' => t('Adding padding, border and border-radius to all images'),
   '#default_value' => theme_get_setting('img_thumbnail')
 );
 
 $form['images']['general']['img_border'] = array(
   '#type' => 'checkbox',
-  '#title' => t('Image border (Adding 1px solid border on all images). Note: No need to check this if you already checked "Image thumbnail"'),
+  '#title' => t('Image border'),
+  '#description' => t('Adding 1px solid border on all images. Note: No need to check this if you already checked "Image thumbnail"'),
   '#default_value' => theme_get_setting('img_border')
 );
 
@@ -312,19 +320,22 @@ $form['tables']['general']['tables_borders'] = array(
 
 $form['tables']['general']['tables_striped_rows'] = array(
   '#type' => 'checkbox',
-  '#title' => t('Use .table-striped to add zebra-striping to any table row within the tbody'),
+  '#title' => 'Table striped',
+  '#description' => t('Use .table-striped to add zebra-striping to any table row within the tbody'),
   '#default_value' => theme_get_setting('tables_striped_rows')
 );
 
 $form['tables']['general']['tables_hover'] = array(
   '#type' => 'checkbox',
-  '#title' => t('Add .table-hover to enable a hover state on table rows within a tbody'),
+  '#title' => 'Table hover',
+  '#description' => t('Add .table-hover to enable a hover state on table rows within a tbody'),
   '#default_value' => theme_get_setting('tables_hover')
 );
 
 $form['tables']['general']['tables_sm'] = array(
   '#type' => 'checkbox',
-  '#title' => t('Add .table-sm to make tables more compact by cutting cell padding in half'),
+  '#title' => 'Table small',
+  '#description' => t('Add .table-sm to make tables more compact by cutting cell padding in half'),
   '#default_value' => theme_get_setting('tables_sm')
 );
 
