@@ -62,6 +62,12 @@ module.exports = class extends Generator {
       },
       {
         type: 'confirm',
+        name: 'slickSlider',
+        message: "We like and use the slick slider, would you like to add it?",
+        default: true
+      },
+      {
+        type: 'confirm',
         name: 'iconFont',
         message: "Would you like to create your own Icon Font",
         default: true
@@ -129,8 +135,11 @@ module.exports = class extends Generator {
       this.templatePath('_theme.libraries.yml'),
       this.destinationPath(this.props.themeName + '.libraries.yml'),
       {
-        BootstrapJS: this.props.bsJS ? 'dist/js/bootstrap.js: {}' : '//unpkg.com/bootstrap/dist/js/bootstrap.min.js',
-        themeName: this.props.themeName
+        BootstrapJS: this.props.bsJS ? 'dist/js/bootstrap.js: {}' : '//unpkg.com/bootstrap/dist/js/bootstrap.min.js : { type: external, minified: true }',
+        themeName: this.props.themeName,
+        slickSlider: this.props.slickSlider
+          ? this.fs.read(this.templatePath('_slick.yml'))
+          : ''
       }
     );
 
@@ -154,6 +163,10 @@ module.exports = class extends Generator {
 
     if (this.props.svgSprite) {
       this.fs.append(this.destinationPath('templates/page.html.twig'), '<div class="d-none">{{ source("/" ~ directory ~ "/dist/images/sprite.svg") }}</div>' );
+    }
+
+    if (this.props.slickSlider) {
+      this.fs.write(this.destinationPath('src/scss/slick.scss'), '// Slick Slider');
     }
 
     // Install, schema and optional configs

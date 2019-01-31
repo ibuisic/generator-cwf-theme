@@ -1,0 +1,8 @@
+slick:
+  css:
+    component:
+      "//unpkg.com/slick-carousel/slick/slick.css": { type: external }
+    theme:
+      dist/css/slick.css: {}
+  js:
+    "//unpkg.com/slick-carousel/slick/slick.js": { type: external }

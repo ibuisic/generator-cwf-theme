@@ -18,6 +18,8 @@ bootstrap_js:
     '//unpkg.com/popper.js/dist/umd/popper.min.js': { type: external, minified: true }
     <%= BootstrapJS %>
 
+<%- slickSlider %>
+
 # Icon Font libraries
 ####
 material_design_icons:
