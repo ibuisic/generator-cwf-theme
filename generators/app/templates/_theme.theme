@@ -7,13 +7,14 @@
  * Place your custom PHP code in this file.
  */
 
-use Drupal\<%= themeName %>\Hook\BlockRegion;
-use Drupal\<%= themeName %>\Hook\ThemeSettings;
-use Drupal\<%= themeName %>\Hook\SubmitTemplate;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\<%= themeName %>\Hook\PreprocessHtml;
 use Drupal\<%= themeName %>\Hook\PagePreprocess;
 use Drupal\<%= themeName %>\Hook\RegionPreprocess;
+use Drupal\<%= themeName %>\Hook\BlockRegion;
+use Drupal\<%= themeName %>\Hook\ThemeSettings;
 use Drupal\<%= themeName %>\Hook\FormElement;
-use Drupal\Core\Form\FormStateInterface;
+use Drupal\<%= themeName %>\Hook\SubmitTemplate;
 
 /**
  * {@inheritdoc}
