@@ -155,8 +155,8 @@ module.exports = class extends Generator {
     );
 
     this.fs.copyTpl(
-      this.templatePath('src/Hook/*.php'),
-      this.destinationPath('src/Hook/'),
+      this.templatePath('src/Theme/*.php'),
+      this.destinationPath('src/Theme/'),
       this.props,
       { globOptions: { dot: true } }
     );

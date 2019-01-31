@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Drupal\<%= themeName %>\Hook;
+namespace Drupal\<%= themeName %>\Theme;
 
 /**
  * @file
- * Contains \Drupal\<%= themeName %>\Hook.
+ * Contains \Drupal\<%= themeName %>\Theme.
  */
 
 /**
