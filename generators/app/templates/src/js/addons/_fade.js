@@ -1,10 +1,8 @@
-(function ($, window) {
+(function ($, document) {
 
-  $(window).on('load', function () {
+  $(document).ready(function() {
     // your code
-    if ($('body').hasClass('fade')) {
-      $('body').addClass('show');
-    }
+    $('body').addClass('show');
   });
 
 })(jQuery, this);
