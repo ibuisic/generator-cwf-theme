@@ -269,6 +269,10 @@ module.exports = class extends Generator {
       this.destinationPath('src/js/offcanvas.js'),
       this.props
     );
+    this.fs.copy(
+      this.templatePath('./src/scss/offcanvas.scss'),
+      this.destinationPath('./src/scss/offcanvas.scss')
+    );
 
     // Assets
     this.fs.copy(this.templatePath('static/**/*'), this.destinationRoot(), {
@@ -422,11 +426,6 @@ module.exports = class extends Generator {
         this.destinationPath('./src/scss/_' + this.props.themeName + '-mixins.scss')
       );
     }
-
-    this.fs.copy(
-      this.templatePath('./src/scss/offcanvas.scss'),
-      this.destinationPath('./src/scss/offcanvas.scss')
-    );
   
     var scssFile = this.fs.read('src/scss/' + this.props.themeName + '.scss');
 
