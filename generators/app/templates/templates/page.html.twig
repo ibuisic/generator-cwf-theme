@@ -64,12 +64,12 @@
     %}
 
     <header role="banner" {{ navbar_attributes.addClass(navbar_classes) }}>
-      {% if (theme_settings.navbar_container != 'no') %}
+      {% if (theme_settings.navbar_container) %}
         <div class="{{ navbar_container }}">
       {% endif %}
         {{ page.navbar }}
         {{ page.navbar_collapsed }}
-      {% if (theme_settings.navbar_container != 'no') %}
+      {% if (theme_settings.navbar_container) %}
         </div>
       {% endif %}
     </header>
@@ -96,7 +96,7 @@
       {% endif %}
 
       <div {{ attributes.addClass(theme_settings.main_container_classes) }}>
-        {% if (theme_settings.main_container != 'no') %}
+        {% if (theme_settings.main_container) %}
           <div class="{{ theme_settings.main_container }}">
             <div class="row">
         {% endif %}
@@ -121,7 +121,7 @@
             {% endblock %}
           {% endif %}
 
-        {% if (main_container != 'no') %}
+        {% if (main_container) %}
             </div>
           </div>
         {% endif %}

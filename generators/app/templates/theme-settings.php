@@ -84,8 +84,8 @@ $form['header']['navbar']['navbar_classes'] = array(
 $form['header']['navbar']['navbar_container'] = [
   '#type' => 'select',
   '#title' => t('Navbar container type'),
+  '#empty_option' => t('None'),
   '#options' => [
-    'no' => t('No container'),
     'container' => t('Fixed'),
     'container-fluid' => t('Fluid'),
   ],
@@ -131,7 +131,8 @@ $form['header']['navbar']['navbar_expand'] = array(
 
 $form['header']['navbar']['navbar_offcanvas'] = array(
   '#type' => 'checkbox',
-  '#title' => t('Change from collapsible navbar to offcanvas'),
+  '#title' => t('Navbar offcanvas'),
+  '#description' => t('Change default navbar to navbar offcanvas'),
   '#default_value' => theme_get_setting('navbar_offcanvas')
 );
 
@@ -152,8 +153,8 @@ $form['header']['navbar_collapsed']['navbar_collapsed_classes'] = array(
 $form['header']['navbar_collapsed']['navbar_collapsed_container'] = [
   '#type' => 'select',
   '#title' => t('Navbar collapsed container type'),
+  '#empty_option' => t('None'),
   '#options' => [
-    'no' => t('No container'),
     'container' => t('Fixed'),
     'container-fluid' => t('Fluid'),
   ],
@@ -172,8 +173,8 @@ $form['content'] = array(
 $form['content']['main_container'] = [
   '#type' => 'select',
   '#title' => t('Main container type'),
+  '#empty_option' => t('None'),
   '#options' => [
-    'no' => t('No container'),
     'container' => t('Fixed'),
     'container-fluid' => t('Fluid'),
   ],
@@ -374,8 +375,8 @@ $form['tables']['general']['thead_background'] = array(
   '#type' => 'select',
   '#title' => t('Table thead background'),
   '#default_value' => theme_get_setting('thead_background'),
+  '#empty_option' => t('None'),
   '#options' => [
-    'none' => 'None',
     'thead-light' => 'Light',
     'thead-dark' => 'Dark'
   ],
@@ -417,8 +418,8 @@ $form['tables']['general']['tables_responsive'] = array(
   '#type' => 'select',
   '#title' => t('Use .table-responsive{-sm|-md|-lg|-xl} as needed to create responsive tables up to a particular breakpoint'),
   '#default_value' => theme_get_setting('tables_responsive'),
+  '#empty_option' => t('None'),
   '#options' => [
-    'none' => 'None',
     'table-responsive' => 'All',
     'table-responsive-sm' => 'Sm',
     'table-responsive-md' => 'Md',
@@ -469,8 +470,8 @@ foreach ($region_list as $name => $description) {
     $form['layout']['regions'][$name]['region_container_' . $name] = [
       '#type' => 'select',
       '#title' => t('Container type'),
+      '#empty_option' => t('None'),
       '#options' => [
-        'no' => t('No container'),
         'container' => t('Fixed'),
         'container-fluid' => t('Fluid'),
       ],

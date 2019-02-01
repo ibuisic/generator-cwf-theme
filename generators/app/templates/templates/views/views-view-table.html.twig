@@ -52,7 +52,7 @@
   set thead_classes = theme_settings.thead_background ? theme_settings.thead_background
 %}
 
-{% if (theme_settings.tables_responsive != 'none') %}
+{% if (theme_settings.tables_responsive) %}
   <div class="{{ responsive_classes }}">
 {% endif %}
   <table{{ attributes.addClass(classes) }}>
@@ -76,7 +76,7 @@
       </caption>
     {% endif %}
     {% if header %}
-      {% if (theme_settings.thead_background != 'none') %}
+      {% if (theme_settings.thead_background) %}
       <thead class="{{ thead_classes }}">
       {% else %}
       <thead>
@@ -144,6 +144,6 @@
       {% endfor %}
     </tbody>
   </table>
-{% if (theme_settings.tables_responsive != 'none') %}
+{% if (theme_settings.tables_responsive) %}
   </div>
 {% endif %}
