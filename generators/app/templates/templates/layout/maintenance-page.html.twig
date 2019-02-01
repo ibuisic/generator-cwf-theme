@@ -1,0 +1,81 @@
+{#
+/**
+ * @file
+ * Theme override to display a single Drupal page while offline.
+ *
+ * All available variables are mirrored in page.html.twig.
+ * Some may be blank but they are provided for consistency.
+ *
+ * @see template_preprocess_maintenance_page()
+ */
+#}
+
+{% set navbar_attributes = create_attribute() %}
+{# Navbar #}
+{% block navbar %}
+{%
+  set navbar_classes = [
+    'navbar',
+    theme_settings.navbar_classes ? theme_settings.navbar_classes|clean_class,
+    theme_settings.navbar_color ? theme_settings.navbar_color|clean_class
+  ]
+%}
+
+{%
+  set main_container_classes = 'layout-content'
+%}
+
+{% 
+  set navbar_container = theme_settings.navbar_container|clean_class
+%}
+
+<header {{ navbar_attributes.addClass(navbar_classes) }} id="navbar" role="banner">
+  {% if (theme_settings.navbar_container != 'no') %}
+  <div class="{{ navbar_container }}">
+  {% endif %}
+    <div class="row">
+      <section class="col-12">
+          {% if logo %}
+            <a class="logo" href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
+              <img src="{{ logo }}" alt="{{ 'Home'|t }}" />
+            </a>
+          {% endif %}
+
+          {% if site_name or site_slogan %}
+              {% if site_name %}
+                 <a class="name navbar-brand" href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
+              {% endif %}
+              {% if site_slogan %}
+                  <p class="navbar-text">{{ site_slogan }}</p>
+              {% endif %}
+          {% endif %}
+      </section>
+    </div>
+  {% if (theme_settings.navbar_container != 'no') %}
+  </div>
+  {% endif %}
+</header>
+{% endblock %}
+
+{# Main #}
+<main role="main" {{ attributes.addClass(theme_settings.main_container_classes, 'pt-5 pb-5') }}>
+  {% if (theme_settings.main_container != 'no') %}
+    <div class="{{ theme_settings.main_container }}">
+  {% endif %}
+    <div class="row">
+      <section class="col-12">
+        {% if title %}
+          <h1>{{ title }}</h1>
+        {% endif %}
+
+        {# Content #}
+        {% block content %}
+          <a id="main-content"></a>
+          {{ page.content }}
+        {% endblock %}
+      </section>
+    </div>
+    {% if (theme_settings.main_container != 'no') %}
+    </div>
+    {% endif %}
+</main>

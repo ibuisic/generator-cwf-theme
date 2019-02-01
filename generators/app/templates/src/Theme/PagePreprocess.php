@@ -20,6 +20,7 @@ class PagePreprocess {
   public static function hook(&$variables) {
     $icons = theme_get_setting('icon_set');
     $offcanvas = theme_get_setting('navbar_offcanvas');
+    $fade = theme_get_setting('fadein_page_onload');
 
     if ($icons) {
       $variables['#attached']['library'][] = '<%= themeName %>/' . $icons;
@@ -27,6 +28,10 @@ class PagePreprocess {
 
     if ($offcanvas) {
       $variables['#attached']['library'][] = '<%= themeName %>/offcanvas';
+    }
+
+    if ($fade) {
+      $variables['#attached']['library'][] = '<%= themeName %>/fade';
     }
   }
 
