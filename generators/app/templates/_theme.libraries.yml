@@ -16,9 +16,13 @@ global-styling:
 offcanvas:
   css:
     component:
-      dist/css/offcanvas.css: {}
+      dist/css/addons/offcanvas.css: {}
   js:
-    src/js/offcanvas.js: {}
+    src/js/addons/offcanvas.js: {}
+
+fade:
+  js:
+    src/js/addons/fade.js: {}
 
 # Vendor libraires
 ####
