@@ -52,6 +52,12 @@ $form['settings']['general']['menu_icons'] = array(
   '#default_value' => theme_get_setting('menu_icons')
 );
 
+$form['settings']['general']['fadein_page_onload'] = array(
+  '#type' => 'checkbox',
+  '#title' => t('Fade in pages on load'),
+  '#default_value' => theme_get_setting('fadein_page_onload')
+);
+
 // navbar
 
 $form['header'] = array(

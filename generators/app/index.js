@@ -265,13 +265,18 @@ module.exports = class extends Generator {
       this.props
     );
     this.fs.copyTpl(
-      this.templatePath('src/js/_offcanvas.js'),
-      this.destinationPath('src/js/offcanvas.js'),
+      this.templatePath('src/js/addons/_fade.js'),
+      this.destinationPath('src/js/addons/fade.js'),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath('src/js/addons/_offcanvas.js'),
+      this.destinationPath('src/js/addons/offcanvas.js'),
       this.props
     );
     this.fs.copy(
-      this.templatePath('./src/scss/offcanvas.scss'),
-      this.destinationPath('./src/scss/offcanvas.scss')
+      this.templatePath('./src/scss/addons/offcanvas.scss'),
+      this.destinationPath('./src/scss/addons/offcanvas.scss')
     );
 
     // Assets
