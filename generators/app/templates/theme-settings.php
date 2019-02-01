@@ -122,6 +122,12 @@ $form['header']['navbar']['navbar_expand'] = array(
   ]
 );
 
+$form['header']['navbar']['navbar_offcanvas'] = array(
+  '#type' => 'checkbox',
+  '#title' => t('Change from collapsible navbar to offcanvas'),
+  '#default_value' => theme_get_setting('navbar_offcanvas')
+);
+ 
 $form['header']['navbar_collapsed'] = array(
   '#type' => 'details',
   '#title' => "Navbar Collapsed Settings",

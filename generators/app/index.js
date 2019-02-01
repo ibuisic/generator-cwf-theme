@@ -264,6 +264,11 @@ module.exports = class extends Generator {
       this.destinationPath('src/js/' + this.props.themeName + '.js'),
       this.props
     );
+    this.fs.copyTpl(
+      this.templatePath('src/js/_offcanvas.js'),
+      this.destinationPath('src/js/offcanvas.js'),
+      this.props
+    );
 
     // Assets
     this.fs.copy(this.templatePath('static/**/*'), this.destinationRoot(), {
@@ -418,6 +423,11 @@ module.exports = class extends Generator {
       );
     }
 
+    this.fs.copy(
+      this.templatePath('./src/scss/offcanvas.scss'),
+      this.destinationPath('./src/scss/offcanvas.scss')
+    );
+  
     var scssFile = this.fs.read('src/scss/' + this.props.themeName + '.scss');
 
     const cssImports = `// Main ${this.props.humanName} SCSS file\n\n${this.props.iconFont ? `@import "icon-font.scss";\n\n` : ''}${this.props.awsmMixins ? `@import "${this.props.humanName}-mixins.scss";\n\n`: ''}`;

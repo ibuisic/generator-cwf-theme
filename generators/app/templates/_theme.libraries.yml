@@ -11,6 +11,15 @@ global-styling:
   js:
     dist/js/<%= themeName %>.min.js: {}
 
+# Components
+####
+offcanvas:
+  css:
+    component:
+      dist/css/offcanvas.css: {}
+  js:
+    src/js/offcanvas.js: {}
+
 # Vendor libraires
 ####
 bootstrap_js:
