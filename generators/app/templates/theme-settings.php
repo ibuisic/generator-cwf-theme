@@ -4,7 +4,7 @@
  * @file
  * theme-settings.php
  *
- * Provides theme settings for Bootstrap Barrio based themes when admin theme is not.
+ * Provides theme settings
  *
  * @see ./includes/settings.inc
  */
@@ -127,7 +127,7 @@ $form['header']['navbar']['navbar_offcanvas'] = array(
   '#title' => t('Change from collapsible navbar to offcanvas'),
   '#default_value' => theme_get_setting('navbar_offcanvas')
 );
- 
+
 $form['header']['navbar_collapsed'] = array(
   '#type' => 'details',
   '#title' => "Navbar Collapsed Settings",
@@ -156,7 +156,6 @@ $form['header']['navbar_collapsed']['navbar_collapsed_container'] = [
 
 
 // Content
-
 $form['content'] = array(
   '#type' => 'details',
   '#title' => t('Content'),
@@ -180,6 +179,40 @@ $form['content']['main_container_classes'] = array(
   '#title' => t('Main content classes'),
   '#default_value' => theme_get_setting('main_container_classes')
 );
+
+// Blocks
+$form['blocks'] = array(
+  '#type' => 'details',
+  '#title' => t('Blocks'),
+  '#group' => '<%= themeName %>',
+);
+
+// Language block.
+$form['blocks']['language_block'] = array(
+  '#type' => 'details',
+  '#title' => "Language Block Settings",
+  '#collapsible' => true,
+  '#description' => t('Language block configuration'),
+  '#open' => true
+);
+
+$form['blocks']['language_block']['language_block_type'] = [
+  '#type' => 'select',
+  '#title' => t('Language block type'),
+  '#options' => [
+    'links' => t('Default'),
+    'inline' => t('Links Inline'),
+    'dropdown' => t('Dropdown')],
+  '#default_value' => theme_get_setting('language_block_type'),
+  '#description' => t('Render the language block as is, inline or as a dropdown menu'),
+];
+
+$form['blocks']['language_block']['language_block_code'] = [
+  '#type' => 'checkbox',
+  '#title' => t('Use language codes'),
+  '#default_value' => theme_get_setting('language_block_code'),
+  '#description' => t('Display language codes instead of titles.'),
+];
 
 
 // forms
