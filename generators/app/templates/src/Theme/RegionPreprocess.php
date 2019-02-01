@@ -17,6 +17,11 @@ class RegionPreprocess {
  * Hook.
  */
   public static function hook(&$variables) {
+    // Load the site name out of configuration.
+    $config = \Drupal::config('system.site');
+    $variables['site_name'] = $config->get('name');
+    $variables['site_slogan'] = $config->get('slogan');
+
     if (theme_get_setting('region_classes_' . $variables['elements']['#region']) !== NULL) {
       $variables['attributes']['class'][] = theme_get_setting('region_classes_' . $variables['elements']['#region']);
     }

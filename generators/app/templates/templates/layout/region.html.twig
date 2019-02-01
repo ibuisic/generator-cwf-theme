@@ -27,7 +27,9 @@
       <div class="{{ container_classes }}">
         <div class="row">
     {% endif %}
+        {% block content %}
           {{ content }}
+        {% endblock %}
     {% if (region_container != 'no') %}
         <div>
       </div>
