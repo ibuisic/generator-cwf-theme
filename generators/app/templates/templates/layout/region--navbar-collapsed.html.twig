@@ -17,6 +17,7 @@
     'region',
     'collapse',
     'navbar-collapse',
+    'flex-grow-0',
     theme_settings.navbar_collapsed_classes ? theme_settings.navbar_collapsed_classes|clean_class,
     'region-' ~ region|clean_class,
   ]
@@ -32,7 +33,9 @@
     {% if (theme_settings.navbar_collapsed_container) %}
       <div class="{{ navbar_collapsed_container }}">
     {% endif %}
-      {{ content }}
+      <div class="collapsed-wrapper d-flex flex-column flex-md-row">
+        {{ content }}
+      </div>
     {% if (theme_settings.navbar_collapsed_container) %}
       </div>
     {% endif %}
