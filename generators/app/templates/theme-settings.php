@@ -59,6 +59,20 @@ $form['settings']['general']['fadein_page_onload'] = array(
   '#default_value' => theme_get_setting('fadein_page_onload')
 );
 
+$form['settings']['general']['dropdown_hover'] = [
+  '#type' => 'checkbox',
+  '#title' => t('On hover dropdowns'),
+  '#default_value' => theme_get_setting('dropdown_hover'),
+  '#description' => t('Open Bootstrap dropdowns on hover instead on click, and make the parents clickable'),
+];
+
+$form['settings']['general']['node_links_btn_group'] = [
+  '#type' => 'checkbox',
+  '#title' => t('Btn group - node links'),
+  '#default_value' => theme_get_setting('node_links_btn_group'),
+  '#description' => t('Display node links as btn groups'),
+];
+
 // navbar
 
 $form['header'] = array(

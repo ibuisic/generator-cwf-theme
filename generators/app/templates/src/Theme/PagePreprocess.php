@@ -16,22 +16,25 @@ class PagePreprocess {
 /**
  * Hook.
  */
-  
+
   public static function hook(&$variables) {
     $icons = theme_get_setting('icon_set');
-    $offcanvas = theme_get_setting('navbar_offcanvas');
-    $fade = theme_get_setting('fadein_page_onload');
+
 
     if ($icons) {
       $variables['#attached']['library'][] = '<%= themeName %>/' . $icons;
     }
 
-    if ($offcanvas) {
+    if (theme_get_setting('navbar_offcanvas')) {
       $variables['#attached']['library'][] = '<%= themeName %>/offcanvas';
     }
 
-    if ($fade) {
+    if (theme_get_setting('fadein_page_onload')) {
       $variables['#attached']['library'][] = '<%= themeName %>/fade';
+    }
+
+    if (theme_get_setting('dropdown_hover')) {
+      $variables['#attached']['library'][] = '<%= themeName %>/dropdown_hover';
     }
   }
 

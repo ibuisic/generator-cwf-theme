@@ -1,0 +1,13 @@
+//
+// Dsiplay Bootstrap dropdowns on hover instead on click.
+//
+
+.dropdown:hover .dropdown-menu{
+  display: block;
+}
+/* Adjust this with your media query */
+@media only screen and (max-width: 768px) {
+	.dropdown .dropdown-menu{
+	  display: block;
+	}
+}

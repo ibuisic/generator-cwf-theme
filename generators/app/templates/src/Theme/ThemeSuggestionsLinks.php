@@ -24,5 +24,10 @@ class ThemeSuggestionsLinks {
         $suggestions[] = 'links__dropdown_language_block';
       }
     }
+    if ($variables['theme_hook_original'] == 'links__node') {
+      if (theme_get_setting('node_links_btn_group')) {
+        $suggestions[] = 'links__btn_group';
+      }
+    }
   }
 }

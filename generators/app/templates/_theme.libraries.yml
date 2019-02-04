@@ -24,6 +24,13 @@ fade:
   js:
     src/js/addons/fade.js: {}
 
+dropdown_hover:
+  css:
+    component:
+      dist/css/addons/dropdown-hover.css: {}
+  js:
+    src/js/addons/dropdownHover.js: {}
+
 # Vendor libraires
 ####
 bootstrap_js:
