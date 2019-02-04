@@ -8,7 +8,7 @@ dependencies:
 id: <%= themeName %>_search
 theme: <%= themeName %>
 region: navbar_collapsed
-weight: 0
+weight: 9
 provider: null
 plugin: search_form_block
 settings:

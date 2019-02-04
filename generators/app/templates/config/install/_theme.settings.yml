@@ -10,4 +10,8 @@ submit_classes: 'btn btn-primary'
 menu_icons: 1
 inline_logo: 1
 responsive_images: 1
-
+navbar_classes: 'bg-light navbar-light'
+navbar_container: 'container-fluid'
+navbar_collapsed_container: 'container-fluid'
+navbar_offcanvas: 1
+navbar_expand: 'navbar-expand-md'
