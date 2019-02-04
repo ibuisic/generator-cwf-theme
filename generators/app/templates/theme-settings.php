@@ -35,27 +35,30 @@ $form['settings']['general'] = array(
 
 $form['settings']['general']['inline_logo'] = array(
   '#type' => 'checkbox',
-  '#title' => t('Inline SVG logo'),
+  '#title' => t('Inline SVG logo instead of regular logo image.'),
   '#default_value' => theme_get_setting('inline_logo')
 );
 
 $form['settings']['general']['responsive_images'] = array(
   '#type' => 'checkbox',
   '#title' => t('Responsive images'),
+  '#description' => t('Images in Bootstrap are made responsive with <code>.img-fluid</code> class so that they scale with the parent element.<br> For more informations go to @img-responsive.', array(
+    '@img-responsive' => Drupal::l('Responsive images', Url::fromUri('https://getbootstrap.com/docs/4.2/content/images/#responsive-images/', ['absolute' => true])),
+  )),
   '#default_value' => theme_get_setting('responsive_images')
 );
 
 $form['settings']['general']['menu_icons'] = array(
   '#type' => 'checkbox',
   '#title' => t('Menu icons'),
-  '#description' => t('When this is checked you can use a seperator <b> | </b> and write down classes and it will generate an &#60;i&#62; tag with those classes.'),
+  '#description' => t('When this is checked you can use a seperator <b> | </b> and write down classes and it will generate an <code>&#60;i&#62;</code> tag with those classes.'),
   '#default_value' => theme_get_setting('menu_icons')
 );
 
 $form['settings']['general']['fadein_page_onload'] = array(
   '#type' => 'checkbox',
   '#title' => t('Fade in pages on load'),
-  '#description' => t('Check it if you want your pages to have "fade-in" effect'),
+  '#description' => t('Check it if you want your pages to have "fade-in" effect.'),
   '#default_value' => theme_get_setting('fadein_page_onload')
 );
 
@@ -63,14 +66,14 @@ $form['settings']['general']['dropdown_hover'] = [
   '#type' => 'checkbox',
   '#title' => t('On hover dropdowns'),
   '#default_value' => theme_get_setting('dropdown_hover'),
-  '#description' => t('Open Bootstrap dropdowns on hover instead on click, and make the parents clickable'),
+  '#description' => t('Open Bootstrap dropdowns on hover instead on click, and make the parents clickable.'),
 ];
 
 $form['settings']['general']['node_links_btn_group'] = [
   '#type' => 'checkbox',
   '#title' => t('Btn group - node links'),
   '#default_value' => theme_get_setting('node_links_btn_group'),
-  '#description' => t('Display node links as btn groups'),
+  '#description' => t('Display node links as btn groups.'),
 ];
 
 // navbar
@@ -146,7 +149,7 @@ $form['header']['navbar']['navbar_expand'] = array(
 $form['header']['navbar']['navbar_offcanvas'] = array(
   '#type' => 'checkbox',
   '#title' => t('Navbar offcanvas'),
-  '#description' => t('Change default navbar to navbar offcanvas'),
+  '#description' => t('Change from default Bootstrap navbar to navbar offcanvas.'),
   '#default_value' => theme_get_setting('navbar_offcanvas')
 );
 
@@ -313,7 +316,9 @@ $form['images']['general'] = array(
 $form['images']['general']['img_thumbnail'] = array(
   '#type' => 'checkbox',
   '#title' => t('Image thumbnail'),
-  '#description' => t('Adding padding, border and border-radius to all images'),
+  '#description' => t('You can use bootstrap <code>.img-thumbnail</code> class to give an image some padding and a rounded 1px border appearance. For more informations check on their official website @img-thumbnail.', array(
+    '@img-thumbnail' => Drupal::l('Thumbnail images', Url::fromUri('https://getbootstrap.com/docs/4.2/content/images/#image-thumbnails/', ['absolute' => true])),
+  )),
   '#default_value' => theme_get_setting('img_thumbnail')
 );
 
@@ -410,21 +415,27 @@ $form['tables']['general']['tables_borders'] = array(
 $form['tables']['general']['tables_striped_rows'] = array(
   '#type' => 'checkbox',
   '#title' => 'Table striped',
-  '#description' => t('Use .table-striped to add zebra-striping to any table row within the tbody'),
+  '#description' => t('Zebra-striping to any table row within the <code>tbody</code>. For more informations go to @table-striped.', array(
+    '@table-striped' => Drupal::l('Table striped', Url::fromUri('https://getbootstrap.com/docs/4.2/content/tables/#striped-rows/', ['absolute' => true]))
+  )),
   '#default_value' => theme_get_setting('tables_striped_rows')
 );
 
 $form['tables']['general']['tables_hover'] = array(
   '#type' => 'checkbox',
   '#title' => 'Table hover',
-  '#description' => t('Add .table-hover to enable a hover state on table rows within a tbody'),
+  '#description' => t('Enable hover state on table rows within a <code>tbody</code>. For more informations go to @table-hover', array(
+    '@table-hover' => Drupal::l('Table hover', Url::fromUri('https://getbootstrap.com/docs/4.2/content/tables/#hoverable-rows/', ['absolute' => true]))
+  )),
   '#default_value' => theme_get_setting('tables_hover')
 );
 
 $form['tables']['general']['tables_sm'] = array(
   '#type' => 'checkbox',
   '#title' => 'Table small',
-  '#description' => t('Add .table-sm to make tables more compact by cutting cell padding in half'),
+  '#description' => t('Make tables more compact by cutting cell padding in half. For more informations go to @table-small', array(
+    '@table-small' => Drupal::l('Table small', Url::fromUri('https://getbootstrap.com/docs/4.2/content/tables/#small-table/', ['absolute' => true]))
+  )),
   '#default_value' => theme_get_setting('tables_sm')
 );
 
