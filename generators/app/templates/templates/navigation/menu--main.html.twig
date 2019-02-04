@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Bootstrap Barrio's override to display a menu.
+ * Theme override to display a menu.
  *
  * Available variables:
  * - menu_name: The machine name of the menu.
@@ -44,6 +44,7 @@
           item.is_collapsed ? 'menu-item--collapsed',
           item.in_active_trail ? 'active',
           item.below ? 'dropdown',
+          item.below ? (menu_name|clean_class) ~ '-menu-dropdown-' ~ menu_level ~ '-' ~ loop.index,
         ]
       %}
       <li {{ item.attributes.addClass(classes) }}>
@@ -66,7 +67,7 @@
         {% endif %}
 
         {% if item.below %}
-          {{ link(title, item.url, {'class': link_classes, 'data-toggle': 'dropdown', 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-target':  '#menu-' ~ menu_name|clean_class }) }}
+          {{ link(title, item.url, {'class': link_classes, 'data-toggle': 'dropdown', 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-target':  '.' ~ menu_name|clean_class ~ '-menu-dropdown-' ~ menu_level ~ '-' ~ loop.index}) }}
           {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_icons) }}
         {% else %}
           {{ link(title, item.url, {'class': link_classes}) }}
