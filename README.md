@@ -33,6 +33,7 @@ npm install -g generator-cwf-theme
 Then generate your new project:
 
 ```bash
+# You need to create folder first, and then inside it run:
 yo cwf-theme
 ```
 <h2 id="config">Configuration</h2>
