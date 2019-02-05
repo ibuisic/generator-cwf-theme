@@ -9,7 +9,7 @@
 <h5 align="center">Generates a starter kit theme based on Build Your Own Bootstrap principle,<br> with best practices we at Circle Web Foundry use on our projects.</h5>
 
 <p align="center"> 
-<a href="https://npmjs.org/package/generator-cwf-theme" rel="nofollow"><img src="https://npmjs.org/package/generator-cwf-theme" alt="NPM version" data-canonical-src="https://badge.fury.io/js/generator-cwf-theme.svg" style="max-width:100%;"></a>
+<a href="https://badge.fury.io/js/generator-cwf-theme"><img src="https://badge.fury.io/js/generator-cwf-theme.svg" alt="npm version" height="18"></a>
 </p>
 
 <p align="center">
