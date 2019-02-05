@@ -430,7 +430,7 @@ module.exports = class extends Generator {
 
     var scssFile = this.fs.read('src/scss/' + this.props.themeName + '.scss');
 
-    const cssImports = `// Main ${this.props.humanName} SCSS file\n\n${this.props.iconFont ? `@import "icon-font.scss";\n\n` : ''}${this.props.awsmMixins ? `@import "${this.props.humanName}-mixins.scss";\n\n`: ''}`;
+    const cssImports = `// Main ${this.props.humanName} SCSS file\n\n${this.props.iconFont ? `@import "icon-font.scss";\n\n` : ''}${this.props.awsmMixins ? `@import "${this.props.themeName}-mixins.scss";\n\n`: ''}`;
 
     this.fs.write(
       this.destinationPath('src/scss/' + this.props.themeName + '.scss'),
