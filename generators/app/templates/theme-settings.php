@@ -17,6 +17,7 @@ $form['<%= themeName %>'] = array(
   '#type' => 'vertical_tabs',
   '#prefix' => '<h2><small>' . t('<%= themeName %> Settings') . '</small></h2>',
   '#weight' => -10,
+  '#description' => 'Note: Some of this settings require you to flush caches.'
 );
 
   // General settings
@@ -35,7 +36,8 @@ $form['settings']['general'] = array(
 
 $form['settings']['general']['inline_logo'] = array(
   '#type' => 'checkbox',
-  '#title' => t('Inline SVG logo instead of regular logo image.'),
+  '#title' => t('Inline SVG logo'),
+  '#description' => t('Inject SVG logo code inside HTML.'),
   '#default_value' => theme_get_setting('inline_logo')
 );
 
@@ -57,8 +59,8 @@ $form['settings']['general']['menu_icons'] = array(
 
 $form['settings']['general']['fadein_page_onload'] = array(
   '#type' => 'checkbox',
-  '#title' => t('Fade in pages on load'),
-  '#description' => t('Check it if you want your pages to have "fade-in" effect.'),
+  '#title' => t('Fade in pages'),
+  '#description' => t('All pages will have "fade-in" effect on document load.'),
   '#default_value' => theme_get_setting('fadein_page_onload')
 );
 
@@ -66,15 +68,44 @@ $form['settings']['general']['dropdown_hover'] = [
   '#type' => 'checkbox',
   '#title' => t('On hover dropdowns'),
   '#default_value' => theme_get_setting('dropdown_hover'),
-  '#description' => t('Open Bootstrap dropdowns on hover instead on click, and make the parents clickable.'),
+  '#description' => t('Open Bootstrap @dropdowns on hover instead on click, and make the parents clickable.', array(
+    '@dropdowns' => Drupal::l('dropdowns', Url::fromUri('https://getbootstrap.com/docs/4.2/components/dropdowns/', ['absolute' => true])),
+  ))
 ];
 
 $form['settings']['general']['node_links_btn_group'] = [
   '#type' => 'checkbox',
   '#title' => t('Btn group - node links'),
   '#default_value' => theme_get_setting('node_links_btn_group'),
-  '#description' => t('Display node links as btn groups.'),
+  '#description' => t('Display node links as @btn-groups.', array(
+    '@btn-groups' => Drupal::l('buttons', Url::fromUri('https://getbootstrap.com/docs/4.2/components/button-group/', ['absolute' => true])),
+  )),
 ];
+
+// Content
+$form['settings']['content'] = array(
+  '#type' => 'details',
+  '#collapsible' => true,
+  '#title' => t('Content')
+);
+
+$form['settings']['content']['main_container'] = [
+  '#type' => 'select',
+  '#title' => t('Main container type'),
+  '#empty_option' => t('None'),
+  '#options' => [
+    'container' => t('Fixed'),
+    'container-fluid' => t('Fluid'),
+  ],
+  '#default_value' => theme_get_setting('main_container'),
+  '#group' => 'container',
+];
+
+$form['settings']['content']['main_container_classes'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Main content classes'),
+  '#default_value' => theme_get_setting('main_container_classes')
+);
 
 // navbar
 
@@ -149,7 +180,9 @@ $form['header']['navbar']['navbar_expand'] = array(
 $form['header']['navbar']['navbar_offcanvas'] = array(
   '#type' => 'checkbox',
   '#title' => t('Navbar offcanvas'),
-  '#description' => t('Change from default Bootstrap navbar to navbar offcanvas.'),
+  '#description' => t('Change from default @bootstrap-navbar to navbar offcanvas.', array(
+    '@bootstrap-navbar' => Drupal::l('Bootstrap navbar', Url::fromUri('https://getbootstrap.com/docs/4.2/components/navbar/', ['absolute' => true])),
+  )),
   '#default_value' => theme_get_setting('navbar_offcanvas')
 );
 
@@ -179,32 +212,6 @@ $form['header']['navbar_collapsed']['navbar_collapsed_container'] = [
   '#group' => 'container',
 ];
 
-
-// Content
-$form['content'] = array(
-  '#type' => 'details',
-  '#title' => t('Content'),
-  '#group' => '<%= themeName %>',
-);
-
-$form['content']['main_container'] = [
-  '#type' => 'select',
-  '#title' => t('Main container type'),
-  '#empty_option' => t('None'),
-  '#options' => [
-    'container' => t('Fixed'),
-    'container-fluid' => t('Fluid'),
-  ],
-  '#default_value' => theme_get_setting('main_container'),
-  '#group' => 'container',
-];
-
-$form['content']['main_container_classes'] = array(
-  '#type' => 'textfield',
-  '#title' => t('Main content classes'),
-  '#default_value' => theme_get_setting('main_container_classes')
-);
-
 // Blocks
 $form['blocks'] = array(
   '#type' => 'details',
@@ -217,7 +224,6 @@ $form['blocks']['language_block'] = array(
   '#type' => 'details',
   '#title' => "Language Block Settings",
   '#collapsible' => true,
-  '#description' => t('Language block configuration'),
   '#open' => true
 );
 
@@ -263,13 +269,17 @@ $form['forms']['general']['submit_classes'] = array(
 
 $form['forms']['general']['submit_button'] = array(
   '#type' => 'checkbox',
-  '#title' => t('Change all input submit elements to button elements. Note: use at your own risk!'),
+  '#title' => t('Submit buttons'),
+  '#description' => t('Convert all input submit elements to buttons. Note: use at your own risk, some bugs may occur!'),
   '#default_value' => theme_get_setting('submit_button')
 );
 
 $form['forms']['custom_forms'] = array(
   '#type' => 'details',
   '#title' => 'Custom forms',
+  '#description' => t('Check which form element type should use Bootstrap @custom-forms.', array(
+    '@custom-forms' => Drupal::l('custom forms', Url::fromUri('https://getbootstrap.com/docs/4.2/components/forms/#custom-forms/', ['absolute' => true]))
+  )),
   '#collapsible' => true,
   '#open' => true,
 );
@@ -316,7 +326,7 @@ $form['images']['general'] = array(
 $form['images']['general']['img_thumbnail'] = array(
   '#type' => 'checkbox',
   '#title' => t('Image thumbnail'),
-  '#description' => t('You can use bootstrap <code>.img-thumbnail</code> class to give an image some padding and a rounded 1px border appearance. For more informations check on their official website @img-thumbnail.', array(
+  '#description' => t('You can use bootstrap <code>.img-thumbnail</code> class to give an image some padding and a rounded 1px border appearance. <br> For more informations check on their official website @img-thumbnail.', array(
     '@img-thumbnail' => Drupal::l('Thumbnail images', Url::fromUri('https://getbootstrap.com/docs/4.2/content/images/#image-thumbnails/', ['absolute' => true])),
   )),
   '#default_value' => theme_get_setting('img_thumbnail')
@@ -325,7 +335,7 @@ $form['images']['general']['img_thumbnail'] = array(
 $form['images']['general']['img_border'] = array(
   '#type' => 'checkbox',
   '#title' => t('Image border'),
-  '#description' => t('Adding 1px solid border on all images. Note: No need to check this if you already checked "Image thumbnail"'),
+  '#description' => t('Adding 1px solid border on all images. <br> Note: No need to check this if you already checked "Image thumbnail".'),
   '#default_value' => theme_get_setting('img_border')
 );
 
