@@ -528,6 +528,7 @@ $form['fonts']['icons'] = array(
   '#title' => t('Icons'),
   '#collapsible' => true,
   '#open' => true,
+  '#description' => t('Chose which Icon Font should be loaded'),
 );
 
 $form['fonts']['icons']['icon_set'] = array(
