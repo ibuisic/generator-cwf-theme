@@ -13,7 +13,7 @@ responsive_images: 1
 navbar_classes: 'bg-light navbar-light'
 navbar_container: 'container-fluid'
 navbar_collapsed_container: 'container-fluid'
-navbar_collapsed_classes: 'bg-white'
+navbar_collapsed_classes: 'bg-light'
 navbar_offcanvas: 1
 navbar_expand: 'navbar-expand-lg'
 fadein_page_onload: 1

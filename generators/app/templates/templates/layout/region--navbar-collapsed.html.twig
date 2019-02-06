@@ -26,7 +26,8 @@
 {% set navbar_collapsed_container = theme_settings.navbar_collapsed_container|clean_class %}
 
 {% if content %}
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapsedRegion" aria-controls="navbarCollapsedRegion" aria-expanded="false" aria-label="Toggle navbar collapsed region">
+  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapsedRegion" aria-controls="navbarCollapsedRegion" aria-expanded="false" aria-label="Toggle navbar collapsed region">
+    <span class="my-1 mx-2 close">&times;</span>
     <span class="navbar-toggler-icon"></span>
   </button>
   <section{{ attributes.addClass(classes).setAttribute('id', 'navbarCollapsedRegion') }}>
