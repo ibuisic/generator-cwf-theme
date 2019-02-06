@@ -6,7 +6,7 @@
 # a setting should be saved to config as "overridden".
 #
 region_container_navbar: 'container'
-submit_classes: 'btn btn-primary'
+submit_classes: 'btn btn-success'
 menu_icons: 1
 inline_logo: 1
 responsive_images: 1
@@ -19,3 +19,4 @@ navbar_expand: 'navbar-expand-lg'
 fadein_page_onload: 1
 dropdown_hover: 1
 node_links_btn_group: 1
+custom_form_file: 1

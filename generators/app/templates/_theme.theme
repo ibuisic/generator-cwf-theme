@@ -80,6 +80,22 @@ function <%= themeName %>_theme_suggestions_input_alter(array &$suggestions, arr
   Form::submit_template($suggestions, $variables);
 }
 
+/**
+ * Implements hook_form_alter(). for user forms
+ */
+
+function <%= themeName %>_form_user_login_form_alter(&$form, $form_state, $form_id) {
+  Form::user_form_alter($form, $form_state, $form_id);
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for user form templates.
+ */
+function <%= themeName %>_theme_suggestions_form_alter(&$suggestions, $variables) {
+  Form::user_form_suggestions_alter($suggestions, $variables);
+}
+
+
 // THEME SUGGESTIONS
 
 /**

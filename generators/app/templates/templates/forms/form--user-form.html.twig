@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="auth-user-form">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 offset-sm-3">
+        <form{{ attributes.addClass(['my-3','py-3']) }}>
+          <h2 class="form-header">{% block form_header %}{% endblock %}</h2>
+          {{ children }}
+        </form>
+        <hr class="my-4"/>
+        <div class="auth-user-form--footer text-center">
+          {% block form_footer %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

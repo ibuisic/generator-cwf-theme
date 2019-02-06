@@ -4,6 +4,7 @@
 namespace Drupal\<%= themeName %>\Theme;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 
 /**
  * @file
@@ -53,6 +54,28 @@ class Form {
     $form['actions']['#suffix'] = '</div>';
     $form['keys']['#attributes']['class'][] = 'mr-sm-2';
     $form['actions']['#attributes']['class'][] = 'my-2 my-sm-0';
+  }
+
+    /**
+   * User form alter.
+   */
+
+
+  public static function user_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+    // Display the "Forgot your password?" link under the password input.
+    $pass_link = \Drupal::l(t('Forgot your password?'), Url::fromUri('route:user.pass', ['attributes' => ['class' => ['pass-link']]]));
+    $form['pass']['#suffix'] = '<div class="pb-2">' . $pass_link  . '</div>';
+  }
+
+    /**
+   * User form suggestions alter.
+   */
+
+  public static function user_form_suggestions_alter(&$suggestions, $variables) {
+    $form_id = $variables['element']['#form_id'];
+    if (in_array($form_id, ['user_login_form','user_register_form','user_pass']))  {
+      $suggestions[] = 'form__' . $form_id;
+    }
   }
 
 }

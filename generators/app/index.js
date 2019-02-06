@@ -338,7 +338,7 @@ module.exports = class extends Generator {
         source: {
           width: 300,
           height: 300,
-          background: 0x367588
+          background: 0x563d7c
         },
         color: 'white'
       })

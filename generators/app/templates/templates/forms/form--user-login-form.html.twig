@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ *
+ * @ingroup themeable
+ */
+#}
+{% extends "form--user-form.html.twig" %}
+{% block form_header %}
+  {{ 'Login'|t }}
+{% endblock %}
+{% block form_footer %}
+  <a class="btn btn-primary" href="{{ path('user.register') }}">{{ 'Register'|t }}</a>
+{% endblock %}
