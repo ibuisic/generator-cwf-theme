@@ -2,7 +2,7 @@
   <br>
   <img src="./byob.jpg" alt="BYOB" width="200">
   <br>
-  CWF THEME GENERATOR
+  CWF DRUPAL THEME GENERATOR
   <br>
 </h1>
 
