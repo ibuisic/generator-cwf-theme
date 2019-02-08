@@ -69,7 +69,7 @@ function <%= themeName %>_preprocess_form_element(&$variables) {
 /**
  * Implements hook_form_alter(). for the search block form
  */
-function <%= themeName %>form_alter(&$form, $form_state, $form_id) {
+function <%= themeName %>_form_alter(&$form, $form_state, $form_id) {
   Form::form_alter($form, $form_state, $form_id);
 }
 
