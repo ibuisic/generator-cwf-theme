@@ -53,6 +53,7 @@ class Form {
     if ($form_id == 'search_form'){
       $form['#attributes']['class'][] = 'bg-light';
       $form['#attributes']['class'][] = 'p-3';
+      $form['#attributes']['class'][] = 'mb-3';
       $form['basic']['keys']['#attributes']['class'][] = 'mx-3';
     }
     if ($form_id == 'search_block_form'){

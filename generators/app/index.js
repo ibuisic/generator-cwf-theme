@@ -162,7 +162,7 @@ module.exports = class extends Generator {
     );
 
     if (this.props.svgSprite) {
-      this.fs.append(this.destinationPath('templates/page.html.twig'), '<div class="d-none">{{ source("/" ~ directory ~ "/dist/images/sprite.svg") }}</div>' );
+      this.fs.append(this.destinationPath('templates/pages/page.html.twig'), '<div class="d-none">{{ source("/" ~ directory ~ "/dist/images/sprite.svg") }}</div>' );
     }
 
     if (this.props.slickSlider) {
