@@ -49,11 +49,18 @@ class Form {
   /**
    * Search block alter.
    */
-  public static function search_block_alter(&$form, FormStateInterface $form_state, $form_id) {
-    $form['keys']['#prefix'] = '<div class="form-inline">';
-    $form['actions']['#suffix'] = '</div>';
-    $form['keys']['#attributes']['class'][] = 'mr-sm-2';
-    $form['actions']['#attributes']['class'][] = 'my-2 my-sm-0';
+  public static function form_alter(&$form, FormStateInterface $form_state, $form_id) {
+    if ($form_id == 'search_form'){
+      $form['#attributes']['class'][] = 'bg-light';
+      $form['#attributes']['class'][] = 'p-3';
+      $form['basic']['keys']['#attributes']['class'][] = 'mx-3';
+    }
+    if ($form_id == 'search_block_form'){
+      $form['keys']['#prefix'] = '<div class="form-inline">';
+      $form['actions']['#suffix'] = '</div>';
+      $form['keys']['#attributes']['class'][] = 'mr-sm-2';
+      $form['actions']['#attributes']['class'][] = 'my-2 my-sm-0';
+    }
   }
 
     /**

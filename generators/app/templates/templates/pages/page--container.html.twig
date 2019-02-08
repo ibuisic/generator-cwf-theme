@@ -44,4 +44,8 @@
  */
 #}
 
-{% extends "page--container.html.twig" %}
+{% set theme_settings = theme_settings|merge({
+  main_container: 'container'
+}) %}
+
+{% include "page.html.twig" %}
