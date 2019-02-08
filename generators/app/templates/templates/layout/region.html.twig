@@ -25,13 +25,11 @@
   <section{{ attributes.addClass(classes) }}>
     {% if (region_container) %}
       <div class="{{ container_classes }}">
-        <div class="row">
     {% endif %}
         {% block content %}
           {{ content }}
         {% endblock %}
     {% if (region_container) %}
-        </div>
       </div>
     {% endif %}
   </section>
