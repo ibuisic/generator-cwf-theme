@@ -19,7 +19,10 @@ offcanvas:
       dist/css/addons/offcanvas.css: {}
   js:
     src/js/addons/offcanvas.js: {}
-
+fixed-top-navbar:
+  css:
+    component:
+      dist/css/addons/fixed-top-navbar.css: {}
 fade:
   js:
     src/js/addons/fade.js: {}

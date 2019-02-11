@@ -79,6 +79,10 @@ class Preprocess {
     if (theme_get_setting('dropdown_hover')) {
       $variables['#attached']['library'][] = '<%= themeName %>/dropdown_hover';
     }
+
+    if (theme_get_setting('navbar_position') == 'fixed-top') {
+      $variables['#attached']['library'][] = '<%= themeName %>/fixed-top-navbar';
+    }
   }
 
   /**

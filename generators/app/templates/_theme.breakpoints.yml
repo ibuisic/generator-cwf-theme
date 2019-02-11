@@ -1,0 +1,69 @@
+<%= themeName %>.screen.all:
+  label: All
+  mediaQuery: 'all and (min-width: 0px)'
+  weight: 0
+  multipliers:
+    - 1x
+  status: true
+  langcode: en
+  group: <%= themeName %>.screen
+
+<%= themeName %>.screen.xs:
+  label: XS (< 576px)
+  mediaQuery: 'all and (max-width: 575px)'
+  weight: 1
+  multipliers:
+    - 1x
+  status: true
+  langcode: en
+  group: <%= themeName %>.screen
+
+<%= themeName %>.screen.sm:
+  label: SM (576px - 767px)
+  mediaQuery: 'all and (min-width: 576px) and (max-width: 767px)'
+  weight: 2
+  multipliers:
+    - 1x
+  status: true
+  langcode: en
+  group: <%= themeName %>.screen
+
+<%= themeName %>.screen.md:
+  label: MD (768px - 991px)
+  mediaQuery: 'all and (min-width: 768px) and (max-width: 991px)'
+  weight: 3
+  multipliers:
+    - 1x
+  status: true
+  langcode: en
+  group: <%= themeName %>.screen
+
+<%= themeName %>.screen.lg:
+  label: LG (992px - 1199px)
+  mediaQuery: 'all and (min-width: 992px) and (max-width: 1199px)'
+  weight: 4
+  multipliers:
+    - 1x
+  status: true
+  langcode: en
+  group: <%= themeName %>.screen
+
+<%= themeName %>.screen.xl:
+  label: XL (> 1200px)
+  mediaQuery: 'all and (min-width: 1200px) and (max-width: 1479px)'
+  weight: 5
+  multipliers:
+    - 1x
+  status: true
+  langcode: en
+  group: <%= themeName %>.screen
+
+<%= themeName %>.screen.xxl:
+  label: XXL (> 1480px)
+  mediaQuery: 'all and (min-width: 1480px)'
+  weight: 6
+  multipliers:
+    - 1x
+  status: true
+  langcode: en
+  group: <%= themeName %>.screen

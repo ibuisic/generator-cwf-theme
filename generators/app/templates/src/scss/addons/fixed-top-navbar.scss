@@ -1,0 +1,12 @@
+// Fixed positioned Navbar
+
+// Admin menu fix
+.toolbar-oriented .toolbar-bar {
+  z-index:1031;
+}
+// Change this with breakpoint mixin or var
+@media all and (min-width: 992px) {
+  .navbar.fixed-top{
+    margin-top: 79px;
+  }
+}

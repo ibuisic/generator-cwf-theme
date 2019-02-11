@@ -12,12 +12,15 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 
+$theme = \Drupal::theme()->getActiveTheme()->getName();
+$theme_path =  \Drupal::theme()->getActiveTheme()->getPath();
+
   // Vertical tabs
 $form['<%= themeName %>'] = array(
   '#type' => 'vertical_tabs',
   '#prefix' => '<h2><small>' . t('<%= themeName %> Settings') . '</small></h2>',
   '#weight' => -10,
-  '#description' => 'Note: Some of this settings require you to flush caches.'
+  '#description' => 'Note: Some of these settings require you to flush caches.'
 );
 
   // General settings
@@ -33,6 +36,12 @@ $form['settings']['general'] = array(
   '#collapsible' => true,
   '#open' => true,
 );
+
+$form['settings']['general']['test_link'] = [
+  '#type' => 'link',
+  '#title' => 'Test HTML',
+  '#url' => Url::fromUri('internal:/' . $theme_path . '/' . $theme . '-test-page.html'),
+];
 
 $form['settings']['general']['inline_logo'] = array(
   '#type' => 'checkbox',
@@ -111,7 +120,7 @@ $form['settings']['content']['main_container_classes'] = array(
 
 $form['header'] = array(
   '#type' => 'details',
-  '#title' => t('Header'),
+  '#title' => t('Header (Navbar)'),
   '#group' => '<%= themeName %>',
 );
 
@@ -143,7 +152,7 @@ $form['header']['navbar']['navbar_container'] = [
 
 $form['header']['navbar']['navbar_position'] = array(
   '#type' => 'select',
-  '#title' => t('Navbar position class'),
+  '#title' => t('Navbar position'),
   '#default_value' => theme_get_setting('navbar_position'),
   '#empty_option' => t('None'),
   '#options' => [
@@ -155,7 +164,7 @@ $form['header']['navbar']['navbar_position'] = array(
 
 $form['header']['navbar']['navbar_color'] = array(
   '#type' => 'select',
-  '#title' => t('Navbar color class'),
+  '#title' => t('Navbar color'),
   '#default_value' => theme_get_setting('navbar_color'),
   '#empty_option' => t('None'),
   '#options' => [
@@ -166,7 +175,7 @@ $form['header']['navbar']['navbar_color'] = array(
 
 $form['header']['navbar']['navbar_expand'] = array(
   '#type' => 'select',
-  '#title' => t('Choose when to expand navbar'),
+  '#title' => t('Responsive'),
   '#default_value' => theme_get_setting('navbar_expand'),
   '#empty_option' => t('None'),
   '#options' => [
@@ -329,14 +338,24 @@ $form['images']['general']['img_thumbnail'] = array(
   '#description' => t('You can use bootstrap <code>.img-thumbnail</code> class to give an image some padding and a rounded 1px border appearance. <br> For more informations check on their official website @img-thumbnail.', array(
     '@img-thumbnail' => Drupal::l('Thumbnail images', Url::fromUri('https://getbootstrap.com/docs/4.2/content/images/#image-thumbnails/', ['absolute' => true])),
   )),
-  '#default_value' => theme_get_setting('img_thumbnail')
+  '#default_value' => theme_get_setting('img_thumbnail'),
+  '#states' => [
+    'invisible' => [
+      'input[name="img_border"]' => ['checked' => TRUE],
+    ],
+  ],
 );
 
 $form['images']['general']['img_border'] = array(
   '#type' => 'checkbox',
   '#title' => t('Image border'),
   '#description' => t('Adding 1px solid border on all images. <br> Note: No need to check this if you already checked "Image thumbnail".'),
-  '#default_value' => theme_get_setting('img_border')
+  '#default_value' => theme_get_setting('img_border'),
+  '#states' => [
+    'invisible' => [
+      'input[name="img_thumbnail"]' => ['checked' => TRUE],
+    ],
+  ],
 );
 
 $form['images']['general']['img_border_color'] = array(
@@ -354,7 +373,14 @@ $form['images']['general']['img_border_color'] = array(
     'border-light' => 'Light',
     'border-dark' => 'Dark',
     'border-white' => 'White'
-  ]
+  ],
+  '#states' => [
+    'invisible',
+    // Hide the logo settings when using the default logo.
+    'visible' => [
+      'input[name="img_border"]' => ['checked' => TRUE],
+    ],
+  ],
 );
 
 $form['images']['general']['img_border_radius'] = array(
@@ -371,7 +397,14 @@ $form['images']['general']['img_border_radius'] = array(
     'rounded-circle' => 'Rounded-circle',
     'rounded-pill' => 'Rounded-pill',
     'rounded-0' => 'Rounded-0'
-  ]
+  ],
+  '#states' => [
+    'invisible',
+    // Hide the logo settings when using the default logo.
+    'visible' => [
+      'input[name="img_border"]' => ['checked' => TRUE],
+    ],
+  ],
 );
 
 // Tables
@@ -479,7 +512,6 @@ $form['layout']['regions'] = array(
 
 
 // All regions
-$theme = \Drupal::theme()->getActiveTheme()->getName();
 $exclude_regions = array('navbar', 'navbar_collapsed', 'hidden');
 $region_list = system_region_list($theme, $show = REGIONS_ALL);
 

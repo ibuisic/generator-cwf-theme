@@ -126,6 +126,12 @@ module.exports = class extends Generator {
     );
 
     this.fs.copyTpl(
+      this.templatePath('_theme.breakpoints.yml'),
+      this.destinationPath(this.props.themeName + '.breakpoints.yml'),
+      this.props
+    );
+
+    this.fs.copyTpl(
       this.templatePath('_theme.theme'),
       this.destinationPath(this.props.themeName + '.theme'),
       this.props
