@@ -61,9 +61,13 @@ class Preprocess {
    */
 
   public static function page(&$variables) {
+    $font = theme_get_setting('font_set');
     $icons = theme_get_setting('icon_set');
 
 
+    if ($font) {
+      $variables['#attached']['library'][] = '<%= themeName %>/font-' . $font;
+    }
     if ($icons) {
       $variables['#attached']['library'][] = '<%= themeName %>/' . $icons;
     }

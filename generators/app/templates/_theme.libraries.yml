@@ -7,7 +7,6 @@ global-styling:
   css:
     theme:
       dist/css/<%= themeName %>.css: {}
-      '//fonts.googleapis.com/css?family=Raleway:400,700': { type: external, minified: true }
   js:
     dist/js/<%= themeName %>.min.js: {}
 
@@ -49,6 +48,29 @@ bootstrap_js:
     <%= BootstrapJS %>
 
 <%- slickSlider %>
+
+# Font libraries
+####
+font-roboto:
+  css:
+    theme:
+     '//fonts.googleapis.com/css?family=Roboto:400,400i,700': { type: external, minified: true }
+font-raleway:
+  css:
+    theme:
+     '//fonts.googleapis.com/css?family=Raleway:400,400i,700': { type: external, minified: true }
+font-montserrat:
+  css:
+    theme:
+     '//fonts.googleapis.com/css?family=Montserrat:400,400i,700': { type: external, minified: true }
+font-open_sans:
+  css:
+    theme:
+     '//fonts.googleapis.com/css?family=Open+Sans:400,400i,700': { type: external, minified: true }
+font-lato:
+  css:
+    theme:
+     '//fonts.googleapis.com/css?family=Lato:400,400i,700': { type: external, minified: true }
 
 # Icon Font libraries
 ####

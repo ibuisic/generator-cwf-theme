@@ -536,7 +536,7 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     ],
   );
 
-    // Layout
+  // Layout
   $form['layout'] = array(
     '#type' => 'details',
     '#title' => t('Layout'),
@@ -551,11 +551,35 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
   );
 
 
-    // Fonts.
+  // Fonts.
   $form['fonts'] = array(
     '#type' => 'details',
     '#title' => t('Fonts and Icons'),
     '#group' => '<%= themeName %>',
+  );
+
+  $form['fonts']['google_fonts'] = array(
+    '#type' => 'details',
+    '#title' => t('Google Fonts'),
+    '#collapsible' => true,
+    '#open' => true,
+    '#description' => t('A few predefined font libraries deliverd from Google.')
+  );
+
+
+  $form['fonts']['google_fonts']['font_set'] = array(
+    '#type' => 'select',
+    '#title' => t('Font libraries'),
+    '#default_value' => theme_get_setting('font_set'),
+    '#empty_option' => t('None'),
+    '#description' => t('All fonts are loaded with Regular, Italic and Bold variants.'),
+    '#options' => array(
+      'roboto' => 'Roboto',
+      'raleway' => 'Raleway',
+      'montserrat' => 'Montserrat',
+      'open_sans' => 'Open Sans',
+      'lato' => 'Lato'
+    ),
   );
 
   $form['fonts']['icons'] = array(
