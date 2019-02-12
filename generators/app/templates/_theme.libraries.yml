@@ -35,10 +35,10 @@ dropdown_hover:
 
 # Custom from theme settings
 ####
-<%= themeName %>-custom:
-  css:
-    theme:
-      '/sites/default/files/<%= themeName %>-custom.css': { type: external }
+# <%= themeName %>-custom:
+#   css:
+#     theme:
+#       '/sites/default/files/<%= themeName %>-custom.css': { type: external }
 
 # Vendor libraires
 ####
