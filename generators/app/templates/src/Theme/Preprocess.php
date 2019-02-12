@@ -83,6 +83,10 @@ class Preprocess {
     if (theme_get_setting('navbar_position') == 'fixed-top') {
       $variables['#attached']['library'][] = '<%= themeName %>/fixed-top-navbar';
     }
+
+    if (theme_get_setting('<%= themeName %>_custom_css_on')) {
+      $variables['#attached']['library'][] = '<%= themeName %>/<%= themeName %>-custom';
+    }
   }
 
   /**

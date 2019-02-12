@@ -83,5 +83,12 @@ class Form {
     }
   }
 
+  /**
+   * Save custom CSS to file on theme setting form submit.
+   */
+  public static function theme_settings_submit(&$form, FormStateInterface $form_state) {
+    file_save_data($form_state->getValue('<%= themeName %_custom_css'), 'public://<%= themeName %-custom.css', 'FILE_EXISTS_REPLACE');
+  }
+
 }
 

@@ -20,7 +20,7 @@ $form['<%= themeName %>'] = array(
   '#type' => 'vertical_tabs',
   '#prefix' => '<h2><small>' . t('<%= themeName %> Settings') . '</small></h2>',
   '#weight' => -10,
-  '#description' => 'Note: Some of these settings require you to flush caches.'
+  '#description' => t('Note: Some of these settings require you to <a href="@cache-link">flush caches.</a>', array('@cache-link' => Url::fromRoute('system.performance_settings')->toString()))
 );
 
   // General settings
@@ -54,7 +54,7 @@ $form['settings']['general']['responsive_images'] = array(
   '#type' => 'checkbox',
   '#title' => t('Responsive images'),
   '#description' => t('Images in Bootstrap are made responsive with <code>.img-fluid</code> class so that they scale with the parent element.<br> For more informations go to @img-responsive.', array(
-    '@img-responsive' => Drupal::l('Responsive images', Url::fromUri('https://getbootstrap.com/docs/4.2/content/images/#responsive-images/', ['absolute' => true])),
+    '@img-responsive' => Drupal::l('Responsive images', Url::fromUri('https://getbootstrap.com/docs/4.2/content/images/#responsive-images/', ['absolute' => true, 'attributes' => array('target' => '_blank')])),
   )),
   '#default_value' => theme_get_setting('responsive_images')
 );
@@ -78,7 +78,7 @@ $form['settings']['general']['dropdown_hover'] = [
   '#title' => t('On hover dropdowns'),
   '#default_value' => theme_get_setting('dropdown_hover'),
   '#description' => t('Open Bootstrap @dropdowns on hover instead on click, and make the parents clickable.', array(
-    '@dropdowns' => Drupal::l('dropdowns', Url::fromUri('https://getbootstrap.com/docs/4.2/components/dropdowns/', ['absolute' => true])),
+    '@dropdowns' => Drupal::l('dropdowns', Url::fromUri('https://getbootstrap.com/docs/4.2/components/dropdowns/',  ['absolute' => true, 'attributes' => array('target' => '_blank')])),
   ))
 ];
 
@@ -87,7 +87,7 @@ $form['settings']['general']['node_links_btn_group'] = [
   '#title' => t('Btn group - node links'),
   '#default_value' => theme_get_setting('node_links_btn_group'),
   '#description' => t('Display node links as @btn-groups.', array(
-    '@btn-groups' => Drupal::l('buttons', Url::fromUri('https://getbootstrap.com/docs/4.2/components/button-group/', ['absolute' => true])),
+    '@btn-groups' => Drupal::l('buttons', Url::fromUri('https://getbootstrap.com/docs/4.2/components/button-group/',  ['absolute' => true, 'attributes' => array('target' => '_blank')])),
   )),
 ];
 
@@ -190,7 +190,7 @@ $form['header']['navbar']['navbar_offcanvas'] = array(
   '#type' => 'checkbox',
   '#title' => t('Navbar offcanvas'),
   '#description' => t('Change from default @bootstrap-navbar to navbar offcanvas.', array(
-    '@bootstrap-navbar' => Drupal::l('Bootstrap navbar', Url::fromUri('https://getbootstrap.com/docs/4.2/components/navbar/', ['absolute' => true])),
+    '@bootstrap-navbar' => Drupal::l('Bootstrap navbar', Url::fromUri('https://getbootstrap.com/docs/4.2/components/navbar/',  ['absolute' => true, 'attributes' => array('target' => '_blank')])),
   )),
   '#default_value' => theme_get_setting('navbar_offcanvas')
 );
@@ -255,262 +255,6 @@ $form['blocks']['language_block']['language_block_code'] = [
 ];
 
 
-// forms
-
-$form['forms'] = array(
-  '#type' => 'details',
-  '#title' => t('Forms'),
-  '#group' => '<%= themeName %>',
-);
-
-$form['forms']['general'] = array(
-  '#type' => 'details',
-  '#title' => 'General Form Settings',
-  '#collapsible' => true,
-  '#open' => true,
-);
-
-$form['forms']['general']['submit_classes'] = array(
-  '#type' => 'textfield',
-  '#title' => t('Submit Button classes'),
-  '#default_value' => theme_get_setting('submit_classes')
-);
-
-$form['forms']['general']['submit_button'] = array(
-  '#type' => 'checkbox',
-  '#title' => t('Submit buttons'),
-  '#description' => t('Convert all input submit elements to buttons. Note: use at your own risk, some bugs may occur!'),
-  '#default_value' => theme_get_setting('submit_button')
-);
-
-$form['forms']['custom_forms'] = array(
-  '#type' => 'details',
-  '#title' => 'Custom forms',
-  '#description' => t('Check which form element type should use Bootstrap @custom-forms.', array(
-    '@custom-forms' => Drupal::l('custom forms', Url::fromUri('https://getbootstrap.com/docs/4.2/components/forms/#custom-forms/', ['absolute' => true]))
-  )),
-  '#collapsible' => true,
-  '#open' => true,
-);
-
-$form['forms']['custom_forms']['custom_form_select'] = array(
-  '#type' => 'checkbox',
-  '#title' => t('Select'),
-  '#default_value' => theme_get_setting('custom_form_select')
-);
-
-$form['forms']['custom_forms']['custom_form_checkbox'] = array(
-  '#type' => 'checkbox',
-  '#title' => t('Checkbox'),
-  '#default_value' => theme_get_setting('custom_form_checkbox')
-);
-
-$form['forms']['custom_forms']['custom_form_radio'] = array(
-  '#type' => 'checkbox',
-  '#title' => t('Radio'),
-  '#default_value' => theme_get_setting('custom_form_radio')
-);
-
-$form['forms']['custom_forms']['custom_form_file'] = array(
-  '#type' => 'checkbox',
-  '#title' => t('File'),
-  '#default_value' => theme_get_setting('custom_form_file')
-);
-
-// Images
-
-$form['images'] = array(
-  '#type' => 'details',
-  '#title' => t('Images'),
-  '#group' => '<%= themeName %>',
-);
-
-$form['images']['general'] = array(
-  '#type' => 'details',
-  '#title' => 'General Images Settings',
-  '#collapsible' => true,
-  '#open' => true,
-);
-
-$form['images']['general']['img_thumbnail'] = array(
-  '#type' => 'checkbox',
-  '#title' => t('Image thumbnail'),
-  '#description' => t('You can use bootstrap <code>.img-thumbnail</code> class to give an image some padding and a rounded 1px border appearance. <br> For more informations check on their official website @img-thumbnail.', array(
-    '@img-thumbnail' => Drupal::l('Thumbnail images', Url::fromUri('https://getbootstrap.com/docs/4.2/content/images/#image-thumbnails/', ['absolute' => true])),
-  )),
-  '#default_value' => theme_get_setting('img_thumbnail'),
-  '#states' => [
-    'invisible' => [
-      'input[name="img_border"]' => ['checked' => TRUE],
-    ],
-  ],
-);
-
-$form['images']['general']['img_border'] = array(
-  '#type' => 'checkbox',
-  '#title' => t('Image border'),
-  '#description' => t('Adding 1px solid border on all images. <br> Note: No need to check this if you already checked "Image thumbnail".'),
-  '#default_value' => theme_get_setting('img_border'),
-  '#states' => [
-    'invisible' => [
-      'input[name="img_thumbnail"]' => ['checked' => TRUE],
-    ],
-  ],
-);
-
-$form['images']['general']['img_border_color'] = array(
-  '#type' => 'select',
-  '#title' => t('Image border color (Choose what color your border would be)'),
-  '#default_value' => theme_get_setting('img_border_color'),
-  '#empty_option' => t('None'),
-  '#options' => [
-    'border-primary' => 'Primary',
-    'border-secondary' => 'Secondary',
-    'border-success' => 'Success',
-    'border-danger' => 'Danger',
-    'border-warning' => 'Warning',
-    'border-info' => 'Info',
-    'border-light' => 'Light',
-    'border-dark' => 'Dark',
-    'border-white' => 'White'
-  ],
-  '#states' => [
-    'invisible',
-    // Hide the logo settings when using the default logo.
-    'visible' => [
-      'input[name="img_border"]' => ['checked' => TRUE],
-    ],
-  ],
-);
-
-$form['images']['general']['img_border_radius'] = array(
-  '#type' => 'select',
-  '#title' => t('Image border radius (Add class to an image to round its corners)'),
-  '#default_value' => theme_get_setting('img_border_radius'),
-  '#empty_option' => t('None'),
-  '#options' => [
-    'rounded' => 'Rounded',
-    'rounded-top' => 'Rounded-top',
-    'rounded-right' => 'Rounded-right',
-    'rounded-bottom' => 'Rounded-bottom',
-    'rounded-left' => 'Rounded-left',
-    'rounded-circle' => 'Rounded-circle',
-    'rounded-pill' => 'Rounded-pill',
-    'rounded-0' => 'Rounded-0'
-  ],
-  '#states' => [
-    'invisible',
-    // Hide the logo settings when using the default logo.
-    'visible' => [
-      'input[name="img_border"]' => ['checked' => TRUE],
-    ],
-  ],
-);
-
-// Tables
-
-$form['tables'] = array(
-  '#type' => 'details',
-  '#title' => t('Tables'),
-  '#group' => '<%= themeName %>',
-);
-
-$form['tables']['general'] = array(
-  '#type' => 'details',
-  '#title' => 'General Tables Settings',
-  '#collapsible' => true,
-  '#open' => true,
-);
-
-$form['tables']['general']['tables_background'] = array(
-  '#type' => 'select',
-  '#title' => t('Tables background'),
-  '#default_value' => theme_get_setting('tables_background'),
-  '#empty_option' => t('None'),
-  '#options' => [
-    'table-light' => 'Light',
-    'table-dark' => 'Dark'
-  ],
-);
-
-$form['tables']['general']['thead_background'] = array(
-  '#type' => 'select',
-  '#title' => t('Table thead background'),
-  '#default_value' => theme_get_setting('thead_background'),
-  '#empty_option' => t('None'),
-  '#options' => [
-    'thead-light' => 'Light',
-    'thead-dark' => 'Dark'
-  ],
-);
-
-$form['tables']['general']['tables_borders'] = array(
-  '#type' => 'select',
-  '#title' => t('Choose between bordered or borderless tables'),
-  '#default_value' => theme_get_setting('tables_borders'),
-  '#empty_option' => t('None'),
-  '#options' => [
-    'table-bordered' => 'Bordered',
-    'table-borderless' => 'Borderless'
-  ],
-);
-
-$form['tables']['general']['tables_striped_rows'] = array(
-  '#type' => 'checkbox',
-  '#title' => 'Table striped',
-  '#description' => t('Zebra-striping to any table row within the <code>tbody</code>. For more informations go to @table-striped.', array(
-    '@table-striped' => Drupal::l('Table striped', Url::fromUri('https://getbootstrap.com/docs/4.2/content/tables/#striped-rows/', ['absolute' => true]))
-  )),
-  '#default_value' => theme_get_setting('tables_striped_rows')
-);
-
-$form['tables']['general']['tables_hover'] = array(
-  '#type' => 'checkbox',
-  '#title' => 'Table hover',
-  '#description' => t('Enable hover state on table rows within a <code>tbody</code>. For more informations go to @table-hover', array(
-    '@table-hover' => Drupal::l('Table hover', Url::fromUri('https://getbootstrap.com/docs/4.2/content/tables/#hoverable-rows/', ['absolute' => true]))
-  )),
-  '#default_value' => theme_get_setting('tables_hover')
-);
-
-$form['tables']['general']['tables_sm'] = array(
-  '#type' => 'checkbox',
-  '#title' => 'Table small',
-  '#description' => t('Make tables more compact by cutting cell padding in half. For more informations go to @table-small', array(
-    '@table-small' => Drupal::l('Table small', Url::fromUri('https://getbootstrap.com/docs/4.2/content/tables/#small-table/', ['absolute' => true]))
-  )),
-  '#default_value' => theme_get_setting('tables_sm')
-);
-
-$form['tables']['general']['tables_responsive'] = array(
-  '#type' => 'select',
-  '#title' => t('Use .table-responsive{-sm|-md|-lg|-xl} as needed to create responsive tables up to a particular breakpoint'),
-  '#default_value' => theme_get_setting('tables_responsive'),
-  '#empty_option' => t('None'),
-  '#options' => [
-    'table-responsive' => 'All',
-    'table-responsive-sm' => 'Sm',
-    'table-responsive-md' => 'Md',
-    'table-responsive-lg' => 'Lg',
-    'table-responsive-xl' => 'Xl'
-  ],
-);
-
-  // Layout
-$form['layout'] = array(
-  '#type' => 'details',
-  '#title' => t('Layout'),
-  '#group' => '<%= themeName %>',
-);
-$form['layout']['regions'] = array(
-  '#type' => 'details',
-  '#title' => t('Regions'),
-  '#collapsible' => true,
-  '#open' => true,
-  '#description' => t('All additional classes and settings for each region')
-);
-
-
 // All regions
 $exclude_regions = array('navbar', 'navbar_collapsed', 'hidden');
 $region_list = system_region_list($theme, $show = REGIONS_ALL);
@@ -548,6 +292,254 @@ foreach ($region_list as $name => $description) {
   }
 }
 
+
+// forms
+
+$form['forms'] = array(
+  '#type' => 'details',
+  '#title' => t('Forms'),
+  '#group' => '<%= themeName %>',
+);
+
+$form['forms']['general'] = array(
+  '#type' => 'details',
+  '#title' => 'General Form Settings',
+  '#collapsible' => true,
+  '#open' => true,
+);
+
+$form['forms']['general']['submit_classes'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Submit Button classes'),
+  '#default_value' => theme_get_setting('submit_classes')
+);
+
+$form['forms']['general']['submit_button'] = array(
+  '#type' => 'checkbox',
+  '#title' => t('Submit buttons'),
+  '#description' => t('Convert all input submit elements to buttons. Note: use at your own risk, some bugs may occur!'),
+  '#default_value' => theme_get_setting('submit_button')
+);
+
+$form['forms']['custom_forms'] = array(
+  '#type' => 'details',
+  '#title' => 'Custom forms',
+  '#description' => t('Check which form element type should use Bootstrap @custom-forms.', array(
+    '@custom-forms' => Drupal::l('custom forms', Url::fromUri('https://getbootstrap.com/docs/4.2/components/forms/#custom-forms/',  ['absolute' => true, 'attributes' => array('target' => '_blank')]))
+  )),
+  '#collapsible' => true,
+  '#open' => true,
+);
+
+$form['forms']['custom_forms']['custom_form_select'] = array(
+  '#type' => 'checkbox',
+  '#title' => t('Select'),
+  '#default_value' => theme_get_setting('custom_form_select')
+);
+
+$form['forms']['custom_forms']['custom_form_checkbox'] = array(
+  '#type' => 'checkbox',
+  '#title' => t('Checkbox'),
+  '#default_value' => theme_get_setting('custom_form_checkbox')
+);
+
+$form['forms']['custom_forms']['custom_form_radio'] = array(
+  '#type' => 'checkbox',
+  '#title' => t('Radio'),
+  '#default_value' => theme_get_setting('custom_form_radio')
+);
+
+$form['forms']['custom_forms']['custom_form_file'] = array(
+  '#type' => 'checkbox',
+  '#title' => t('File'),
+  '#default_value' => theme_get_setting('custom_form_file')
+);
+
+// Images
+
+$form['images_and_tables'] = array(
+  '#type' => 'details',
+  '#title' => t('Images and Tables'),
+  '#group' => '<%= themeName %>',
+);
+
+$form['images_and_tables']['images'] = array(
+  '#type' => 'details',
+  '#title' => 'Image Settings',
+  '#collapsible' => true,
+  '#open' => true,
+);
+
+$form['images_and_tables']['images']['img_thumbnail'] = array(
+  '#type' => 'checkbox',
+  '#title' => t('Image thumbnail'),
+  '#description' => t('You can use bootstrap <code>.img-thumbnail</code> class to give an image some padding and a rounded 1px border appearance. <br> For more informations check on their official website @img-thumbnail.', array(
+    '@img-thumbnail' => Drupal::l('Thumbnail images', Url::fromUri('https://getbootstrap.com/docs/4.2/content/images/#image-thumbnails/',  ['absolute' => true, 'attributes' => array('target' => '_blank')])),
+  )),
+  '#default_value' => theme_get_setting('img_thumbnail'),
+  '#states' => [
+    'invisible' => [
+      'input[name="img_border"]' => ['checked' => TRUE],
+    ],
+  ],
+);
+
+$form['images_and_tables']['images']['img_border'] = array(
+  '#type' => 'checkbox',
+  '#title' => t('Image border'),
+  '#description' => t('Adding 1px solid border on all images. <br> Note: No need to check this if you already checked "Image thumbnail".'),
+  '#default_value' => theme_get_setting('img_border'),
+  '#states' => [
+    'invisible' => [
+      'input[name="img_thumbnail"]' => ['checked' => TRUE],
+    ],
+  ],
+);
+
+$form['images_and_tables']['images']['img_border_color'] = array(
+  '#type' => 'select',
+  '#title' => t('Image border color (Choose what color your border would be)'),
+  '#default_value' => theme_get_setting('img_border_color'),
+  '#empty_option' => t('None'),
+  '#options' => [
+    'border-primary' => 'Primary',
+    'border-secondary' => 'Secondary',
+    'border-success' => 'Success',
+    'border-danger' => 'Danger',
+    'border-warning' => 'Warning',
+    'border-info' => 'Info',
+    'border-light' => 'Light',
+    'border-dark' => 'Dark',
+    'border-white' => 'White'
+  ],
+  '#states' => [
+    'invisible',
+    'visible' => [
+      'input[name="img_border"]' => ['checked' => TRUE],
+    ],
+  ],
+);
+
+$form['images_and_tables']['images']['img_border_radius'] = array(
+  '#type' => 'select',
+  '#title' => t('Image border radius (Add class to an image to round its corners)'),
+  '#default_value' => theme_get_setting('img_border_radius'),
+  '#empty_option' => t('None'),
+  '#options' => [
+    'rounded' => 'Rounded',
+    'rounded-top' => 'Rounded-top',
+    'rounded-right' => 'Rounded-right',
+    'rounded-bottom' => 'Rounded-bottom',
+    'rounded-left' => 'Rounded-left',
+    'rounded-circle' => 'Rounded-circle',
+    'rounded-pill' => 'Rounded-pill',
+    'rounded-0' => 'Rounded-0'
+  ],
+  '#states' => [
+    'invisible',
+    'visible' => [
+      'input[name="img_border"]' => ['checked' => TRUE],
+    ],
+  ],
+);
+
+// Tables
+
+$form['images_and_tables']['tables'] = array(
+  '#type' => 'details',
+  '#title' => 'Table Settings',
+  '#collapsible' => true,
+);
+
+$form['images_and_tables']['tables']['tables_background'] = array(
+  '#type' => 'select',
+  '#title' => t('Tables background'),
+  '#default_value' => theme_get_setting('tables_background'),
+  '#empty_option' => t('None'),
+  '#options' => [
+    'table-light' => 'Light',
+    'table-dark' => 'Dark'
+  ],
+);
+
+$form['images_and_tables']['tables']['thead_background'] = array(
+  '#type' => 'select',
+  '#title' => t('Table thead background'),
+  '#default_value' => theme_get_setting('thead_background'),
+  '#empty_option' => t('None'),
+  '#options' => [
+    'thead-light' => 'Light',
+    'thead-dark' => 'Dark'
+  ],
+);
+
+$form['images_and_tables']['tables']['tables_borders'] = array(
+  '#type' => 'select',
+  '#title' => t('Choose between bordered or borderless tables'),
+  '#default_value' => theme_get_setting('tables_borders'),
+  '#empty_option' => t('None'),
+  '#options' => [
+    'table-bordered' => 'Bordered',
+    'table-borderless' => 'Borderless'
+  ],
+);
+
+$form['images_and_tables']['tables']['tables_striped_rows'] = array(
+  '#type' => 'checkbox',
+  '#title' => 'Table striped',
+  '#description' => t('Zebra-striping to any table row within the <code>tbody</code>. For more informations go to @table-striped.', array(
+    '@table-striped' => Drupal::l('Table striped', Url::fromUri('https://getbootstrap.com/docs/4.2/content/tables/#striped-rows/',  ['absolute' => true, 'attributes' => array('target' => '_blank')]))
+  )),
+  '#default_value' => theme_get_setting('tables_striped_rows')
+);
+
+$form['images_and_tables']['tables']['tables_hover'] = array(
+  '#type' => 'checkbox',
+  '#title' => 'Table hover',
+  '#description' => t('Enable hover state on table rows within a <code>tbody</code>. For more informations go to @table-hover', array(
+    '@table-hover' => Drupal::l('Table hover', Url::fromUri('https://getbootstrap.com/docs/4.2/content/tables/#hoverable-rows/',  ['absolute' => true, 'attributes' => array('target' => '_blank')]))
+  )),
+  '#default_value' => theme_get_setting('tables_hover')
+);
+
+$form['images_and_tables']['tables']['tables_sm'] = array(
+  '#type' => 'checkbox',
+  '#title' => 'Table small',
+  '#description' => t('Make tables more compact by cutting cell padding in half. For more informations go to @table-small', array(
+    '@table-small' => Drupal::l('Table small', Url::fromUri('https://getbootstrap.com/docs/4.2/content/tables/#small-table/',  ['absolute' => true, 'attributes' => array('target' => '_blank')]))
+  )),
+  '#default_value' => theme_get_setting('tables_sm')
+);
+
+$form['images_and_tables']['tables']['tables_responsive'] = array(
+  '#type' => 'select',
+  '#title' => t('Use .table-responsive{-sm|-md|-lg|-xl} as needed to create responsive tables up to a particular breakpoint'),
+  '#default_value' => theme_get_setting('tables_responsive'),
+  '#empty_option' => t('None'),
+  '#options' => [
+    'table-responsive' => 'All',
+    'table-responsive-sm' => 'Sm',
+    'table-responsive-md' => 'Md',
+    'table-responsive-lg' => 'Lg',
+    'table-responsive-xl' => 'Xl'
+  ],
+);
+
+  // Layout
+$form['layout'] = array(
+  '#type' => 'details',
+  '#title' => t('Layout'),
+  '#group' => '<%= themeName %>',
+);
+$form['layout']['regions'] = array(
+  '#type' => 'details',
+  '#title' => t('Regions'),
+  '#collapsible' => true,
+  '#open' => true,
+  '#description' => t('All additional classes and settings for each region')
+);
+
+
   // Fonts.
 $form['fonts'] = array(
   '#type' => 'details',
@@ -569,10 +561,10 @@ $form['fonts']['icons']['icon_set'] = array(
   '#default_value' => theme_get_setting('icon_set'),
   '#empty_option' => t('None'),
   '#description' => t('On how to use each Icon Set visit their website : @fa_link, @socicon, @material_icon, @stroke7', array(
-    '@fa_link' => Drupal::l('Font Awesome', Url::fromUri('http://fontawesome.com/', ['absolute' => true])),
-    '@socicon' => Drupal::l('Socicon', Url::fromUri('http://www.socicon.com/', ['absolute' => true])),
-    '@material_icon' => Drupal::l('Material Design Icons', Url::fromUri('https://material.io/tools/icons/', ['absolute' => true])),
-    '@stroke7' => Drupal::l('Stroke 7', Url::fromUri('https://themes-pixeden.com/font-demos/7-stroke/', ['absolute' => true])),
+    '@fa_link' => Drupal::l('Font Awesome', Url::fromUri('http://fontawesome.com/', ['absolute' => true, 'target' => '_blank'])),
+    '@socicon' => Drupal::l('Socicon', Url::fromUri('http://www.socicon.com/',  ['absolute' => true, 'attributes' => array('target' => '_blank')])),
+    '@material_icon' => Drupal::l('Material Design Icons', Url::fromUri('https://material.io/tools/icons/',  ['absolute' => true, 'attributes' => array('target' => '_blank')])),
+    '@stroke7' => Drupal::l('Stroke 7', Url::fromUri('https://themes-pixeden.com/font-demos/7-stroke/',  ['absolute' => true, 'attributes' => array('target' => '_blank')])),
   )),
   '#options' => array(
     'fontawesome' => 'Font Awesome',
@@ -582,7 +574,38 @@ $form['fonts']['icons']['icon_set'] = array(
   ),
 );
 
-  //Change collapsible fieldsets (now details) to default #open => FALSE.
+// Custom  CSS
+$form['custom_css'] = array(
+  '#type' => 'details',
+  '#title' => t('Custom CSS'),
+  '#group' => '<%= themeName %>',
+);
+
+$form['custom_css']['<%= themeName %>_custom_css_on'] = array(
+  '#type' => 'checkbox',
+  '#title' => t('Enable custom CSS'),
+  '#default_value' => theme_get_setting('<%= themeName %>_custom_css_on'),
+);
+if (file_exists('public://<%= themeName %>-custom.css'))
+  $custom_file = file_get_contents('public://<%= themeName %>-custom.css');
+else
+  $custom_file = '';
+
+$form['custom_css']['<%= themeName %>_custom_css'] = array(
+  '#type' => 'textarea',
+  '#title' => t('Custom CSS'),
+  '#rows' => 14,
+  '#resizable' => TRUE,
+  '#default_value' => $custom_file,
+  '#states' => [
+    'invisible',
+    'visible' => [
+      'input[name="<%= themeName %>_custom_css_on"]' => ['checked' => TRUE],
+    ],
+  ],
+);
+
+//Change collapsible fieldsets (now details) to default #open => FALSE.
 $form['theme_settings']['#open'] = false;
 $form['logo']['#open'] = false;
 $form['favicon']['#open'] = false;

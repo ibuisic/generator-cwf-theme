@@ -34,6 +34,13 @@ dropdown_hover:
   js:
     src/js/addons/dropdownHover.js: {}
 
+# Custom from theme settings
+####
+<%= themeName %>-custom:
+  css:
+    theme:
+      '/sites/default/files/<%= themeName %>-custom.css': { type: external }
+
 # Vendor libraires
 ####
 bootstrap_js:
