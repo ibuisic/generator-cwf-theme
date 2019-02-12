@@ -95,12 +95,6 @@ function <%= themeName %>_theme_suggestions_form_alter(&$suggestions, $variables
   Form::user_form_suggestions_alter($suggestions, $variables);
 }
 
-/**
- * Implements hook_form_alter(). theme setting form submit.
- */
-function <%= themeName %>_form_system_theme_settings_submit(&$form, $form_state){
-  Form::theme_settings_submit($form, $form_state);
-}
 
 // THEME SUGGESTIONS
 
