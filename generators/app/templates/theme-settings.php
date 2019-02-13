@@ -72,7 +72,7 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
   $form['settings']['general']['inline_logo'] = array(
     '#type' => 'checkbox',
     '#title' => t('Inline SVG logo'),
-    '#description' => t('Inject SVG logo code inside HTML.'),
+    '#description' => t('Place logo code inside HTML.'),
     '#default_value' => theme_get_setting('inline_logo')
   );
 
