@@ -82,6 +82,5 @@ class Form {
       $suggestions[] = 'form__' . $form_id;
     }
   }
-
 }
 

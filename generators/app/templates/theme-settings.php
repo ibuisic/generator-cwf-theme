@@ -23,15 +23,36 @@ use Drupal\Core\Url;
  */
 function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
 
+  // Theme info
   $theme = \Drupal::theme()->getActiveTheme()->getName();
   $theme_path =  \Drupal::theme()->getActiveTheme()->getPath();
+
+  // Regions
+  $region_list = system_region_list($theme, $show = REGIONS_ALL);
+  $exclude_regions = array('navbar', 'navbar_collapsed', 'hidden');
+
+  // For the custom form handler
+  $theme_file = drupal_get_path('theme', $theme) . '/theme-settings.php';
+  $build_info = $form_state->getBuildInfo();
+  if (!in_array($theme_file, $build_info['files'])) {
+    $build_info['files'][] = $theme_file;
+  }
+  $form_state->setBuildInfo($build_info);
+  $form['#submit'][] = $theme . '_form_system_theme_settings_submit';
+
 
     // Vertical tabs
   $form['<%= themeName %>'] = array(
     '#type' => 'vertical_tabs',
-    '#prefix' => '<h2><small>' . t('<%= themeName %> Settings') . '</small></h2>',
+    '#prefix' => '<h2><small>' . t('govance Settings') . '</small></h2>',
     '#weight' => -10,
-    '#description' => t('Note: Some of these settings require you to <a href="@cache-link">flush caches.</a>', array('@cache-link' => Url::fromRoute('system.performance_settings')->toString()))
+    '#description' => t('Note: Some of these settings require you to <a href="@cache-link">flush caches.</a></br>
+      Different Note: There is a collection of relevant Bootstrap components and your custom Icon set <a href="@test-page-link" target="_blank">here</a>',
+      array(
+        '@cache-link' => Url::fromRoute('system.performance_settings')->toString(),
+        '@test-page-link' => Url::fromUri('internal:/' . $theme_path . '/' . $theme . '-test-page.html')->toString()
+      )
+    )
   );
 
     // General settings
@@ -48,26 +69,11 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     '#open' => true,
   );
 
-  $form['settings']['general']['test_link'] = [
-    '#type' => 'link',
-    '#title' => 'Test HTML',
-    '#url' => Url::fromUri('internal:/' . $theme_path . '/' . $theme . '-test-page.html'),
-  ];
-
   $form['settings']['general']['inline_logo'] = array(
     '#type' => 'checkbox',
     '#title' => t('Inline SVG logo'),
     '#description' => t('Inject SVG logo code inside HTML.'),
     '#default_value' => theme_get_setting('inline_logo')
-  );
-
-  $form['settings']['general']['responsive_images'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Responsive images'),
-    '#description' => t('Images in Bootstrap are made responsive with <code>.img-fluid</code> class so that they scale with the parent element.<br> For more informations go to @img-responsive.', array(
-      '@img-responsive' => Drupal::l('Responsive images', Url::fromUri('https://getbootstrap.com/docs/4.2/content/images/#responsive-images/', ['absolute' => true, 'attributes' => array('target' => '_blank')])),
-    )),
-    '#default_value' => theme_get_setting('responsive_images')
   );
 
   $form['settings']['general']['menu_icons'] = array(
@@ -131,7 +137,7 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
 
   $form['header'] = array(
     '#type' => 'details',
-    '#title' => t('Header (Navbar)'),
+    '#title' => t('Navbar and Navbar Collapsed'),
     '#group' => '<%= themeName %>',
   );
 
@@ -143,10 +149,16 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     '#open' => true
   );
 
-  $form['header']['navbar']['navbar_classes'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Navbar classes'),
-    '#default_value' => theme_get_setting('navbar_classes')
+  $form['header']['navbar']['navbar_position'] = array(
+    '#type' => 'select',
+    '#title' => t('Navbar position'),
+    '#default_value' => theme_get_setting('navbar_position'),
+    '#empty_option' => t('None'),
+    '#options' => [
+      'fixed-top' => 'Fixed top',
+      'fixed-bottom' => 'Fixed bottom',
+      'sticky-top' => 'Sticky top'
+    ]
   );
 
   $form['header']['navbar']['navbar_container'] = [
@@ -161,18 +173,6 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     '#group' => 'container',
   ];
 
-  $form['header']['navbar']['navbar_position'] = array(
-    '#type' => 'select',
-    '#title' => t('Navbar position'),
-    '#default_value' => theme_get_setting('navbar_position'),
-    '#empty_option' => t('None'),
-    '#options' => [
-      'fixed-top' => 'Fixed top',
-      'fixed-bottom' => 'Fixed bottom',
-      'sticky-top' => 'Sticky top'
-    ]
-  );
-
   $form['header']['navbar']['navbar_color'] = array(
     '#type' => 'select',
     '#title' => t('Navbar color'),
@@ -182,6 +182,12 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
       'navbar-dark' => 'Navbar dark',
       'navbar-light' => 'Navbar light'
     ]
+  );
+
+  $form['header']['navbar']['navbar_classes'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Navbar classes'),
+    '#default_value' => theme_get_setting('navbar_classes')
   );
 
   $form['header']['navbar']['navbar_expand'] = array(
@@ -210,7 +216,7 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     '#type' => 'details',
     '#title' => "Navbar Collapsed Settings",
     '#collapsible' => true,
-    '#description' => t('All additional classes and settings for navbar collapsed region'),
+    '#description' => t('All additional classes and settings for navbar collapsed region, region used for Main navigation, Language block...'),
     '#open' => false
   );
 
@@ -247,6 +253,13 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     '#open' => true
   );
 
+  $form['blocks']['language_block']['language_block_code'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Language codes'),
+    '#default_value' => theme_get_setting('language_block_code'),
+    '#description' => t('Display language codes instead of titles.'),
+  ];
+
   $form['blocks']['language_block']['language_block_type'] = [
     '#type' => 'select',
     '#title' => t('Language block type'),
@@ -257,52 +270,6 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     '#default_value' => theme_get_setting('language_block_type'),
     '#description' => t('Render the language block as is, inline or as a dropdown menu'),
   ];
-
-  $form['blocks']['language_block']['language_block_code'] = [
-    '#type' => 'checkbox',
-    '#title' => t('Use language codes'),
-    '#default_value' => theme_get_setting('language_block_code'),
-    '#description' => t('Display language codes instead of titles.'),
-  ];
-
-
-  // All regions
-  $exclude_regions = array('navbar', 'navbar_collapsed', 'hidden');
-  $region_list = system_region_list($theme, $show = REGIONS_ALL);
-
-  foreach ($region_list as $name => $description) {
-    if (!in_array($name, $exclude_regions)){
-      if (theme_get_setting('region_classes_' . $name) !== null) {
-        $region_class = theme_get_setting('region_classes_' . $name);
-      } else {
-        $region_class = '';
-      }
-
-      $form['layout']['regions'][$name] = array(
-        '#type' => 'details',
-        '#title' => $description,
-        '#collapsible' => true,
-        '#open' => false,
-      );
-      $form['layout']['regions'][$name]['region_classes_' . $name] = array(
-        '#type' => 'textfield',
-        '#title' => t('@description classes', array('@description' => $description)),
-        '#default_value' => $region_class
-      );
-      $form['layout']['regions'][$name]['region_container_' . $name] = [
-        '#type' => 'select',
-        '#title' => t('Container type'),
-        '#empty_option' => t('None'),
-        '#options' => [
-          'container' => t('Fixed'),
-          'container-fluid' => t('Fluid'),
-        ],
-        '#default_value' => theme_get_setting('region_container_' . $name),
-        '#group' => 'container',
-      ];
-    }
-  }
-
 
   // forms
 
@@ -379,6 +346,16 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     '#title' => 'Image Settings',
     '#collapsible' => true,
     '#open' => true,
+  );
+
+
+  $form['images_and_tables']['images']['responsive_images'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Responsive images'),
+    '#description' => t('Images in Bootstrap are made responsive with <code>.img-fluid</code> class so that they scale with the parent element.<br> For more informations go to @img-responsive.', array(
+      '@img-responsive' => Drupal::l('Responsive images', Url::fromUri('https://getbootstrap.com/docs/4.2/content/images/#responsive-images/', ['absolute' => true, 'attributes' => array('target' => '_blank')])),
+    )),
+    '#default_value' => theme_get_setting('responsive_images')
   );
 
   $form['images_and_tables']['images']['img_thumbnail'] = array(
@@ -551,6 +528,42 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
   );
 
 
+  // Regions
+  foreach ($region_list as $name => $description) {
+    if (!in_array($name, $exclude_regions)){
+      if (theme_get_setting('region_classes_' . $name) !== null) {
+        $region_class = theme_get_setting('region_classes_' . $name);
+      } else {
+        $region_class = '';
+      }
+
+      $form['layout']['regions'][$name] = array(
+        '#type' => 'details',
+        '#title' => $description,
+        '#collapsible' => true,
+        '#open' => false,
+      );
+      $form['layout']['regions'][$name]['region_classes_' . $name] = array(
+        '#type' => 'textfield',
+        '#title' => t('@description classes', array('@description' => $description)),
+        '#default_value' => $region_class
+      );
+      $form['layout']['regions'][$name]['region_container_' . $name] = [
+        '#type' => 'select',
+        '#title' => t('Container type'),
+        '#empty_option' => t('None'),
+        '#options' => [
+          'container' => t('Fixed'),
+          'container-fluid' => t('Fluid'),
+        ],
+        '#default_value' => theme_get_setting('region_container_' . $name),
+        '#group' => 'container',
+      ];
+    }
+  }
+
+
+
   // Fonts.
   $form['fonts'] = array(
     '#type' => 'details',
@@ -609,48 +622,47 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     ),
   );
 
-  // // Custom  CSS
-  // $form['custom_css'] = array(
-  //   '#type' => 'details',
-  //   '#title' => t('Custom CSS'),
-  //   '#group' => '<%= themeName %>',
-  // );
+  // Custom  CSS
+  $form['custom_css'] = array(
+    '#type' => 'details',
+    '#title' => t('Custom CSS'),
+    '#group' => '<%= themeName %>',
+  );
 
-  // $form['custom_css']['<%= themeName %>_custom_css_on'] = array(
-  //   '#type' => 'checkbox',
-  //   '#title' => t('Enable custom CSS'),
-  //   '#default_value' => theme_get_setting('<%= themeName %>_custom_css_on'),
-  // );
-  // if (file_exists('public://<%= themeName %>-custom.css'))
-  //   $custom_file = file_get_contents('public://<%= themeName %>-custom.css');
-  // else
-  //   $custom_file = '';
+  $form['custom_css']['<%= themeName %>_custom_css_on'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable custom CSS'),
+    '#default_value' => theme_get_setting('<%= themeName %>_custom_css_on'),
+  );
+  if (file_exists('public://<%= themeName %>-custom.css'))
+    $custom_file = file_get_contents('public://<%= themeName %>-custom.css');
+  else
+    $custom_file = '';
 
-  // $form['custom_css']['<%= themeName %>_custom_css'] = array(
-  //   '#type' => 'textarea',
-  //   '#title' => t('Custom CSS'),
-  //   '#rows' => 14,
-  //   '#resizable' => TRUE,
-  //   '#default_value' => $custom_file,
-  //   '#states' => [
-  //     'invisible',
-  //     'visible' => [
-  //       'input[name="<%= themeName %>_custom_css_on"]' => ['checked' => TRUE],
-  //     ],
-  //   ],
-  // );
+  $form['custom_css']['<%= themeName %>_custom_css'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Custom CSS'),
+    '#rows' => 14,
+    '#resizable' => TRUE,
+    '#default_value' => $custom_file,
+    '#states' => [
+      'invisible',
+      'visible' => [
+        'input[name="<%= themeName %>_custom_css_on"]' => ['checked' => TRUE],
+      ],
+    ],
+  );
 
-  //Change collapsible fieldsets (now details) to default #open => FALSE.
+  // Change collapsible fieldsets (now details) to default #open => FALSE.
   $form['theme_settings']['#open'] = false;
   $form['logo']['#open'] = false;
   $form['favicon']['#open'] = false;
 }
 
 
-
-// /**
-//  * Save custom CSS to file on theme setting form submit.
-//  */
-// function <%= themeName %>_form_system_theme_settings_submit(&$form, FormStateInterface $form_state) {
-//   file_save_data($form_state->getValue('<%= themeName %>_custom_css'), 'public://<%= themeName %>-custom.css', 'FILE_EXISTS_REPLACE');
-// }
+/**
+ * Save custom CSS to file on theme setting form submit.
+ */
+function <%= themeName %>_form_system_theme_settings_submit(&$form, FormStateInterface $form_state) {
+  file_unmanaged_save_data($form_state->getValue('<%= themeName %>_custom_css'), 'public://<%= themeName %>-custom.css', FILE_EXISTS_REPLACE);
+}
