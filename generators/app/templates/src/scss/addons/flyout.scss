@@ -1,4 +1,4 @@
-.side-flyout {
+.flyout {
   overflow: auto;
   padding-top: 80px;
   padding-bottom: 20px;
@@ -7,19 +7,19 @@
 }
 
 @media all and (min-width: 768px) {
-  .side-flyout {
+  .flyout {
       width: 70vw;
   }
 }
 
 @media all and (min-width: 1200px) {
-  .side-flyout {
+  .flyout {
       width: 30vw;
   }
 }
 
-.side-flyout.right,
-.side-flyout.left {
+.flyout.right,
+.flyout.left {
   position: fixed;
   top: 48px;
   bottom: 0;
@@ -32,30 +32,30 @@
   transform: translateX(-100%)
 }
 
-.toolbar-horizontal .side-flyout.right,
-.toolbar-horizontal .side-flyout.left {
+.toolbar-horizontal .flyout.right,
+.toolbar-horizontal .flyout.left {
   top: 40px
 }
 
-.toolbar-tray-open .side-flyout.right,
-.toolbar-tray-open .side-flyout.left {
+.toolbar-tray-open .flyout.right,
+.toolbar-tray-open .flyout.left {
   top: 80px
 }
 
-.side-flyout.left.show,
-.side-flyout.right.show {
+.flyout.left.show,
+.flyout.right.show {
   -webkit-transform: translateX(0);
   transform: translateX(0)
 }
 
-.side-flyout.right {
+.flyout.right {
   right: 0;
   left: auto;
   -webkit-transform: translateX(100%);
   transform: translateX(100%)
 }
 
-.side-flyout[aria-expanded="true"] {
+.flyout[aria-expanded="true"] {
   -webkit-transform: translateX(0);
   transform: translateX(0)
 }

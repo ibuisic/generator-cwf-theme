@@ -79,6 +79,12 @@
   {% endblock %}
 {% endif %}
 
+{# Flyout #}
+{% if page.flyout %}
+  {% block flyout %}
+    {{ page.flyout }}
+  {% endblock %}
+{% endif %}
 
 {# Main #}
 {% block main %}

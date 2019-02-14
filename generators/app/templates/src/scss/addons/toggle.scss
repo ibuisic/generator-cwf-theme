@@ -44,6 +44,7 @@ $toggle-bar-border-radius: 6px;
     }
   }
 
+  &.close,
   &.open {
     span:nth-child(1) {
       top: 18px;

@@ -14,27 +14,6 @@
  * @see template_preprocess_region()
  */
 #}
-{%
-  set classes = [
-    'region',
-    'region-' ~ region|clean_class,
-    'clearfix',
-    'side-flyout',
-    'collapse',
-    'p-5',
-    'bg-primary',
-    'text-white',
-    theme_settings.flyout_position ? theme_settings.flyout_position|clean_class
-  ]
-%}
-
-{% if content %}
-  {{ attach_library('<%= themeName %>/side-flyout') }}
-  {% if (theme_settings.flyout_position) %}
-  <div id="side-flyout" {{ attributes.addClass(classes) }}>
-    {% block region_content %}
-      {{ content }}
-    {% endblock %}
-  </div>
-  {% endif %}
-{% endif %}
+{% do attributes.addClass([theme_settings.flyout_position, 'flyout']) %}
+{{ attach_library('<%= themeName %>/flyout') }}
+{% include "region.html.twig" %}

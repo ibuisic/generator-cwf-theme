@@ -26,10 +26,10 @@ fade:
   js:
     src/js/addons/fade.js: {}
 
-side-flyout:
+flyout:
   css:
     component:
-      dist/css/addons/side-flyout.css: {}
+      dist/css/addons/flyout.css: {}
 
 toggle:
   css:
