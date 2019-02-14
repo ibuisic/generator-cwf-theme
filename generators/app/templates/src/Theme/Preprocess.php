@@ -72,6 +72,10 @@ class Preprocess {
       $variables['#attached']['library'][] = '<%= themeName %>/' . $icons;
     }
 
+    if (theme_get_setting('btt')) {
+      $variables['#attached']['library'][] = '<%= themeName %>/back_to_top';
+    }
+
     if (theme_get_setting('navbar_offcanvas')) {
       $variables['#attached']['library'][] = '<%= themeName %>/offcanvas';
     }

@@ -33,6 +33,13 @@ dropdown_hover:
   js:
     src/js/addons/dropdownHover.js: {}
 
+back_to_top:
+  css:
+    component:
+      dist/css/addons/back-to-top.css: {}
+  js:
+    src/js/addons/back-to-top.js: {}
+
 # Custom from theme settings
 ####
 <%= themeName %>-custom:

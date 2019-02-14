@@ -76,6 +76,13 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     '#default_value' => theme_get_setting('inline_logo')
   );
 
+    $form['settings']['general']['btt'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Back to top'),
+    '#description' => t('Add a little back to top arrow to your site.'),
+    '#default_value' => theme_get_setting('btt')
+  );
+
   $form['settings']['general']['menu_icons'] = array(
     '#type' => 'checkbox',
     '#title' => t('Menu icons'),
