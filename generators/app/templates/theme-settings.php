@@ -144,7 +144,7 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
 
   $form['header'] = array(
     '#type' => 'details',
-    '#title' => t('Navbar and Navbar Collapsed'),
+    '#title' => t('Navbar'),
     '#group' => '<%= themeName %>',
   );
 
@@ -344,7 +344,7 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
 
   $form['images_and_tables'] = array(
     '#type' => 'details',
-    '#title' => t('Images and Tables'),
+    '#title' => t('Images & Tables'),
     '#group' => '<%= themeName %>',
   );
 
@@ -567,7 +567,7 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
   // Fonts.
   $form['fonts'] = array(
     '#type' => 'details',
-    '#title' => t('Fonts and Icons'),
+    '#title' => t('Fonts & Icons'),
     '#group' => '<%= themeName %>',
   );
 
