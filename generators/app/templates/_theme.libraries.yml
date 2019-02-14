@@ -26,6 +26,11 @@ fade:
   js:
     src/js/addons/fade.js: {}
 
+side-flyout:
+  css:
+    component:
+      dist/css/addons/side-flyout.css: {}
+
 dropdown_hover:
   css:
     component:
