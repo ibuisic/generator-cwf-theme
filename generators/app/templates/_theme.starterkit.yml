@@ -9,6 +9,7 @@ libraries:
 
 regions:
   top_bar: 'Top Bar'
+  side_flyout: 'Side Flyout'
   navbar: 'Navbar'
   navbar_collapsed: 'Navbar Collapsed'
   help: 'Help'
