@@ -5,17 +5,17 @@
 # settings are inherited from base themes themes properly and to determine when
 # a setting should be saved to config as "overridden".
 #
-region_container_navbar: 'container'
-submit_classes: 'btn btn-success'
+region_container_navbar: ‘container’
+submit_classes: ‘btn btn-success’
 menu_icons: 1
 inline_logo: 1
 responsive_images: 1
-navbar_classes: 'bg-light navbar-light'
-navbar_container: 'container-fluid'
-navbar_collapsed_container: 'container-fluid'
-navbar_collapsed_classes: 'bg-light'
-navbar_offcanvas: 1
-navbar_expand: 'navbar-expand-lg'
+navbar_classes: ‘bg-light’
+navbar_color: ‘navbar-light’
+navbar_container: ‘container-fluid’
+navbar_collapsed_container: ‘container-fluid’
+navbar_collapsed_classes: ‘bg-light’
+navbar_expand: ‘navbar-expand-lg’
 fadein_page_onload: 1
 dropdown_hover: 1
 node_links_btn_group: 1

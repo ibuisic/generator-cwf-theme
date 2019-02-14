@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region div.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @ingroup templates
+ *
+ * @see template_preprocess_region()
+ */
+#}
+{%
+  set classes = [
+    'region',
+    'region-' ~ region|clean_class,
+    'clearfix',
+    'side-flyout',
+    'collapse',
+    'p-5',
+    'bg-primary',
+    'text-white',
+    theme_settings.flyout_position ? theme_settings.flyout_position|clean_class
+  ]
+%}
+
+{% if content %}
+  {{ attach_library('<%= themeName %>/side-flyout') }}
+  {% if (theme_settings.flyout_position) %}
+  <div id="side-flyout" {{ attributes.addClass(classes) }}>
+    {% block region_content %}
+      {{ content }}
+    {% endblock %}
+  </div>
+  {% endif %}
+{% endif %}

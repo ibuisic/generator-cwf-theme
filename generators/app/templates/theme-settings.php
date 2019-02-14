@@ -115,6 +115,16 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     )),
   ];
 
+  $form['settings']['general']['flyout_position'] = array(
+    '#type' => 'select',
+    '#title' => t('Flyout left or right?'),
+    '#default_value' => theme_get_setting('flyout_position'),
+    '#options' => [
+      'left' => 'Left',
+      'right' => 'Right',
+    ]
+  );
+
   // Content
   $form['settings']['content'] = array(
     '#type' => 'details',
