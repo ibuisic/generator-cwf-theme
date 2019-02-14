@@ -152,7 +152,7 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     '#type' => 'details',
     '#title' => "Navbar Settings",
     '#collapsible' => true,
-    '#description' => t('All additional classes and settings for navbar region'),
+    '#description' => t('Additional classes and container settings for navbar region'),
     '#open' => true
   );
 
@@ -223,7 +223,7 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     '#type' => 'details',
     '#title' => "Navbar Collapsed Settings",
     '#collapsible' => true,
-    '#description' => t('All additional classes and settings for navbar collapsed region, region used for Main navigation, Language block...'),
+    '#description' => t('Additional classes and settings for navbar collapsed region, region used for Main navigation, Language block...'),
     '#open' => false
   );
 
@@ -521,19 +521,12 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
   );
 
   // Layout
-  $form['layout'] = array(
-    '#type' => 'details',
-    '#title' => t('Layout'),
-    '#group' => '<%= themeName %>',
-  );
-  $form['layout']['regions'] = array(
+  $form['regions'] = array(
     '#type' => 'details',
     '#title' => t('Regions'),
-    '#collapsible' => true,
-    '#open' => true,
-    '#description' => t('All additional classes and settings for each region')
+    '#group' => '<%= themeName %>',
+    '#description' => t('Additional classes and container settings for each region')
   );
-
 
   // Regions
   foreach ($region_list as $name => $description) {
@@ -544,18 +537,18 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
         $region_class = '';
       }
 
-      $form['layout']['regions'][$name] = array(
+      $form['regions'][$name] = array(
         '#type' => 'details',
         '#title' => $description,
         '#collapsible' => true,
         '#open' => false,
       );
-      $form['layout']['regions'][$name]['region_classes_' . $name] = array(
+      $form['regions'][$name]['region_classes_' . $name] = array(
         '#type' => 'textfield',
         '#title' => t('@description classes', array('@description' => $description)),
         '#default_value' => $region_class
       );
-      $form['layout']['regions'][$name]['region_container_' . $name] = [
+      $form['regions'][$name]['region_container_' . $name] = [
         '#type' => 'select',
         '#title' => t('Container type'),
         '#empty_option' => t('None'),
