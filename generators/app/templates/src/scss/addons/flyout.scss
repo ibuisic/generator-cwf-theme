@@ -3,7 +3,14 @@
   padding-top: 80px;
   padding-bottom: 20px;
   width: 100%;
-  height: 100vh !important
+  height: 100vh !important;
+  position: fixed;
+  top: 48px;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  transition: transform .2s linear;
+  transform: translateX(-100%)
 }
 
 @media all and (min-width: 768px) {
@@ -18,19 +25,6 @@
   }
 }
 
-.flyout.right,
-.flyout.left {
-  position: fixed;
-  top: 48px;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-  transition: -webkit-transform .2s linear;
-  transition: transform .2s linear;
-  transition: transform .2s linear, -webkit-transform .2s linear;
-  -webkit-transform: translateX(-100%);
-  transform: translateX(-100%)
-}
 
 .toolbar-horizontal .flyout.right,
 .toolbar-horizontal .flyout.left {
@@ -42,20 +36,16 @@
   top: 80px
 }
 
-.flyout.left.show,
-.flyout.right.show {
-  -webkit-transform: translateX(0);
+.flyout.show{
   transform: translateX(0)
 }
 
 .flyout.right {
   right: 0;
   left: auto;
-  -webkit-transform: translateX(100%);
   transform: translateX(100%)
 }
 
 .flyout[aria-expanded="true"] {
-  -webkit-transform: translateX(0);
   transform: translateX(0)
 }
