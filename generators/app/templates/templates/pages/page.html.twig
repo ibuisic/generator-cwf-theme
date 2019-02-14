@@ -44,6 +44,13 @@
  */
 #}
 
+{# Top bar #}
+{% if page.top_bar %}
+  {% block top_bar %}
+    {{ page.top_bar }}
+  {% endblock %}
+{% endif %}
+
 {# Navbar #}
 {% if page.navbar or page.navbar_collapsed %}
   {% block navbar %}

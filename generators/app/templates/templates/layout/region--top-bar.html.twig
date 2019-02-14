@@ -12,36 +12,10 @@
  * @see template_preprocess_region()
  */
 #}
-{%
-  set classes = [
-    'region',
-    'region-' ~ region|clean_class,
-    'top-bar',
-    'bg-dark',
-    'text-white'
-  ]
-%}
 
-{% set container_classes = region_container|clean_class %}
+{% extends "region.html.twig" %}
 
-{% if content %}
-  <section{{ attributes.addClass(classes) }}>
-    {% if (region_container) %}
-      <div class="{{ container_classes }}">
-        <div class="row">
-    {% endif %}
-        {% block content %}
-            <button id="flyout-toggle" type="button" onClick="this.classList.toggle('open');" aria-controls="#side-flyout" data-toggle="collapse" data-target="#side-flyout" aria-expanded="false">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-          {{ content }}
-        {% endblock %}
-    {% if (region_container) %}
-        <div>
-      </div>
-    {% endif %}
-  </section>
-{% endif %}
+{% block content %}
+  {% include '@<%= themeName %>/partials/toggle.html.twig' with { class: 'flyout-toggle', target: "flyout" }  %}
+  {{ parent() }}
+{% endblock %}

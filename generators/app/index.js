@@ -155,9 +155,11 @@ module.exports = class extends Generator {
       this.props
     );
 
-    this.fs.copy(
-      this.templatePath('templates'),
-      this.destinationPath('templates')
+    this.fs.copyTpl(
+      this.templatePath('templates/**/*'),
+      this.destinationPath('templates'),
+      this.props,
+      { globOptions: { dot: true } }
     );
 
     this.fs.copyTpl(
