@@ -31,6 +31,11 @@ side-flyout:
     component:
       dist/css/addons/side-flyout.css: {}
 
+toggle:
+  css:
+    component:
+      dist/css/addons/toggle.css: {}
+
 dropdown_hover:
   css:
     component:

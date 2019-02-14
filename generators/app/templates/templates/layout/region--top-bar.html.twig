@@ -16,6 +16,9 @@
 {% extends "region.html.twig" %}
 
 {% block content %}
-  {% include '@<%= themeName %>/partials/toggle.html.twig' with { class: 'flyout-toggle', target: "flyout" }  %}
-  {{ parent() }}
+  <div class="d-flex">
+    {{ attach_library('ltr/toggle') }}
+    {% include '@ltr/partials/toggle.html.twig' with { class: 'flyout-toggle', target: "flyout" }  %}
+    {{ parent() }}
+  </div>
 {% endblock %}
