@@ -14,8 +14,11 @@
  * @see template_preprocess_region()
  */
 #}
+{% set angle = theme_settings.offcanvas_angle ? theme_settings.offcanvas_angle %}
+{% set type = theme_settings.offcanvas_type ? theme_settings.offcanvas_type %}
+
 {% do attributes.addClass('js-offcanvas') %}
-{% do attributes.setAttribute('data-offcanvas-options', '{"modifiers": "left,overlay"}' ) %}
+{% do attributes.setAttribute('data-offcanvas-options', {"modifiers": "" ~ angle ~ ',' ~ type ~ ""}) %}
 {% do attributes.setAttribute('id', region) %}
 
 {{ attach_library('<%= themeName %>/' ~ region) }}
