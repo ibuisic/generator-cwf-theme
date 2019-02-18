@@ -255,6 +255,71 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     '#group' => 'container',
   ];
 
+  // Offcanvas
+
+  $form['offcanvas'] = array(
+    '#type' => 'details',
+    '#title' => t('Offcanvas'),
+    '#group' => '<%= themeName %>',
+  );
+
+  $form['offcanvas']['details'] = array(
+    '#type' => 'details',
+    '#title' => 'Offcanvas Settings',
+    '#collapsible' => true,
+    '#open' => true,
+  );
+
+  $form['offcanvas']['details']['offcanvas_overlay'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Do you want offcanvas?'),
+    '#default_value' => theme_get_setting('offcanvas_overlay')
+  );
+
+  $form['offcanvas']['details']['offcanvas_options'] = array(
+    '#type' => 'details',
+    '#title' => t('Offcanvas Options'),
+    '#collapsible' => true,
+    '#open' => true,
+    '#default_value' => theme_get_setting('offcanvas_options'),
+    '#states' => [
+      'visible' => [
+        'input[name="offcanvas_overlay"]' => ['checked' => TRUE],
+      ],
+    ],
+  );
+
+  $form['offcanvas']['details']['offcanvas_options']['cwf_toggle_text'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Offcanvas Button Text'),
+    '#default_value' => theme_get_setting('cwf_toggle_text')
+  );
+
+  $form['offcanvas']['details']['offcanvas_options']['offcanvas_angle'] = array(
+    '#type' => 'select',
+    '#title' => t('Offcanvas position'),
+    '#default_value' => theme_get_setting('offcanvas_angle'),
+    '#description' => t('Choose from which angle you want offcanvas to show.'),
+    '#options' => array(
+      'left' => 'Left',
+      'right' => 'Right',
+      'top' => 'Top',
+      'bottom' => 'Bottom'
+    ),
+  );
+
+  $form['offcanvas']['details']['offcanvas_options']['offcanvas_type'] = array(
+    '#type' => 'select',
+    '#title' => t('Offcanvas type'),
+    '#default_value' => theme_get_setting('offcanvas_type'),
+    '#description' => t('Choose which type of offcanvas you want.'),
+    '#options' => array(
+      'overlay' => 'Overlay',
+      'push' => 'Push',
+      'reveal' => 'Reveal'
+    ),
+  );
+
   // Blocks
   $form['blocks'] = array(
     '#type' => 'details',
