@@ -77,7 +77,7 @@ class Preprocess {
     }
 
     if (theme_get_setting('navbar_offcanvas')) {
-      $variables['#attached']['library'][] = '<%= themeName %>/offcanvas';
+      $variables['#attached']['library'][] = '<%= themeName %>/navbar-offcanvas';
     }
 
     if (theme_get_setting('fadein_page_onload')) {

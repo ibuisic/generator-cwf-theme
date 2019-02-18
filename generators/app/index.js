@@ -207,6 +207,13 @@ module.exports = class extends Generator {
       this.destinationPath('config/optional/block.block.' + this.props.themeName + '_main_menu.yml'),
       this.props
     );
+
+    this.fs.copyTpl(
+      this.templatePath('config/optional/_block.block.theme_main_menu_2.yml'),
+      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_main_menu_2.yml'),
+      this.props
+    );
+
     this.fs.copyTpl(
       this.templatePath('config/optional/_block.block.theme_search.yml'),
       this.destinationPath('config/optional/block.block.' + this.props.themeName + '_search.yml'),

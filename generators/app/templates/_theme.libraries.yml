@@ -12,12 +12,12 @@ global-styling:
 
 # Components
 ####
-offcanvas:
+offcanvas-navbar:
   css:
     component:
-      dist/css/addons/offcanvas.css: {}
+      dist/css/addons/offcanvas-navbar.css: {}
   js:
-    src/js/addons/offcanvas.js: {}
+    src/js/addons/offcanvas-navbar.js: {}
 fixed-top-navbar:
   css:
     component:
@@ -26,10 +26,12 @@ fade:
   js:
     src/js/addons/fade.js: {}
 
-flyout:
+offcanvas:
   css:
-    component:
-      dist/css/addons/flyout.css: {}
+    theme:
+      dist/css/addons/offcanvas.css: {}
+  js:
+    '//unpkg.com/js-offcanvas@1.2.8/dist/_js/js-offcanvas.pkgd.min.js': { type: external, minified: true  }
 
 toggle:
   css:

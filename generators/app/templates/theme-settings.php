@@ -115,10 +115,10 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     )),
   ];
 
-  $form['settings']['general']['flyout_position'] = array(
+  $form['settings']['general']['offcanvas_position'] = array(
     '#type' => 'select',
-    '#title' => t('Flyout left or right?'),
-    '#default_value' => theme_get_setting('flyout_position'),
+    '#title' => t('Offcanvas left or right?'),
+    '#default_value' => theme_get_setting('offcanvas_position'),
     '#options' => [
       'left' => 'Left',
       'right' => 'Right',

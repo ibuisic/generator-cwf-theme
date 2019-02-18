@@ -17,8 +17,7 @@
 
 {% block content %}
   <div class="d-flex justify-content-between">
-    {{ attach_library('<%= themeName %>/toggle') }}
-    {% include '@<%= themeName %>/partials/toggle.html.twig' with { class: 'flyout-toggle', target: "flyout" }  %}
+    {% include '@<%= themeName %>/partials/toggle.html.twig' with { class: 'offcanvas-toggle', target: "offcanvas" }  %}
     {{ parent() }}
   </div>
 {% endblock %}
