@@ -115,10 +115,10 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     )),
   ];
 
-  $form['settings']['general']['offcanvas_position'] = array(
+  $form['settings']['general']['offcanvas_navbar_position'] = array(
     '#type' => 'select',
     '#title' => t('Offcanvas left or right?'),
-    '#default_value' => theme_get_setting('offcanvas_position'),
+    '#default_value' => theme_get_setting('offcanvas_navbar_position'),
     '#options' => [
       'left' => 'Left',
       'right' => 'Right',
@@ -295,11 +295,11 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     '#default_value' => theme_get_setting('cwf_toggle_text')
   );
 
-  $form['offcanvas']['details']['offcanvas_options']['offcanvas_angle'] = array(
+  $form['offcanvas']['details']['offcanvas_options']['offcanvas_position'] = array(
     '#type' => 'select',
     '#title' => t('Offcanvas position'),
-    '#default_value' => theme_get_setting('offcanvas_angle'),
-    '#description' => t('Choose from which angle you want offcanvas to show.'),
+    '#default_value' => theme_get_setting('offcanvas_position'),
+    '#description' => t('Choose from which position you want offcanvas to show.'),
     '#options' => array(
       'left' => 'Left',
       'right' => 'Right',

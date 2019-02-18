@@ -4,7 +4,7 @@
   <span class="bar bg-warning"></span>
   <span class="bar bg-warning"></span>
   <span class="bar bg-warning"></span>
-  {% if (theme_settings.cwf_toggle_text) %}
-    <span class="toggle-text d-block ml-2 pb-2 pl-4">{{ theme_settings.cwf_toggle_text }}</span>
+  {% if (theme_settings.<%= themeName %>_toggle_text) %}
+    <span class="toggle-text d-block ml-2 pb-2 pl-4">{{ theme_settings.<%= themeName %>_toggle_text }}</span>
   {% endif %}
 </button>
