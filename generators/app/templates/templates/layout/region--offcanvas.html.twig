@@ -14,6 +14,9 @@
  * @see template_preprocess_region()
  */
 #}
-{% do attributes.addClass([theme_settings.offcanvas_position, region]) %}
+{% do attributes.addClass('js-offcanvas') %}
+{% do attributes.setAttribute('data-offcanvas-options', '{"modifiers": "left,overlay"}' ) %}
+{% do attributes.setAttribute('id', region) %}
+
 {{ attach_library('<%= themeName %>/' ~ region) }}
 {% include "region.html.twig" %}

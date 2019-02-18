@@ -7,6 +7,9 @@
 
       // Place your code here.
 
+      // Trigger enhance
+      $(document).trigger("enhance");
+
     }
   };
 

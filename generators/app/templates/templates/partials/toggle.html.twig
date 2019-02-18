@@ -1,7 +1,7 @@
 {{ attach_library('<%= themeName %>/toggle') }}
-<button class="{{ class }} toggle" type="button" onClick="this.classList.toggle('open');" aria-controls="#{{ target }}" data-toggle="collapse" data-target="#{{ target }}" aria-expanded="false">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
+<button {{ data }}="{{ data_options }}" class="{{ class }} toggle" type="button" >
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
 </button>
