@@ -1,10 +1,10 @@
 {{ attach_library('<%= themeName %>/toggle') }}
-<button {{ data }}="{{ data_options }}" class="{{ class }} toggle" type="button" >
-  <span class="bar"></span>
-  <span class="bar"></span>
-  <span class="bar"></span>
-  <span class="bar"></span>
-  {% if (theme_settings.offcanvas_checkbox) %}
+<button {{ data }}="{{ data_options }}" class="{{ class }} toggle" type="button" href={{ target }}>
+  <span class="bar bg-warning"></span>
+  <span class="bar bg-warning"></span>
+  <span class="bar bg-warning"></span>
+  <span class="bar bg-warning"></span>
+  {% if (theme_settings.cwf_toggle_text) %}
     <span class="toggle-text d-block ml-2 pb-2 pl-4">{{ theme_settings.cwf_toggle_text }}</span>
   {% endif %}
 </button>

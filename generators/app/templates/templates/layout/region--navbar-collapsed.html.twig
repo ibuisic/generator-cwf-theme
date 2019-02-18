@@ -26,9 +26,10 @@
 {% set navbar_collapsed_container = theme_settings.navbar_collapsed_container|clean_class %}
 
 {% if content %}
-  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapsedRegion" aria-controls="navbarCollapsedRegion" aria-expanded="false" aria-label="Toggle navbar collapsed region">
+  {# <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapsedRegion" aria-controls="navbarCollapsedRegion" aria-expanded="false" aria-label="Toggle navbar collapsed region">
     <span class="navbar-toggler-icon"></span>
-  </button>
+  </button> #}
+  {% include '@<%= themeName %>/partials/toggle.html.twig' with { class: 'navbar-toggler', data: "data-toggle", data_options: "collapse", target: "#navbarCollapsedRegion" }   %}
   <section{{ attributes.addClass(classes).setAttribute('id', 'navbarCollapsedRegion') }}>
     {% if (theme_settings.navbar_collapsed_container) %}
       <div class="{{ navbar_collapsed_container }}">
