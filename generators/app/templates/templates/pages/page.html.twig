@@ -87,53 +87,50 @@
 {# Main #}
 {% block main %}
   <div role="main">
+  {# Highlighted #}
+  {% if page.highlighted %}
+    {% block highlighted %}
+      {{ page.highlighted }}
+    {% endblock %}
+  {% endif %}
 
-      {# Highlighted #}
-      {% if page.highlighted %}
-        {% block highlighted %}
-          {{ page.highlighted }}
+  {# Help #}
+  {% if page.help %}
+    {% block help %}
+      {{ page.help }}
+    {% endblock %}
+  {% endif %}
+
+  <div {{ attributes.addClass(theme_settings.main_container_classes) }}>
+    {% if (theme_settings.main_container) %}
+      <div class="{{ theme_settings.main_container }}">
+        <div class="row">
+    {% endif %}
+
+      {# Sidebar First #}
+      {% if page.sidebar_first %}
+        {% block sidebar_first %}
+            {{ page.sidebar_first }}
         {% endblock %}
       {% endif %}
 
-      {# Help #}
-      {% if page.help %}
-        {% block help %}
-          {{ page.help }}
+      {# Content #}
+      {% block content %}
+        <a id="main-content"></a>
+        {{ page.content }}
+      {% endblock %}
+
+      {# Sidebar Second #}
+      {% if page.sidebar_second %}
+        {% block sidebar_second %}
+          {{ page.sidebar_second }}
         {% endblock %}
       {% endif %}
 
-      <div {{ attributes.addClass(theme_settings.main_container_classes) }}>
-        {% if (theme_settings.main_container) %}
-          <div class="{{ theme_settings.main_container }}">
-            <div class="row">
-        {% endif %}
-
-          {# Sidebar First #}
-          {% if page.sidebar_first %}
-            {% block sidebar_first %}
-                {{ page.sidebar_first }}
-            {% endblock %}
-          {% endif %}
-
-          {# Content #}
-          {% block content %}
-            <a id="main-content"></a>
-            {{ page.content }}
-          {% endblock %}
-
-          {# Sidebar Second #}
-          {% if page.sidebar_second %}
-            {% block sidebar_second %}
-              {{ page.sidebar_second }}
-            {% endblock %}
-          {% endif %}
-
-        {% if (theme_settings.main_container) %}
-            </div>
-          </div>
-        {% endif %}
+    {% if (theme_settings.main_container) %}
+        </div>
       </div>
-    </div>
+    {% endif %}
   </div>
 {% endblock %}
 
@@ -149,6 +146,14 @@
 {% if page.offcanvas %}
 </div>
 {% endif %}
+
+{# Offcanvas #}
+{% if page.offcanvas %}
+  {% block offcanvas %}
+    {{ page.offcanvas }}
+  {% endblock %}
+{% endif %}
+
 
 {% if (theme_settings.btt) %}
   <button id="btt" class="fade" title="Go to top">

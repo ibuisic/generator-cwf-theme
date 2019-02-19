@@ -1,9 +1,5 @@
 # Default settings should not be located here. This file is only used to
-# override existing settings. If your theme is the one that introduces a new
-# theme setting, it should use the Drupal Bootstrap base theme's
-# @BootstrapSetting annotation discovery process. This ensures that sub-theme
-# settings are inherited from base themes themes properly and to determine when
-# a setting should be saved to config as "overridden".
+# override existing settings.
 #
 region_container_navbar: 'container'
 submit_classes: 'btn btn-success'
