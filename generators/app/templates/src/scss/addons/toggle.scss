@@ -1,13 +1,11 @@
-$toggle-size:              2rem;
+$toggle-bar-width:         2rem;
 $toggle-bar-height:        4px;
 $toggle-bar-color:         #fff;
 $toggle-bar-border-radius: 6px;
 
 .toggle {
-  width: $toggle-size;
-  height: $toggle-size;
   margin: 5px;
-  position: relative;
+  display: flex;
   border: none;
   background: transparent;
   transform: rotate(0deg);
@@ -16,6 +14,16 @@ $toggle-bar-border-radius: 6px;
 
   &:focus {
     outline: none;
+  }
+
+  .c-button__text{
+    display: flex;
+  }
+
+  .bars{
+    position: relative;
+    width: $toggle-bar-width;
+    flex-shrink: 0;
   }
 
   .bar {

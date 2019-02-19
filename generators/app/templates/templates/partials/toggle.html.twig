@@ -1,10 +1,12 @@
 {{ attach_library('<%= themeName %>/toggle') }}
 <button {{ data }}="{{ data_options }}" class="{{ class }} toggle" type="button" href={{ target }}>
-  <span class="bar bg-warning"></span>
-  <span class="bar bg-warning"></span>
-  <span class="bar bg-warning"></span>
-  <span class="bar bg-warning"></span>
+  <div class="bars">
+    <span class="bar bg-warning"></span>
+    <span class="bar bg-warning"></span>
+    <span class="bar bg-warning"></span>
+    <span class="bar bg-warning"></span>
+  </div>
   {% if (theme_settings.<%= themeName %>_toggle_text) %}
-    <span class="toggle-text d-block ml-2 pb-2 pl-4">{{ theme_settings.<%= themeName %>_toggle_text }}</span>
+    <span class="toggle-text d-block mx-2">{{ theme_settings.<%= themeName %>_toggle_text }}</span>
   {% endif %}
 </button>
