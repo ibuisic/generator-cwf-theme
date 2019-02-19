@@ -21,3 +21,5 @@ fadein_page_onload: 1
 dropdown_hover: 1
 node_links_btn_group: 1
 custom_form_file: 1
+offcanvas_position: 'left'
+offcanvas_type: 'push'

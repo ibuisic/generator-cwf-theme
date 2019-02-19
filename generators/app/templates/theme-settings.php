@@ -115,15 +115,6 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     )),
   ];
 
-  $form['settings']['general']['offcanvas_navbar_position'] = array(
-    '#type' => 'select',
-    '#title' => t('Offcanvas left or right?'),
-    '#default_value' => theme_get_setting('offcanvas_navbar_position'),
-    '#options' => [
-      'left' => 'Left',
-      'right' => 'Right',
-    ]
-  );
 
   // Content
   $form['settings']['content'] = array(
@@ -223,10 +214,25 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
   $form['header']['navbar']['navbar_offcanvas'] = array(
     '#type' => 'checkbox',
     '#title' => t('Navbar offcanvas'),
-    '#description' => t('Change from default @bootstrap-navbar to navbar offcanvas.', array(
+    '#description' => t('Change from default @bootstrap-navbar to navbar Offcanvas.If can avoid this and just use the Offcanvas region.', array(
       '@bootstrap-navbar' => Drupal::l('Bootstrap navbar', Url::fromUri('https://getbootstrap.com/docs/4.2/components/navbar/',  ['absolute' => true, 'attributes' => array('target' => '_blank')])),
     )),
     '#default_value' => theme_get_setting('navbar_offcanvas')
+  );
+
+  $form['header']['navbar']['offcanvas_navbar_position'] = array(
+    '#type' => 'select',
+    '#title' => t('Offcanvas left or right?'),
+    '#default_value' => theme_get_setting('offcanvas_navbar_position'),
+    '#options' => [
+      'left' => 'Left',
+      'right' => 'Right',
+    ],
+    '#states' => [
+      'visible' => [
+        'input[name="navbar_offcanvas"]' => ['checked' => TRUE],
+      ],
+    ],
   );
 
   $form['header']['navbar_collapsed'] = array(
@@ -256,7 +262,6 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
   ];
 
   // Offcanvas
-
   $form['offcanvas'] = array(
     '#type' => 'details',
     '#title' => t('Offcanvas'),
@@ -270,45 +275,14 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     '#open' => true,
   );
 
-  $form['offcanvas']['details']['offcanvas_overlay'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Do you want offcanvas?'),
-    '#default_value' => theme_get_setting('offcanvas_overlay')
-  );
-
-  $form['offcanvas']['details']['offcanvas_options'] = array(
-    '#type' => 'details',
-    '#title' => t('Offcanvas Options'),
-    '#collapsible' => true,
-    '#open' => true,
-    '#default_value' => theme_get_setting('offcanvas_options'),
-    '#states' => [
-      'visible' => [
-        'input[name="offcanvas_overlay"]' => ['checked' => TRUE],
-      ],
-    ],
-  );
-
-  $form['offcanvas']['details']['offcanvas_options']['cwf_toggle_text'] = array(
+  $form['offcanvas']['details']['<%= themeName %>_toggle_text'] = array(
     '#type' => 'textfield',
-    '#title' => t('Offcanvas Button Text'),
-    '#default_value' => theme_get_setting('cwf_toggle_text')
+    '#title' => t('Toggle Button Text'),
+    '#default_value' => theme_get_setting('<%= themeName %>_toggle_text')
   );
 
-  $form['offcanvas']['details']['offcanvas_options']['offcanvas_position'] = array(
-    '#type' => 'select',
-    '#title' => t('Offcanvas position'),
-    '#default_value' => theme_get_setting('offcanvas_position'),
-    '#description' => t('Choose from which position you want offcanvas to show.'),
-    '#options' => array(
-      'left' => 'Left',
-      'right' => 'Right',
-      'top' => 'Top',
-      'bottom' => 'Bottom'
-    ),
-  );
 
-  $form['offcanvas']['details']['offcanvas_options']['offcanvas_type'] = array(
+  $form['offcanvas']['details']['offcanvas_type'] = array(
     '#type' => 'select',
     '#title' => t('Offcanvas type'),
     '#default_value' => theme_get_setting('offcanvas_type'),
@@ -319,6 +293,40 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
       'reveal' => 'Reveal'
     ),
   );
+
+  $form['offcanvas']['details']['offcanvas_position'] = array(
+    '#type' => 'select',
+    '#title' => t('Offcanvas position'),
+    '#default_value' => theme_get_setting('offcanvas_position'),
+    '#description' => t('Choose from which position you want offcanvas to show.'),
+    '#options' => array(
+      'left' => 'Left',
+      'right' => 'Right',
+      'top' => 'Top',
+      'bottom' => 'Bottom'
+    ),
+    '#states' => [
+      'visible' => [
+        'input[name="offcanvas_type"]' => ['value' => 'overlay'],
+      ],
+    ],
+  );
+
+  // $form['offcanvas']['details']['offcanvas_position_x'] = array(
+  //   '#type' => 'select',
+  //   '#title' => t('Offcanvas position'),
+  //   '#default_value' => theme_get_setting('offcanvas_position_x'),
+  //   '#description' => t('Choose from which position you want offcanvas to show.'),
+  //   '#options' => array(
+  //     'left' => 'Left',
+  //     'right' => 'Right'
+  //   ),
+  //   '#states' => [
+  //     'visible' => [
+  //       'input[name="offcanvas_type"]' => ['!value' => 'overlay'],
+  //     ],
+  //   ],
+  // );
 
   // Blocks
   $form['blocks'] = array(
