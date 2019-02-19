@@ -44,6 +44,11 @@
  */
 #}
 
+{# This limits the offcanvas push region, adjust to exclude sections #}
+{% if page.offcanvas %}
+<div class="c-offcanvas-content-wrap">
+{% endif %}
+
 {# Top bar #}
 {% if page.top_bar %}
   {% block top_bar %}
@@ -146,6 +151,10 @@
       {{ page.footer }}
     </footer>
   {% endblock %}
+{% endif %}
+
+{% if page.offcanvas %}
+</div>
 {% endif %}
 
 {% if (theme_settings.btt) %}
