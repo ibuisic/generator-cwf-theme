@@ -3,43 +3,44 @@
 #
 
 # General
-menu_icons: 1
 inline_logo: 1
-responsive_images: 1
+btt: 0
+menu_icons: 1
 fadein_page_onload: 1
 dropdown_hover: 1
 node_links_btn_group: 1
-btt: 0
-
-# Navbar
-navbar_classes: bg-light
-navbar_color: 2
-navbar_container: container-fluid
-navbar_collapsed_container: container-fluid
-navbar_collapsed_classes: bg-light
-navbar_expand: navbar-expand-lg
-navbar_offcanvas: 0
-navbar_position: ''
-offcanvas_navbar_position: left
 
 # Main container
 main_container: ''
 main_container_classes: ''
 
-
-# Regions
-region_classes_top_bar: 'bg-dark p-2'
-
-# Forms
-custom_form_file: 1
-submit_button: 0
-submit_classes: 'btn btn-success'
+# Navbar
+navbar_position: ''
+navbar_container: container-fluid
+navbar_color: navbar-light
+navbar_classes: bg-light
+navbar_expand: navbar-expand-lg
+navbar_offcanvas: 0
+offcanvas_navbar_position: left
+navbar_collapsed_classes: bg-light
+navbar_collapsed_container: container-fluid
 
 # Offcanvas
-offcanvas_position: left
-offcanvas_type: push
 <%= themeName %>_toggle_text: ''
+offcanvas_type: push
+offcanvas_position: left
 
 # Blocks
 language_block_code: 0
 language_block_type: links
+
+# Forms
+submit_classes: 'btn btn-success'
+submit_button: 0
+custom_form_file: 1
+
+# Images
+responsive_images: 1
+
+# Regions
+region_classes_top_bar: 'bg-dark p-2'
