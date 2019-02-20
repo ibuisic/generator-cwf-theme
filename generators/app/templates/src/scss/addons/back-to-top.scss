@@ -1,7 +1,7 @@
 /* scroll to top */
-$btt-size: 55px;
-$btt-fill: white;
-$btt-bg: #999999;
+$btt-size: 55px !default;
+$btt-fill: #fff !default;
+$btt-bg: #999 !default;
 
 #btt {
   position: fixed;
@@ -13,10 +13,9 @@ $btt-bg: #999999;
   justify-content: center;
   width: $btt-size;
   height: $btt-size;
-  border: 0;
-  background: $btt-bg;
   cursor: pointer;
-
+  background: $btt-bg;
+  border: 0;
   svg {
     fill: $btt-fill;
   }
