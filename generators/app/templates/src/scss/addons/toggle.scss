@@ -23,9 +23,9 @@ $toggle-bar-border-radius: 6px !default;
 
   .bars {
     position: relative;
+    flex-shrink: 0;
     width: $toggle-bar-width;
     height: $toggle-bar-width;
-    flex-shrink: 0;
   }
 
   .bar {
