@@ -1,3 +1,4 @@
+$toggle-spacing:           5px !default;
 $toggle-bar-width:         2rem !default;
 $toggle-bar-height:        4px !default;
 $toggle-bar-color:         #fff !default;
@@ -5,7 +6,7 @@ $toggle-bar-border-radius: 6px !default;
 
 .toggle {
   display: flex;
-  margin: 5px;
+  margin: $toggle-spacing;
   cursor: pointer;
   background: transparent;
   border: none;
@@ -20,10 +21,11 @@ $toggle-bar-border-radius: 6px !default;
     display: flex;
   }
 
-  .bars{
+  .bars {
     position: relative;
-    flex-shrink: 0;
     width: $toggle-bar-width;
+    height: $toggle-bar-width;
+    flex-shrink: 0;
   }
 
   .bar {
@@ -31,7 +33,7 @@ $toggle-bar-border-radius: 6px !default;
     left: 0;
     display: block;
     width: 100%;
-    height: 4px;
+    height: $toggle-bar-height;
     background: $toggle-bar-color;
     border-radius: $toggle-bar-border-radius;
     opacity: 1;
