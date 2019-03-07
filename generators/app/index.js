@@ -324,8 +324,8 @@ module.exports = class extends Generator {
       // Create scripts
       pkgJson.scripts["image:icons"] =
         "icon-font-generator src/images/icons/*.svg --html true --htmlpath " + this.props.themeName + "-test-page.html --htmltp ./icon-html.hbs  -o dist/fonts/ -f ../fonts --csstp ./icon-font.hbs -p glyph -t glyph --csspath src/scss/_icon-font.scss";
-      pkgJson.scripts["watch:icons"] =
-        "nodemon --watch src/images/icons -e svg -x \"npm run image:icons\"";
+      // pkgJson.scripts["watch:icons"] =
+      //   "nodemon --watch src/images/icons -e svg -x \"npm run image:icons\"";
     } else {
       this.fs.copyTpl(
         this.templatePath('_theme-test-page.html'),
