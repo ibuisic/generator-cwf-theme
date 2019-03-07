@@ -274,12 +274,6 @@ module.exports = class extends Generator {
       this.props
     );
 
-    this.fs.copyTpl(
-      this.templatePath('config/optional/_block.block.theme_tools.yml'),
-      this.destinationPath('config/optional/block.block.' + this.props.themeName + '_tools.yml'),
-      this.props
-    );
-
     // CSS and JS
     this.fs.copyTpl(
       this.templatePath('src/js/_script.js'),
