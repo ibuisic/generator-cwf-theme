@@ -174,7 +174,7 @@ module.exports = class extends Generator {
     }
 
     if (this.props.slickSlider) {
-      this.fs.write(this.destinationPath('src/scss/slick.scss'), '// Slick Slider');
+      this.fs.write(this.destinationPath('src/scss/slick.scss'), '// Slick Slider\n');
     }
 
     // Install, schema and optional configs

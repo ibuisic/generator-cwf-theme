@@ -1,17 +1,17 @@
-$toggle-spacing:          5px;
-$toggle-bar-width:         2rem;
-$toggle-bar-height:        4px;
-$toggle-bar-color:         #fff;
-$toggle-bar-border-radius: 6px;
+$toggle-spacing:           5px !default;
+$toggle-bar-width:         2rem !default;
+$toggle-bar-height:        4px !default;
+$toggle-bar-color:         #fff !default;
+$toggle-bar-border-radius: 6px !default;
 
 .toggle {
-  margin: $toggle-spacing;
   display: flex;
-  border: none;
-  background: transparent;
-  transform: rotate(0deg);
-  transition: .5s ease-in-out;
+  margin: $toggle-spacing;
   cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: .5s ease-in-out;
+  transform: rotate(0deg);
 
   &:focus {
     outline: none;
@@ -23,25 +23,25 @@ $toggle-bar-border-radius: 6px;
 
   .bars {
     position: relative;
+    flex-shrink: 0;
     width: $toggle-bar-width;
     height: $toggle-bar-width;
-    flex-shrink: 0;
   }
 
   .bar {
-    display: block;
     position: absolute;
-    height: $toggle-bar-height;
+    left: 0;
+    display: block;
     width: 100%;
+    height: $toggle-bar-height;
     background: $toggle-bar-color;
     border-radius: $toggle-bar-border-radius;
     opacity: 1;
-    left: 0;
-    transform: rotate(0deg);
     transition: .25s ease-in-out;
+    transform: rotate(0deg);
 
     &:nth-child(1) {
-      top: 0px;
+      top: 0;
     }
 
     &:nth-child(2),
@@ -59,8 +59,8 @@ $toggle-bar-border-radius: 6px;
   &.is-active {
     .bar:nth-child(1) {
       top: 18px;
-      width: 0%;
       left: 50%;
+      width: 0%;
     }
 
     .bar:nth-child(2) {
@@ -73,8 +73,8 @@ $toggle-bar-border-radius: 6px;
 
     .bar:nth-child(4) {
       top: 18px;
-      width: 0%;
       left: 50%;
+      width: 0%;
     }
   }
 }
