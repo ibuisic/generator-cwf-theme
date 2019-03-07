@@ -3,31 +3,31 @@
 //  ==========================================================================
 
 
-$offcanvas-width: 17em !default;
-$offcanvas-left-width: $offcanvas-width;
-$offcanvas-right-width: $offcanvas-width;
-$offset--left: 17em !default;
-$offset--right: 17em !default;
-$offset--top: 12.5em !default;
-$offset--bottom: 12.5em !default;
-$offcanvas-content-reveal-left-offset: $offset--left!default;
+$offcanvas-width:                       17em !default;
+$offcanvas-left-width:                  $offcanvas-width;
+$offcanvas-right-width:                 $offcanvas-width;
+$offset--left:                          17em !default;
+$offset--right:                         17em !default;
+$offset--top:                           12.5em !default;
+$offset--bottom:                        12.5em !default;
+$offcanvas-content-reveal-left-offset:  $offset--left!default;
 $offcanvas-content-reveal-right-offset: $offset--right!default;
 
 //content
-$offset-content-wrap--left: 17em !default;
-$offset-content-wrap--right: $offset-content-wrap--left !default;
+$offset-content-wrap--left:             17em !default;
+$offset-content-wrap--right:            $offset-content-wrap--left !default;
 
 // position
-$offcanvas-enable-left:    true !default;
-$offcanvas-enable-right:   true !default;
-$offcanvas-enable-top:   true !default;
-$offcanvas-enable-bottom:   true !default;
+$offcanvas-enable-left:                 true !default;
+$offcanvas-enable-right:                true !default;
+$offcanvas-enable-top:                  true !default;
+$offcanvas-enable-bottom:               true !default;
 // style
-$offcanvas-enable-overlay:   true !default;
-$offcanvas-enable-push:   true !default;
-$offcanvas-enable-reveal:   true !default;
+$offcanvas-enable-overlay:              true !default;
+$offcanvas-enable-push:                 true !default;
+$offcanvas-enable-reveal:               true !default;
 
-$supportCSSTransforms:   true !default;
+$supportCSSTransforms:                  true !default;
 
 $elements:  body-text,offcanvas-reveal,offcanvas-content-wrap,header,offcanvas-overlay,offcanvas,offcanvas-trigger,offcanvas-panel,offcanvas-btn;
 
