@@ -112,6 +112,7 @@ module.exports = class extends Generator {
         "lint:fix": "eslint src/js --fix",
         "image:min": "imagemin src/images/* --out-dir=dist/images",
         "css:scss-lint": "stylelint --syntax scss \"src/scss/**/*.scss\"",
+        "favicon": "icon-gen -i favicon.svg -o ./ -r --ico sizes=16 name=favicon",
         "css:scss": "node-sass --output-style compressed -o dist/css src/scss",
         "css:prefix": "postcss -u autoprefixer -r dist/css/*",
         "serve": "browser-sync start --proxy \""+ this.props.proxyName +"\" --files \"dist/css/*.css, src/js/*.js, templates/**/*.twig, !node_modules/**/*.html\"",
@@ -460,6 +461,7 @@ module.exports = class extends Generator {
     console.log(cssImports + scssFile);
 
     // Build all after copied all files
+    this.spawnCommand('npm', ['run', 'favicon']);
     this.spawnCommand('npm', ['run', 'build']);
   }
 };

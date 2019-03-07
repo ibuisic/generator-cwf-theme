@@ -48,6 +48,7 @@
   "dependencies": {
     "browser-sync": "^2.26.3",
     "imagemin": "^6.1.0",
+    "icon-gen": "^2.0.0",
     "imagemin-cli": "^4.0.0",
     "node-sass": "^4.9.3",
     "svgo": "^1.1.1"
