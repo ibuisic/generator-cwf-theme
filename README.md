@@ -61,6 +61,7 @@ Command| Does...
 `lint:js`| Lints the JS files using the rules in <code>.eslintrc.json</code> following the Drupal standards.
 `lint:fix`| Tries to automatically fix linted JS errors and warnings.
 `image:min`| Minifies images in the src/images directory and moves them to the <code>/dist/images</code> folder.
+`favicon`| Will convert the <code>favicon.svg</code> file to the appropriate ICO file.
 `css:scss-lint`| Lints the SCSS files following the rules set in the <code>.stylelintrc</code> file.
 `css:scss`| Compiles all SCSS files from <code>src/scss</code> to <code>dist/scss</code>.
 `css:prefix`| Autoprefixes files following settings from the <code>.browserslistrc</code> file.
