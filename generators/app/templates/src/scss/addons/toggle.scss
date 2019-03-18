@@ -1,8 +1,11 @@
 $toggle-spacing:           5px !default;
+$toggle-bars-width:        2rem !default;
 $toggle-bar-width:         2rem !default;
 $toggle-bar-height:        4px !default;
+$toggle-bar-spacing:       6px !default;
 $toggle-bar-color:         #fff !default;
 $toggle-bar-border-radius: 6px !default;
+$toggle-bars-height:       ($toggle-bar-height * 3) + ($toggle-bar-spacing * 2);
 
 .toggle {
   display: flex;
@@ -24,8 +27,8 @@ $toggle-bar-border-radius: 6px !default;
   .bars {
     position: relative;
     flex-shrink: 0;
-    width: $toggle-bar-width;
-    height: $toggle-bar-width;
+    width: $toggle-bars-width;
+    height: $toggle-bars-height;
   }
 
   .bar {
@@ -46,11 +49,11 @@ $toggle-bar-border-radius: 6px !default;
 
     &:nth-child(2),
     &:nth-child(3) {
-      top: 10px;
+      top: $toggle-bar-height + $toggle-bar-spacing;
     }
 
     &:nth-child(4) {
-      top: 20px;
+      top: ($toggle-bar-height + $toggle-bar-spacing) * 2;
     }
   }
 
