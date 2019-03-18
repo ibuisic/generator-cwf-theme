@@ -17,6 +17,9 @@ $offcanvas-content-reveal-right-offset: $offset--right !default;
 $offset-content-wrap--left:             17em !default;
 $offset-content-wrap--right:            $offset-content-wrap--left !default;
 
+// bg
+$offcanvas-bg--color:                   rgba(black, .68);
+
 // position
 $offcanvas-enable-left:                 true !default;
 $offcanvas-enable-right:                true !default;
@@ -198,7 +201,7 @@ $standard-curve: cubic-bezier(.4, 0, .2, 1) !default;
   &.is-open {
     left: 0;
     visibility: visible;
-    background-color: hsla(0, 52%, 57%, .68);
+    background-color: $offcanvas-bg--color;
   }
 
   &.is-closed { visibility: hidden; }
