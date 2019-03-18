@@ -124,14 +124,9 @@ class Preprocess {
 
     if (strpos($block->getPluginId(), 'system_menu_block') !== FALSE) {
       $region = Block::load($variables['elements']['#id'])->getRegion();
-      if ($region == 'navbar_collapsed'){
-        $variables['content']['#attributes']['region'] = 'navbar';
-      } else {
-        $variables['content']['#attributes']['region'] = $region;
-      }
+      $variables['content']['#attributes']['region'] = $region;
     }
   }
-
 
   /**
    * Links.
