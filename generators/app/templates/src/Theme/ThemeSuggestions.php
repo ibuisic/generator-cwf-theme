@@ -36,6 +36,15 @@ class ThemeSuggestions {
   }
 
   /**
+   * Menu.
+   */
+  public static function menu(array &$suggestions, array &$variables) {
+    if (isset($variables['#attributes']['region'])) {
+      $suggestions[] = 'menu__' . $variables['menu_name'] . '__' . $variables['#attributes']['region'];
+    }
+  }
+
+  /**
    * Link.
    */
   public static function link(array &$suggestions, array $variables) {

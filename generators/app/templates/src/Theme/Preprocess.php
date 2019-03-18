@@ -3,6 +3,7 @@
 namespace Drupal\<%= themeName %>\Theme;
 
 use Drupal\Core\Link;
+use Drupal\block\Entity\Block;
 
 /**
  * @file
@@ -113,6 +114,24 @@ class Preprocess {
       $variables['region_container'] = theme_get_setting('region_container_' . $variables['elements']['#region']);
     }
   }
+
+  /**
+   * Block.
+   */
+  public static function block(&$variables) {
+    $block_id = $variables['elements']['#id'];
+    $block = Block::load($block_id);
+
+    if (strpos($block->getPluginId(), 'system_menu_block') !== FALSE) {
+      $region = Block::load($variables['elements']['#id'])->getRegion();
+      if ($region == 'navbar_collapsed'){
+        $variables['content']['#attributes']['region'] = 'navbar';
+      } else {
+        $variables['content']['#attributes']['region'] = $region;
+      }
+    }
+  }
+
 
   /**
    * Links.

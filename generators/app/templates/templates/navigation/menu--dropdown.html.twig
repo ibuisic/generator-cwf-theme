@@ -19,20 +19,31 @@
  */
 #}
 {% set menu_icons = theme_settings.menu_icons %}
+{# Create class that's aware of the menu's region #}
+{% set region = attributes.region|clean_class %}
+{%
+  set menu_classes = [
+    'nav',
+    region ? region ~ '-nav'
+  ]
+%}
+{# Adjust atributes to remove region information #}
+{% set attributes = attributes.removeAttribute('region') %}
+
 {% import _self as menus %}
 
 {#
   We call a macro which calls itself to render the full tree.
   @see http://twig.sensiolabs.org/doc/tags/macro.html
 #}
-{{ menus.menu_links(items, attributes, 0, menu_icons, menu_name) }}
+{{ menus.menu_links(items, attributes, 0, menu_icons, menu_name, menu_classes) }}
 
-{% macro menu_links(items, attributes, menu_level, menu_icons, menu_name) %}
+{% macro menu_links(items, attributes, menu_level, menu_icons, menu_name, menu_classes) %}
 
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul{{ attributes.addClass('nav navbar-nav') }} id="menu-{{ menu_name|clean_class }}">
+      <ul{{ attributes.addClass(menu_classes) }} id="menu-{{ menu_name|clean_class }}">
     {% else %}
       <ul class="dropdown-menu">
     {% endif %}
