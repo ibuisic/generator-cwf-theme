@@ -35,6 +35,6 @@
 
 {% block label %}
   {% if title is not empty or required -%}
-    <label{{ attributes.addClass(classes) }}>{{ title }}{% if required %}<span class="form-required-mark"></span>{% endif %}</label>
+    <label{{ attributes.addClass(classes) }}>{{ title }}{% if required %}<span class="form-required-mark text-danger"> *</span>{% endif %}</label>
   {%- endif %}
 {% endblock label %}
