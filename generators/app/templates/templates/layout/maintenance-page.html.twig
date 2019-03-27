@@ -19,8 +19,6 @@
     theme_settings.navbar_color ? theme_settings.navbar_color|clean_class
 ] %}
 
-{% set main_container_classes = 'layout-content' %}
-
 {% set navbar_container = theme_settings.navbar_container|clean_class %}
 
 <header {{ navbar_attributes.addClass(navbar_classes) }} id="navbar" role="banner">
@@ -52,7 +50,7 @@
 {% endblock %}
 
 {# Main #}
-<main role="main" {{ attributes.addClass(theme_settings.main_container_classes, 'pt-5 pb-5') }}>
+<main role="main" {{ attributes.addClass(theme_settings.main_content_classes, 'pt-5 pb-5') }}>
   {% if (theme_settings.main_container) %}
     <div class="{{ theme_settings.main_container }}">
   {% endif %}
