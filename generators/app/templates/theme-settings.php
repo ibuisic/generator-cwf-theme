@@ -135,10 +135,10 @@ function <%= themeName %>_form_system_theme_settings_alter(&$form, FormStateInte
     '#group' => 'container',
   ];
 
-  $form['settings']['content']['main_container_classes'] = array(
+  $form['settings']['content']['main_content_classes'] = array(
     '#type' => 'textfield',
     '#title' => t('Main content classes'),
-    '#default_value' => theme_get_setting('main_container_classes')
+    '#default_value' => theme_get_setting('main_content_classes')
   );
 
   // navbar
