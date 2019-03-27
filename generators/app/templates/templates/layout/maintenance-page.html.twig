@@ -13,21 +13,15 @@
 {% set navbar_attributes = create_attribute() %}
 {# Navbar #}
 {% block navbar %}
-{%
-  set navbar_classes = [
+{% set navbar_classes = [
     'navbar',
     theme_settings.navbar_classes ? theme_settings.navbar_classes|clean_class,
     theme_settings.navbar_color ? theme_settings.navbar_color|clean_class
-  ]
-%}
+] %}
 
-{%
-  set main_container_classes = 'layout-content'
-%}
+{% set main_container_classes = 'layout-content' %}
 
-{% 
-  set navbar_container = theme_settings.navbar_container|clean_class
-%}
+{% set navbar_container = theme_settings.navbar_container|clean_class %}
 
 <header {{ navbar_attributes.addClass(navbar_classes) }} id="navbar" role="banner">
   {% if (theme_settings.navbar_container) %}

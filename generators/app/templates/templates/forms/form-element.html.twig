@@ -45,16 +45,14 @@
  */
 #}
 {% if type == 'checkbox' %}
-  {%  set wrapper_class = theme_settings.custom_form_checkbox ? 'custom-control custom-checkbox' : 'form-check' %}
+  {% set wrapper_class = theme_settings.custom_form_checkbox ? 'custom-control custom-checkbox' : 'form-check' %}
 {% endif %}
 
 {% if type == 'radio' %}
   {% set wrapper_class = theme_settings.custom_form_radio ? 'custom-control custom-checkbox' : 'form-check' %}
 {% endif %}
 
-
-{%
-  set classes = [
+{% set classes = [
     'js-form-item',
     'form-item',
     'js-form-type-' ~ type|clean_class,
@@ -64,14 +62,13 @@
     disabled == 'disabled' ? 'form-disabled',
     errors ? 'form-item--error',
     wrapper_class,
-  ]
-%}
-{%
-  set description_classes = [
+] %}
+
+{% set description_classes = [
     'description',
     description_display == 'invisible' ? 'visually-hidden',
-  ]
-%}
+] %}
+
 <div{{ attributes.addClass(classes) }}>
   {% if label_display in ['before', 'invisible'] %}
     {{ label }}

@@ -12,16 +12,14 @@
  * @see template_preprocess_region()
  */
 #}
-{%
-  set classes = [
+{% set classes = [
     'region',
     'collapse',
     'navbar-collapse',
     'flex-grow-0',
     theme_settings.navbar_collapsed_classes ? theme_settings.navbar_collapsed_classes|clean_class,
     'region-' ~ region|clean_class,
-  ]
-%}
+] %}
 
 {% set navbar_collapsed_container = theme_settings.navbar_collapsed_container|clean_class %}
 
@@ -29,7 +27,7 @@
   {# <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapsedRegion" aria-controls="navbarCollapsedRegion" aria-expanded="false" aria-label="Toggle navbar collapsed region">
     <span class="navbar-toggler-icon"></span>
   </button> #}
-  {% include '@<%= themeName %>/partials/toggle.html.twig' with { class: 'navbar-toggler', data: "data-toggle", data_options: "collapse", target: "#navbarCollapsedRegion" }   %}
+  {% include '@<%= themeName %>/partials/toggle.html.twig' with { class: 'navbar-toggler', data: "data-toggle", data_options: "collapse", target: "#navbarCollapsedRegion" } %}
   <section{{ attributes.addClass(classes).setAttribute('id', 'navbarCollapsedRegion') }}>
     {% if (theme_settings.navbar_collapsed_container) %}
       <div class="{{ navbar_collapsed_container }}">

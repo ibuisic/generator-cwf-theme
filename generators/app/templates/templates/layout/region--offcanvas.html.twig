@@ -14,7 +14,7 @@
  * @see template_preprocess_region()
  */
 #}
-{% do attributes.addClass(['js-offcanvas','p-4', 'c-offcanvas--' ~ theme_settings.offcanvas_position]) %}
+{% do attributes.addClass(['js-offcanvas', 'p-4', 'c-offcanvas--' ~ theme_settings.offcanvas_position]) %}
 {% do attributes.setAttribute('data-offcanvas-options', '{"modifiers": "' ~ theme_settings.offcanvas_position ~ ',' ~ theme_settings.offcanvas_type ~ '"}') %}
 {% do attributes.setAttribute('id', region) %}
 

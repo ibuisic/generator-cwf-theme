@@ -16,22 +16,20 @@
 
 #}
 {% if element['#element_type'] == 'checkbox' %}
-  {%  set label_class = theme_settings.custom_form_checkbox ? 'custom-control-label' : 'form-check-label' %}
+  {% set label_class = theme_settings.custom_form_checkbox ? 'custom-control-label' : 'form-check-label' %}
 {% endif %}
 
 {% if element['#element_type'] == 'radio' %}
   {% set label_class = theme_settings.custom_form_radio ? 'custom-control-label' : 'form-check-label' %}
 {% endif %}
 
-{%
-  set classes = [
+{% set classes = [
     title_display == 'after' ? 'option',
     title_display == 'invisible' ? 'visually-hidden',
     required ? 'js-form-required',
     required ? 'form-required',
     label_class,
-  ]
-%}
+] %}
 
 {% block label %}
   {% if title is not empty or required -%}

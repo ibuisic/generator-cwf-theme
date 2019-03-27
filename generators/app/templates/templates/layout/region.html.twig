@@ -12,12 +12,10 @@
  * @see template_preprocess_region()
  */
 #}
-{%
-  set classes = [
+{% set classes = [
     'region',
     'region-' ~ region|clean_class,
-  ]
-%}
+] %}
 
 {% set container_classes = region_container|clean_class %}
 

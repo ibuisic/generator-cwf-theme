@@ -37,21 +37,17 @@
  * @see template_preprocess_field()
  */
 #}
-{%
-  set classes = [
+{% set classes = [
     'field',
     'field--name-' ~ field_name|clean_class,
     'field--type-' ~ field_type|clean_class,
     'field--label-' ~ label_display,
     label_display == 'inline' ? 'clearfix',
-  ]
-%}
-{%
-  set title_classes = [
+] %}
+{% set title_classes = [
     'field__label',
     label_display == 'visually_hidden' ? 'visually-hidden',
-  ]
-%}
+] %}
 
 {% if label_hidden %}
   {% if multiple %}

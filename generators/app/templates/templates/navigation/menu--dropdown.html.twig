@@ -21,12 +21,10 @@
 {% set menu_icons = theme_settings.menu_icons %}
 {# Create class that's aware of the menu's region #}
 {% set region = attributes.region|clean_class %}
-{%
-  set menu_classes = [
+{% set menu_classes = [
     'nav',
     region ? region ~ '-nav'
-  ]
-%}
+] %}
 {# Adjust atributes to remove region information #}
 {% set attributes = attributes.removeAttribute('region') %}
 
@@ -48,24 +46,20 @@
       <ul class="dropdown-menu">
     {% endif %}
     {% for item in items %}
-      {%
-        set classes = [
+      {% set classes = [
           menu_level ? 'dropdown-item' : 'nav-item',
           item.is_expanded ? 'menu-item--expanded',
           item.is_collapsed ? 'menu-item--collapsed',
           item.in_active_trail ? 'active',
           item.below ? 'dropdown',
           item.below ? (menu_name|clean_class) ~ '-menu-dropdown-' ~ menu_level ~ '-' ~ loop.index,
-        ]
-      %}
+      ] %}
       <li {{ item.attributes.addClass(classes) }}>
-        {%
-          set link_classes = [
-            not menu_level ? 'nav-link',
-            item.in_active_trail ? 'active',
-            item.below ? 'dropdown-toggle',
-          ]
-        %}
+        {% set link_classes = [
+          not menu_level ? 'nav-link',
+          item.in_active_trail ? 'active',
+          item.below ? 'dropdown-toggle',
+        ] %}
 
         {# icons #}
         {% if ' | ' in item.title and menu_icons %}
@@ -78,7 +72,7 @@
         {% endif %}
 
         {% if item.below %}
-          {{ link(title, item.url, {'class': link_classes, 'data-toggle': 'dropdown', 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-target':  '.' ~ menu_name|clean_class ~ '-menu-dropdown-' ~ menu_level ~ '-' ~ loop.index}) }}
+          {{ link(title, item.url, {'class': link_classes, 'data-toggle': 'dropdown', 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-target': '.' ~ menu_name|clean_class ~ '-menu-dropdown-' ~ menu_level ~ '-' ~ loop.index}) }}
           {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_icons) }}
         {% else %}
           {{ link(title, item.url, {'class': link_classes}) }}

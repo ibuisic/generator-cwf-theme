@@ -25,14 +25,12 @@
  * @see template_preprocess_block()
  */
 #}
-{%
-  set branding_classes = [
-    'navbar-brand',
-    'site-branding'
-  ]
-%}
+{% set branding_classes = [
+  'navbar-brand',
+  'site-branding'
+] %}
 
-<div{{ attributes.addClass(branding_classes)  }}>
+<div{{ attributes.addClass(branding_classes) }}>
   {{ title_prefix }}
   {% if label %}
     <h2{{ title_attributes }}>{{ label }}</h2>

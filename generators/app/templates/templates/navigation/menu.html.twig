@@ -38,21 +38,17 @@
       <ul class="menu">
     {% endif %}
     {% for item in items %}
-      {%
-        set classes = [
+      {% set classes = [
           'nav-item',
           item.is_expanded ? 'menu-item--expanded',
           item.is_collapsed ? 'menu-item--collapsed',
           item.in_active_trail ? 'menu-item--active-trail',
-        ]
-      %}
+      ] %}
       <li{{ item.attributes.addClass(classes) }}>
-        {%
-          set link_classes = [
+        {% set link_classes = [
             'btn' not in item.url.options.attributes.class ? 'nav-link',
             item.in_active_trail ? 'active',
-          ]
-        %}
+        ] %}
 
         {% if ' | ' in item.title and menu_icons %}
 

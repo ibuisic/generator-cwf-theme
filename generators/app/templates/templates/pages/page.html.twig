@@ -61,15 +61,13 @@
   {% block navbar %}
     {% set navbar_attributes = create_attribute() %}
     {% set navbar_container = theme_settings.navbar_container|clean_class %}
-    {%
-      set navbar_classes = [
+    {% set navbar_classes = [
         'navbar',
         theme_settings.navbar_classes ? theme_settings.navbar_classes,
         theme_settings.navbar_position ? theme_settings.navbar_position,
         theme_settings.navbar_color ? theme_settings.navbar_color,
         theme_settings.navbar_expand ? theme_settings.navbar_expand
-      ]
-    %}
+    ] %}
 
     <header role="banner" {{ navbar_attributes.addClass(navbar_classes) }}>
       {% if (theme_settings.navbar_container) %}

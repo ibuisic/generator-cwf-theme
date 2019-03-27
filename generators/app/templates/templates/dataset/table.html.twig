@@ -40,24 +40,18 @@
  */
 #}
 
-{%
-  set classes = [
+{% set classes = [
     'table',
     theme_settings.tables_background ? theme_settings.tables_background,
     theme_settings.tables_borders ? theme_settings.tables_borders,
     theme_settings.tables_striped_rows ? 'table-striped',
     theme_settings.tables_sm ? 'table-sm',
     theme_settings.tables_hover ? 'table-hover'
-  ]
-%}
+] %}
 
-{% 
-  set responsive_classes = theme_settings.tables_responsive ? theme_settings.tables_responsive
-%}
+{% set responsive_classes = theme_settings.tables_responsive ? theme_settings.tables_responsive %}
 
-{%
-  set thead_classes = theme_settings.thead_background ? theme_settings.thead_background
-%}
+{% set thead_classes = theme_settings.thead_background ? theme_settings.thead_background %}
 
 {% if (theme_settings.tables_responsive != 'none') %}
   <div class="{{ responsive_classes }}">

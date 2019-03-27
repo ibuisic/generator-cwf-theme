@@ -30,8 +30,7 @@
  * @see template_preprocess_views_view_table()
  */
 #}
-{%
-  set classes = [
+{% set classes = [
     'views-table',
     'table',
     'views-view-table',
@@ -41,16 +40,11 @@
     theme_settings.tables_striped_rows ? 'table-striped',
     theme_settings.tables_sm ? 'table-sm',
     theme_settings.tables_hover ? 'table-hover'
-  ]
-%}
+] %}
 
-{% 
-  set responsive_classes = theme_settings.tables_responsive ? theme_settings.tables_responsive
-%}
+{% set responsive_classes = theme_settings.tables_responsive ? theme_settings.tables_responsive %}
 
-{%
-  set thead_classes = theme_settings.thead_background ? theme_settings.thead_background
-%}
+{% set thead_classes = theme_settings.thead_background ? theme_settings.thead_background %}
 
 {% if (theme_settings.tables_responsive) %}
   <div class="{{ responsive_classes }}">
@@ -84,12 +78,10 @@
         <tr>
           {% for key, column in header %}
             {% if column.default_classes %}
-              {%
-                set column_classes = [
+              {% set column_classes = [
                   'views-field',
                   'views-field-' ~ fields[key],
-                ]
-              %}
+              ] %}
             {% endif %}
             <th{{ column.attributes.addClass(column_classes).setAttribute('scope', 'col') }}>
               {%- if column.wrapper_element -%}
@@ -117,11 +109,9 @@
         <tr{{ row.attributes }}>
           {% for key, column in row.columns %}
             {% if column.default_classes %}
-              {%
-                set column_classes = [
+              {% set column_classes = [
                   'views-field'
-                ]
-              %}
+              ] %}
               {% for field in column.fields %}
                 {% set column_classes = column_classes|merge(['views-field-' ~ field]) %}
               {% endfor %}

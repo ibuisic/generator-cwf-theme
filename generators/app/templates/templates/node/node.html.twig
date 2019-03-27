@@ -60,8 +60,7 @@
  */
 #}
 
-{%
-  set classes = [
+{% set classes = [
     'node',
     'node--type-' ~ node.bundle|clean_class,
     node.isPromoted() ? 'node--promoted',
@@ -69,8 +68,7 @@
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
     'clearfix',
-  ]
-%}
+] %}
 <article{{ attributes.addClass(classes) }}>
   <header>
     {{ title_prefix }}

@@ -17,7 +17,7 @@
 
 {% block content %}
   <div class="d-flex justify-content-between">
-    {% include '@<%= themeName %>/partials/toggle.html.twig' with { class: 'js-offcanvas-trigger', data: "data-offcanvas-trigger", data_options: "offcanvas", target: "#off-canvas" }   %}
+    {% include '@<%= themeName %>/partials/toggle.html.twig' with { class: 'js-offcanvas-trigger', data: "data-offcanvas-trigger", data_options: "offcanvas", target: "#off-canvas" } %}
     {{ parent() }}
   </div>
 {% endblock %}

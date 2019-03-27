@@ -26,8 +26,7 @@
  */
 #}
 {% for type, messages in message_list %}
-  {%
-    set classes = [
+ {% set classes = [
       'alert',
       'alert-dismissible',
       'fade',
@@ -36,8 +35,7 @@
       type == 'status' ? 'alert-success',
       type == 'warning' ? 'alert-warning',
       type == 'error' ? 'alert-danger',
-    ]
-  %}
+  ] %}
 
   <div role="alert" aria-label="{{ status_headings[type] }}" {{ attributes|without('role', 'aria-label').addClass(classes) }}>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
