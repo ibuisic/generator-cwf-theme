@@ -111,7 +111,7 @@ module.exports = class extends Generator {
         "lint:js": "eslint src/js",
         "lint:fix": "eslint src/js --fix",
         "image:min": "imagemin src/images/* --out-dir=dist/images",
-        "favicon": "icon-gen -i favicon.svg -o ./ -r --ico sizes=16 name=favicon",
+        "favicon": "icon-gen -i favicon.svg -o ./ -r --ico sizes=32 name=favicon",
         "css:scss-lint": "stylelint --syntax scss \"src/scss/**/*.scss\"",
         "css:scss": "node-sass --output-style compressed -o dist/css src/scss",
         "css:prefix": "postcss -u autoprefixer -r dist/css/*",
