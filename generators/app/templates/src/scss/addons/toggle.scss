@@ -5,7 +5,7 @@ $toggle-bar-height:        4px !default;
 $toggle-bar-spacing:       6px !default;
 $toggle-bar-color:         #fff !default;
 $toggle-bar-border-radius: 6px !default;
-$toggle-bars-height:       ($toggle-bar-height * 3) + ($toggle-bar-spacing * 2);
+$toggle-bars-height:       ($toggle-bar-height * 3) + ($toggle-bar-spacing * 2) !default;
 
 .toggle {
   display: flex;

@@ -1,8 +1,6 @@
 (function ($, document) {
-
-  $(document).ready(function() {
+  $(document).ready(() => {
     // Make the page fade in on load
     $('body').addClass('show');
   });
-
-})(jQuery, this);
+}(jQuery, this));
