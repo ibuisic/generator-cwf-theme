@@ -18,7 +18,7 @@ $offset-content-wrap--left:             17em !default;
 $offset-content-wrap--right:            $offset-content-wrap--left !default;
 
 // bg
-$offcanvas-bg--color:                   rgba(black, .68);
+$offcanvas-bg--color:                   rgba(#000, .68) !default;
 
 // position
 $offcanvas-enable-left:                 true !default;
